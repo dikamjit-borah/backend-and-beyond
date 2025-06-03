@@ -17,6 +17,7 @@
   "dependencies": {
     "gatsby": "^5.14.1",
     "gatsby-plugin-google-gtag": "^5.14.0",
+    "lucide-react": "^0.511.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
