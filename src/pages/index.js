@@ -1,9 +1,22 @@
-import "./../styles/global.css";
 import React from "react";
+import "./../styles/global.css";
 import Layout from "../components/Layout";
+import HeroSection from "../components/HeroSection";
+import AboutSection from "../components/AboutSection";
+import PortfolioSection from "../components/PortfolioSection";
+import ServicesSection from "../components/ServicesSection";
+import ContactSection from "../components/ContactSection";
 
 const IndexPage = () => {
-  return <Layout></Layout>;
+  return (
+    <Layout>
+      <HeroSection />
+      <AboutSection />
+      <ServicesSection />
+      <PortfolioSection />
+      <ContactSection />
+    </Layout>
+  );
 };
 
 export default IndexPage;
