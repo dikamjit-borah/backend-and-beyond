@@ -27,7 +27,6 @@ const HeroSection = ({ darkMode }) => {
           : "bg-gradient-to-br from-blue-50 via-white to-purple-50"
       }`}
     >
-      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div
           className={`absolute -top-40 -right-40 w-80 h-80 rounded-full opacity-20 ${
@@ -41,7 +40,6 @@ const HeroSection = ({ darkMode }) => {
           style={{ animationDelay: "1s" }}
         ></div>
       </div>
-
       <div
         className={`text-center z-10 px-6 transition-all duration-1000 transform ${
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
@@ -51,11 +49,18 @@ const HeroSection = ({ darkMode }) => {
           Backend & Beyond
         </h1>
         <p
-          className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto ${
+          className={`text-xl md:text-2xl mb-2 max-w-3xl mx-auto ${
             darkMode ? "text-gray-300" : "text-gray-600"
           }`}
         >
-          Powering the future of web & blockchain technology
+          Your Tech Architects, from Backend to Beyond
+        </p>
+        <p
+          className={`text-lg md:text-xl mb-8 max-w-2xl mx-auto ${
+            darkMode ? "text-gray-400" : "text-gray-500"
+          }`}
+        >
+          Smart Solutions for Ambitious Brands
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
@@ -72,17 +77,19 @@ const HeroSection = ({ darkMode }) => {
                 : "border-gray-300 text-gray-700 hover:bg-gray-50"
             } px-8 py-4 rounded-full font-semibold transition-all duration-300`}
           >
-            Contact Us
+            🎁 Grab a FREE Consultation
           </button>
         </div>
 
         {/* Scroll Indicator */}
+        {/* 
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ChevronDown
             className={darkMode ? "text-gray-400" : "text-gray-500"}
             size={32}
           />
         </div>
+        */}
       </div>
     </section>
   );
