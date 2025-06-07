@@ -15,28 +15,35 @@ const AboutSection = ({ darkMode }) => {
             </h2>
             <div className="space-y-6">
               <p
-                className={`text-lg leading-relaxed ${
+                className={`text-lg leading-relaxed text-justify ${
                   darkMode ? "text-gray-300" : "text-gray-600"
                 }`}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.
+                At Backend and Beyond, we are a multidisciplinary collective of
+                backend engineers, UI/UX designers, full-stack developers, and
+                visual storytellers united by a passion for building purposeful
+                digital experiences. Our team brings together the precision of
+                systems architects, the vision of creative technologists, and
+                the craftsmanship of interface artisans to translate complex
+                ideas into intuitive, high-performing solutions. From clean API
+                architecture to elegant front-end aesthetics, we operate at the
+                intersection of functionality and form—engineering tools that
+                are not only powerful but beautifully executed.
               </p>
               <p
-                className={`text-lg leading-relaxed ${
+                className={`text-lg leading-relaxed text-justify ${
                   darkMode ? "text-gray-300" : "text-gray-600"
                 }`}
               >
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum. Sed ut
-                perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo.
+                We specialize in crafting bespoke applications, internal
+                dashboards, automations, and digital products that drive
+                business efficiency, brand identity, and user engagement.
+                Whether you're a startup with a disruptive idea or an enterprise
+                seeking operational tools, we bring your concepts to life
+                through tailored solutions grounded in clean code, scalable
+                infrastructure, and human-centered design. From ideation to
+                deployment, we partner with you to build technology that goes
+                beyond just working—it works brilliantly.
               </p>
             </div>
           </div>
