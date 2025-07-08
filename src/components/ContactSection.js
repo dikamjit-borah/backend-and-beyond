@@ -150,7 +150,7 @@ const ContactSection = ({ darkMode }) => {
                   <div>
                     <p className="font-medium">Email</p>
                     <p className={darkMode ? "text-gray-400" : "text-gray-600"}>
-                      backendbeyond@gmail.com
+                      backendandbeyond@gmail.com
                     </p>
                   </div>
                 </div>
@@ -196,8 +196,9 @@ const ContactSection = ({ darkMode }) => {
             <div>
               <h3 className="text-2xl font-bold mb-4">Connect with Us</h3>
               <div className="flex space-x-6">
+                {/* Company GitHub */}
                 <a
-                  href="https://github.com/backendbeyond"
+                  href="https://github.com/Backend-and-Beyond"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`p-3 rounded-lg transition-colors duration-200 hover:bg-blue-600/20 ${
@@ -205,12 +206,43 @@ const ContactSection = ({ darkMode }) => {
                       ? "bg-gray-800 text-blue-400"
                       : "bg-blue-100 text-blue-600"
                   }`}
-                  aria-label="GitHub"
+                  aria-label="GitHub Company"
+                  title="Company GitHub"
+                >
+                  <Github size={24} />
+                </a>
+                {/* Personal GitHub 1 */}
+                <a
+                  href="https://github.com/dikamjit-borah"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-3 rounded-lg transition-colors duration-200 hover:bg-green-600/20 ${
+                    darkMode
+                      ? "bg-gray-800 text-green-400"
+                      : "bg-green-100 text-green-600"
+                  }`}
+                  aria-label="Dikamjit Borah GitHub"
+                  title="Dikamjit Borah GitHub"
+                >
+                  <Github size={24} />
+                </a>
+                {/* Personal GitHub 2 */}
+                <a
+                  href="https://github.com/biswajit-debnath"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-3 rounded-lg transition-colors duration-200 hover:bg-green-600/20 ${
+                    darkMode
+                      ? "bg-gray-800 text-green-400"
+                      : "bg-green-100 text-green-600"
+                  }`}
+                  aria-label="Biswajit Debnath GitHub"
+                  title="Biswajit Debnath GitHub"
                 >
                   <Github size={24} />
                 </a>
                 <a
-                  href="https://linkedin.com/company/backendbeyond"
+                  href="https://www.linkedin.com/company/backend-and-beyond"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`p-3 rounded-lg transition-colors duration-200 hover:bg-blue-600/20 ${
@@ -223,7 +255,7 @@ const ContactSection = ({ darkMode }) => {
                   <Linkedin size={24} />
                 </a>
                 <a
-                  href="https://twitter.com/backendbeyond"
+                  href="https://twitter.com/backendandbeyond"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`p-3 rounded-lg transition-colors duration-200 hover:bg-blue-600/20 ${

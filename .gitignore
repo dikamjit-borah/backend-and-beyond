@@ -83,54 +83,38 @@ web_modules/
 .cache
 .parcel-cache
 
-# Next.js build output
-.next
-out
-
-# Nuxt.js build / generate output
-.nuxt
-dist
-
 # Gatsby files
 .cache/
-# Comment in the public line in if your project uses Gatsby and not Next.js
-# https://nextjs.org/blog/next-9-1#public-directory-support
-# public
+public/
+# Gatsby functions output
+api/
 
-# vuepress build output
-.vuepress/dist
+# Misc build output
+dist
 
-# vuepress v2.x temp and cache directory
-.temp
-.cache
+# Ignore gatsby telemetry data
+.gatsby/
 
-# vitepress build output
-**/.vitepress/dist
+# Ignore gatsby preview status
+.gatsby-preview-status.json
 
-# vitepress cache directory
-**/.vitepress/cache
+# Ignore gatsby graphql typegen
+.gatsby-typegen.json
 
-# Docusaurus cache and generated files
-.docusaurus
+# Ignore gatsby plugin manifests
+manifest.webmanifest
 
-# Serverless directories
-.serverless/
+# Ignore VSCode settings
+.vscode/
 
-# FuseBox cache
-.fusebox/
+# Ignore Mac system files
+.DS_Store
 
-# DynamoDB Local files
-.dynamodb/
+# Ignore Windows system files
+Thumbs.db
 
-# TernJS port file
-.tern-port
-
-# Stores VSCode versions used for testing VSCode extensions
-.vscode-test
-
-# yarn v2
+# Ignore yarn v2
 .yarn/cache
 .yarn/unplugged
 .yarn/build-state.yml
-.yarn/install-state.gz
-.pnp.*
+.yarn/install

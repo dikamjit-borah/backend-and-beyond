@@ -129,8 +129,8 @@ const PortfolioSection = ({ darkMode }) => {
                       : "text-blue-600 hover:text-blue-700"
                   } font-medium transition-colors`}
                 >
-                  <span>View Project</span>
-                  <ExternalLink size={16} />
+                  {/* <span>View Project</span>
+                  <ExternalLink size={16} /> */}
                 </button>
               </div>
             </div>
