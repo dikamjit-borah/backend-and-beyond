@@ -29,7 +29,7 @@ const ContactSection = ({ darkMode }) => {
   return (
     <section
       id="contact"
-      className={`py-20 ${darkMode ? "bg-gray-900" : "bg-white"}`}
+      className={`py-20 ${darkMode ? "bg-black" : "bg-white"}`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="text-center mb-16">
