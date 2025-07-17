@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Import your images
@@ -36,66 +36,146 @@ const projects = [
 
 const PortfolioSection = ({ darkMode }) => {
 	const [current, setCurrent] = useState(0);
-	const prev = () => setCurrent((c) => (c === 0 ? projects.length - 1 : c - 1));
-	const next = () => setCurrent((c) => (c === projects.length - 1 ? 0 : c + 1));
+	const [direction, setDirection] = useState(0); // -1 for left, 1 for right
+	const [isAnimating, setIsAnimating] = useState(false);
+	const [previousIndex, setPreviousIndex] = useState(null);
+	
+	const prev = () => {
+		if (isAnimating) return;
+		setDirection(-1); // moving left
+		setIsAnimating(true);
+		setPreviousIndex(current);
+		setCurrent((c) => (c === 0 ? projects.length - 1 : c - 1));
+	};
+	
+	const next = () => {
+		if (isAnimating) return;
+		setDirection(1); // moving right
+		setIsAnimating(true);
+		setPreviousIndex(current);
+		setCurrent((c) => (c === projects.length - 1 ? 0 : c + 1));
+	};
+	
+	// Reset animation state after transition completes
+	useEffect(() => {
+		if (!isAnimating) return;
+		
+		const timer = setTimeout(() => {
+			setIsAnimating(false);
+			setPreviousIndex(null);
+		}, 800); // Match this with the CSS transition duration (0.8s)
+		
+		return () => clearTimeout(timer);
+	}, [isAnimating, current]);
 
 	return (
 		<section
-			id="portfolio"
+			id="work"
 			className="relative w-full bg-black overflow-hidden"
 		>
 			{/* Full-bleed background image container */}
 			<div className="relative w-full flex items-center justify-center">
 				<div className="relative w-full">
-					<div className="relative w-full overflow-hidden">
+					<div className="relative w-full overflow-hidden" style={{ position: 'relative' }}>
+						{/* Show both previous and current images during animation */}
+						{isAnimating && previousIndex !== null && (
+							<img
+								src={projects[previousIndex].image}
+								alt="Previous Project"
+								className={`w-full h-auto min-h-[600px] object-cover object-center absolute top-0 left-0 ${
+									direction > 0 ? 'slide-out-left' : 'slide-out-right'
+								}`}
+							/>
+						)}
 						<img
 							src={projects[current].image}
 							alt="Project Background"
-							className="w-full h-auto min-h-[600px] object-cover object-center"
+							className={`w-full h-auto min-h-[600px] object-cover object-center ${
+								isAnimating ? (direction > 0 ? 'slide-in-right' : 'slide-in-left') : ''
+							}`}
 						/>
+                        
+                        {/* Top Gradient - Moved inside the image container but above the images */}
+						<div className="absolute top-0 w-full h-96 bg-gradient-to-b from-black/100 to-transparent pointer-events-none z-10" />
+						{/* Bottom Gradient - Moved inside the image container but above the images */}
+						<div className="absolute bottom-0 w-full h-[25rem] bg-gradient-to-t from-black/100 to-transparent pointer-events-none z-10" />
 					</div>
 					
 					{/* Content Container - Fixed positioning relative to image */}
 					<div className="absolute inset-0">
-						{/* Top Gradient */}
-						<div className="absolute top-0 w-full h-96 bg-gradient-to-b from-black/100 to-transparent pointer-events-none" />
-						{/* Bottom Gradient */}
-						<div className="absolute bottom-0 w-full h-[25rem] bg-gradient-to-t from-black/100 to-transparent pointer-events-none" />
 
-						{/* Heading - Fixed position */}
-						<div className="absolute top-16 left-40 max-w-5xl">
-							<h2 className="text-5xl md:text-[3.2rem] font-medium text-white mb-8 drop-shadow-xl">
-								Projects That Left Our Clients Smiling:
-							</h2>
+						
+						{/* Main content container - matches the max-w-[1400px] from other sections */}
+						<div className="absolute inset-0 flex flex-col justify-between z-20">
+							<div className="max-w-[1400px] mx-auto px-16 md:px-24 sm:px-8 w-full pt-16">
+								<h2 className="font-boowie text-5xl md:text-5xl text-white mb-8 drop-shadow-xl">
+									Projects That Left Our Clients Smiling:
+								</h2>
+							</div>
+
+							{/* Project Info Overlay - matching the padding/layout of other sections */}
+							<div className="max-w-[1400px] mx-auto px-16 md:px-24 sm:px-8 w-full pb-16">
+								<div className="max-w-2xl relative" style={{ position: 'relative', overflow: 'hidden', minHeight: '180px' }}>
+									{isAnimating && previousIndex !== null && (
+										<div className={`absolute w-full ${direction > 0 ? 'slide-out-left' : 'slide-out-right'}`}>
+											<h3 className="font-boowie text-4xl md:text-3xl text-white mb-4 drop-shadow-xl">
+												{projects[previousIndex].title}
+											</h3>
+											<p className="text-lg md:text-sm text-white/90 drop-shadow-lg mb-2 font-neutraface">
+												{projects[previousIndex].description}
+											</p>
+											<p className="text-lg md:text-sm text-white/90 drop-shadow-lg mb-2 leading-relaxed font-neutraface">
+												{projects[previousIndex].description2}
+											</p>
+										</div>
+									)}
+									<div className={`${isAnimating ? (direction > 0 ? 'slide-in-right' : 'slide-in-left') : ''}`}>
+										<h3 className="font-boowie text-4xl md:text-3xl text-white mb-4 drop-shadow-xl">
+											{projects[current].title}
+										</h3>
+										<p className="text-lg md:text-sm text-white/90 drop-shadow-lg mb-2 font-neutraface">
+											{projects[current].description}
+										</p>
+										<p className="text-lg md:text-sm text-white/90 drop-shadow-lg mb-2 leading-relaxed font-neutraface">
+											{projects[current].description2}
+										</p>
+									</div>
+								</div>
+							</div>
 						</div>
 
-						{/* Project Info Overlay - Fixed position */}
-						<div className="absolute bottom-8 left-40 max-w-2xl">
-							<h3 className="text-4xl md:text-[2.2rem] text-white mb-4 drop-shadow-xl">
-								{projects[current].title}
-							</h3>
-							<p className="text-lg md:text-[0.7rem] text-white/90 drop-shadow-lg mb-2 ">
-								{projects[current].description}
-							</p>
-							<p className="text-lg md:text-[0.7rem] text-white/90 drop-shadow-lg mb-2 leading-loose">
-								{projects[current].description2}
-							</p>
+						{/* Navigation Arrows - Positioned within the layout bounds */}
+						<div className="absolute w-full max-w-[1400px] left-1/2 -translate-x-1/2 top-0 bottom-0 pointer-events-none px-4 z-30">
+							<button
+								onClick={prev}
+								className="absolute left-8 top-1/2 -translate-y-1/2 bg-transparent hover:bg-white group rounded-full w-26 h-26 flex items-center justify-center transition-all duration-300 pointer-events-auto"
+								aria-label="Previous"
+							>
+								<svg width="64" height="64" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+									<g>
+										<path d="M127.107 41.149 133 47.04l-53.039 53.03L133 153.107 127.107 159l-58.925-58.926 58.925-58.925Z" 
+											className="fill-white group-hover:fill-black transition-colors duration-300"
+											fillRule="evenodd">
+										</path>
+									</g>
+								</svg>
+							</button>
+
+							<button
+								onClick={next}
+								className="absolute right-8 top-1/2 -translate-y-1/2 bg-transparent hover:bg-white group rounded-full w-26 h-26 flex items-center justify-center transition-all duration-300 pointer-events-auto"
+								aria-label="Next"
+							>
+								<svg width="64" height="64" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style={{ transform: "rotate(180deg)" }}>
+									<g>
+										<path d="M127.107 41.149 133 47.04l-53.039 53.03L133 153.107 127.107 159l-58.925-58.926 58.925-58.925Z" 
+											className="fill-white group-hover:fill-black transition-colors duration-300"
+											fillRule="evenodd">
+										</path>
+									</g>
+								</svg>
+							</button>
 						</div>
-
-						{/* Navigation Arrows - Fixed positions */}
-						<button
-							onClick={prev}
-							className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 rounded-full p-3 transition"
-						>
-							<ChevronLeft size={40} className="text-white" />
-						</button>
-
-						<button
-							onClick={next}
-							className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 rounded-full p-3 transition"
-						>
-							<ChevronRight size={40} className="text-white" />
-						</button>
 					</div>
 				</div>
 			</div>
