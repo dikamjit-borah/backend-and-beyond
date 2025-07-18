@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, useAnimation, useInView } from 'framer-motion';
 import showcaseImg from '../images/Showcase MD.avif';
 
 const services = [
@@ -25,64 +25,237 @@ const services = [
 
 const ServicesSection = ({ darkMode }) => {
   const [hoveredIdx, setHoveredIdx] = useState(null);
+  
+  // Animation controls
+  const controls = useAnimation();
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  // Trigger animations when section comes into view
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [controls, isInView]);
+  
   return (
-    <section id="services" className="relative min-h-screen flex items-center justify-center py-24 bg-black">    
+    <motion.section 
+      ref={ref}
+      id="services" 
+      className="relative min-h-screen flex items-center justify-center py-24 bg-black"
+      initial="hidden"
+      animate={controls}
+      variants={{
+        visible: { opacity: 1 },
+        hidden: { opacity: 0 }
+      }}
+      transition={{ duration: 0.5 }}
+    >    
       {/* Vertical SERVICES label */}
-      <div className="absolute left-0 top-24 h-auto flex items-start z-10">
-        <div className="bg-gray-900 px-4 py-8 flex items-center" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed', letterSpacing: '0.2em', borderRadius: '0 0.5rem 0.5rem 0' }}>
+      <motion.div 
+        className="absolute left-0 top-24 h-auto flex items-start z-10"
+        variants={{
+          hidden: { x: -100, opacity: 0 },
+          visible: { x: 0, opacity: 1 }
+        }}
+        transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
+      >
+        <motion.div 
+          className="bg-gray-900 px-4 py-8 flex items-center" 
+          style={{ writingMode: 'vertical-rl', textOrientation: 'mixed', letterSpacing: '0.2em', borderRadius: '0 0.5rem 0.5rem 0' }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
           <span className="text-white text-lg font-semibold tracking-widest">SERVICES</span>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       {/* Main content */}
       <div className="max-w-[1400px] mx-auto px-16 md:px-24 sm:px-8 relative z-20">
         <div className="flex flex-col lg:flex-row items-start gap-16">
           {/* Left: Services List */}
-          <div className="flex flex-col justify-center lg:w-2/3">
-            <h2 className="font-boowie text-5xl md:text-5xl mb-10 text-white leading-tight">
-              Services we're <span className="text-gray-300">exceptionally</span><br />good at:
-            </h2>
-            <div className="space-y-6 mt-6">
+          <motion.div 
+            className="flex flex-col justify-center lg:w-2/3"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0 }
+            }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <motion.h2 
+              className="font-boowie text-5xl md:text-5xl mb-10 text-white leading-tight"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1 }
+              }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                Services we're 
+              </motion.span>{" "}
+              <motion.span 
+                className="text-gray-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+              >
+                exceptionally
+              </motion.span>
+              <br />
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+              >
+                good at:
+              </motion.span>
+            </motion.h2>
+            <motion.div 
+              className="space-y-6 mt-6"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1 }
+              }}
+              transition={{ duration: 0.5, delay: 1.0 }}
+            >
               {services.map((service, idx) => (
-                <div
+                <motion.div
                   key={idx}
                   className="group relative rounded-xl overflow-visible transition-all duration-300"
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                  transition={{ duration: 0.6, delay: 0.5 + idx * 0.2 }}
                 >
                   {/* Gradient hover background, anchored to left of container */}
-                  <div className="absolute top-0 left-[-60vw] h-full w-[100vw] md:left-[-50vw] md:w-[80vw] lg:left-[-30vw] lg:w-[70vw] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0" style={{background: 'linear-gradient(90deg, #444 0%, #000 100%)'}}></div>
-                  <motion.div className="relative pt-4 pb-4 z-10" 
-                    animate={{ x: hoveredIdx == idx ? 32 : 0 }}
-                    transition={{ type: 'spring', stiffness: 200, damping: 20 }}>
-                    <div className="text-gray-400 text-sm mb-2 font-neutraface">{service.number}</div>
-                    <div className="text-2xl font-semibold text-white mb-3">{service.title}</div>
-                    <div className="text-gray-400 text-sm leading-relaxed max-w-xl font-neutraface">{service.desc}</div>
+                  <motion.div 
+                    className="absolute top-0 left-[-60vw] h-full w-[100vw] md:left-[-50vw] md:w-[80vw] lg:left-[-30vw] lg:w-[70vw] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0" 
+                    style={{background: 'linear-gradient(90deg, #444 0%, #000 100%)'}}
+                    whileHover={{ opacity: 1 }}
+                  ></motion.div>
+                  <motion.div 
+                    className="relative pt-4 pb-4 z-10" 
+                    animate={{ x: hoveredIdx === idx ? 32 : 0 }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+                  >
+                    <motion.div 
+                      className="text-gray-400 text-sm mb-2 font-neutraface"
+                      animate={{ 
+                        color: hoveredIdx === idx ? '#ffffff' : '#9CA3AF',
+                        scale: hoveredIdx === idx ? 1.05 : 1
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {service.number}
+                    </motion.div>
+                    <motion.div 
+                      className="text-2xl font-semibold text-white mb-3"
+                      animate={{ scale: hoveredIdx === idx ? 1.05 : 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {service.title}
+                    </motion.div>
+                    <motion.div 
+                      className="text-gray-400 text-sm leading-relaxed max-w-xl font-neutraface"
+                      animate={{ 
+                        color: hoveredIdx === idx ? '#E5E7EB' : '#9CA3AF'
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {service.desc}
+                    </motion.div>
                   </motion.div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
           {/* Right: Description, Button, and Image */}
-          <div className="flex flex-col items-center md:items-end justify-center lg:w-1/3 mt-3">
-            <div className="mb-32 max-w-xs text-left">
-              <p className="text-gray-300 text-sm mb-6 font-neutraface">
+          <motion.div 
+            className="flex flex-col items-center md:items-end justify-center lg:w-1/3 mt-3"
+            variants={{
+              hidden: { opacity: 0, x: 50 },
+              visible: { opacity: 1, x: 0 }
+            }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+          >
+            <motion.div 
+              className="mb-32 max-w-xs text-left"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              transition={{ duration: 0.6, delay: 0.9 }}
+            >
+              <motion.p 
+                className="text-gray-300 text-sm mb-6 font-neutraface"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.8, delay: 1.1 }}
+              >
                 We're your one-stop shop for exceptional design and branding—seamlessly delivering everything you need to make your brand unforgettable.
-              </p>
-            </div>
-            <div className="relative">
-              <div className="absolute -top-6 left-6 w-full h-full bg-gray-700 rounded-2xl opacity-60 z-0" style={{ filter: 'blur(2px)' }}></div>
-              <img
+              </motion.p>
+            </motion.div>
+            <motion.div 
+              className="relative"
+              variants={{
+                hidden: { opacity: 0, scale: 0.95, y: 30 },
+                visible: { opacity: 1, scale: 1, y: 0 }
+              }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 100, 
+                damping: 15, 
+                delay: 0.7,
+                duration: 0.8
+              }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.3 } 
+              }}
+            >
+              <motion.div 
+                className="absolute -top-6 left-6 w-full h-full bg-gray-700 rounded-2xl opacity-60 z-0" 
+                style={{ filter: 'blur(2px)' }}
+                animate={isInView ? { 
+                  x: [0, 5, 0, -5, 0], 
+                  y: [0, -5, 0, 5, 0],
+                  transition: { 
+                    repeat: Infinity, 
+                    repeatType: "reverse", 
+                    duration: 12,
+                    ease: "easeInOut" 
+                  } 
+                } : {}}
+              ></motion.div>
+              <motion.img
                 src={showcaseImg}
                 alt="Showcase"
                 className="relative z-10 rounded-2xl shadow-2xl w-[350px] md:w-[420px] border-4 border-gray-800 object-cover"
                 style={{ aspectRatio: '16/10', background: '#222' }}
+                animate={isInView ? { 
+                  x: [0, -3, 0, 3, 0], 
+                  y: [0, 3, 0, -3, 0],
+                  transition: { 
+                    repeat: Infinity, 
+                    repeatType: "reverse", 
+                    duration: 10,
+                    ease: "easeInOut" 
+                  } 
+                } : {}}
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

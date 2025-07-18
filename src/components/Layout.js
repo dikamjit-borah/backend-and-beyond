@@ -4,6 +4,18 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 const Layout = ({ children }) => {
   const [activeSection, setActiveSection] = useState("home");
 
+  // Handle smooth scrolling when clicking on navigation links
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["home", "about", "services", "work", "contact"];
@@ -39,8 +51,8 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Navigation */}
-      <nav className="fixed top-4 w-full z-50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+      <nav className="fixed top-4 w-full z-50 backdrop-blur-sm px-20">
+        <div className="mx-auto">
           <div className="flex justify-between items-center h-14">
             {/* Logo */}
             <div className="flex-1 flex items-center">
@@ -73,16 +85,16 @@ const Layout = ({ children }) => {
                   }}
                 />
                 
-                <a href="#home" className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'home' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Home</a>
-                <a href="#about" className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'about' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>About</a>
-                <a href="#services" className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'services' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Services</a>
-                <a href="#work" className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'work' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Work</a>
-                <a href="#contact" className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'contact' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Contact</a>
+                <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'home' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Home</a>
+                <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'about' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>About</a>
+                <a href="#services" onClick={(e) => handleNavClick(e, 'services')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'services' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Services</a>
+                <a href="#work" onClick={(e) => handleNavClick(e, 'work')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'work' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Work</a>
+                <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'contact' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Contact</a>
               </div>
             </div>
             {/* Contact Us Button */}
             <div className="flex-1 flex justify-end">
-              <a href="#contact" className="px-6 py-3 rounded-full bg-black/40 shadow-md text-white font-medium transition-all hover:bg-white/10 text-sm">
+              <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="px-6 py-3 rounded-full bg-black/40 shadow-md text-white font-medium transition-all hover:bg-white/10 text-sm">
                 Contact Us
               </a>
             </div>
