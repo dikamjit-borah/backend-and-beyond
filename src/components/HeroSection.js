@@ -9,6 +9,15 @@ const HeroSection = ({ darkMode }) => {
     height: typeof window !== 'undefined' ? window.innerHeight : 800
   });
   
+  // Typewriter animation states
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(120);
+  
+  // Text configurations for the typewriter effect
+  const changingWords = ["AI & Automation", "Smart Solutions", "Innovation", "Intelligence"];
+  
   // Star configuration variables
   const maxStarSize = 2.5; // Maximum star size in pixels (stars will range from 1px to this value)
   const [shootingStars, setShootingStars] = useState([]);
@@ -19,6 +28,43 @@ const HeroSection = ({ darkMode }) => {
   const maxShootingStarThickness = 0.8; // Maximum thickness of shooting stars in pixels
   const minShootingStarThickness = 0.5; // Minimum thickness of shooting stars in pixels
 
+  // Separate useEffect for typewriter animation
+  useEffect(() => {
+    const handleTypewriter = () => {
+      const currentWord = changingWords[currentWordIndex];
+      
+      if (!isDeleting) {
+        // Typing forward
+        if (displayedText.length < currentWord.length) {
+          setDisplayedText(currentWord.substring(0, displayedText.length + 1));
+          setTypingSpeed(Math.random() * 50 + 120); // Smoother, more consistent typing speed
+        } else {
+          // Finished typing current word, wait then start deleting
+          setTimeout(() => setIsDeleting(true), 2000); // Longer pause at end of word for smoother feel
+          return;
+        }
+      } else {
+        // Deleting backward
+        if (displayedText.length > 0) {
+          setDisplayedText(currentWord.substring(0, displayedText.length - 1));
+          setTypingSpeed(40); // Smoother deletion speed
+        } else {
+          // Finished deleting, move to next word
+          setIsDeleting(false);
+          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % changingWords.length);
+          setTypingSpeed(120); // Slightly longer pause before starting new word
+        }
+      }
+    };
+
+    const typewriterTimer = setTimeout(handleTypewriter, typingSpeed);
+    
+    return () => {
+      clearTimeout(typewriterTimer);
+    };
+  }, [displayedText, currentWordIndex, isDeleting, typingSpeed]);
+
+  // Separate useEffect for shooting stars and window resize (runs only once or on window resize)
   useEffect(() => {
     setIsVisible(true);
     
@@ -31,13 +77,6 @@ const HeroSection = ({ darkMode }) => {
     };
     
     window.addEventListener('resize', handleResize);
-    
-    // Create initial batch of shooting stars immediately
-    for (let i = 0; i < shootingStarCount; i++) {
-      setTimeout(() => {
-        createShootingStar();
-      }, i * 500); // Stagger initial shooting stars
-    }
     
     // Function to create and animate a shooting star
     function createShootingStar() {
@@ -84,6 +123,13 @@ const HeroSection = ({ darkMode }) => {
       }, duration + 500); // Add buffer time
     }
     
+    // Create initial batch of shooting stars immediately
+    for (let i = 0; i < shootingStarCount; i++) {
+      setTimeout(() => {
+        createShootingStar();
+      }, i * 500); // Stagger initial shooting stars
+    }
+    
     // Create and animate shooting stars periodically
     const shootingStarInterval = setInterval(() => {
       createShootingStar();
@@ -93,7 +139,7 @@ const HeroSection = ({ darkMode }) => {
       window.removeEventListener('resize', handleResize);
       clearInterval(shootingStarInterval);
     };
-  }, [windowSize]);
+  }, [windowSize]); // Only depend on windowSize, not typewriter states
   
   // Generate star data
   const stars = useMemo(() => {
@@ -336,81 +382,93 @@ const HeroSection = ({ darkMode }) => {
                   `
                 }}></span>
         </motion.div>
-        {/* Headline */}
-        <motion.h1 
-          className="font-boowie font-bold text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-300 via-blue-100 to-white bg-clip-text text-transparent text-left leading-tight"
+        {/* Headline with Typewriter Effect */}
+        <motion.div
+          className="font-boowie font-bold text-4xl md:text-5xl mb-1 text-left leading-tight"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
+          style={{
+            // Pre-allocate height to prevent layout shifts
+            minHeight: '180px',
+            lineHeight: '1.1', // Consistent line height
+          }}
         >
-          The Future of <br /> Business Starts with <br /> AI & Automation 
-          <motion.svg 
-            width="40" 
-            height="40" 
-            viewBox="0 0 40 40" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-            className="inline-block ml-2 -mt-1"
-            animate={{ rotate: [15, 18, 15, 12, 15] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            {/* Sparkles */}
-            <path d="M7 4L8 2L9 4L11 5L9 6L8 8L7 6L5 5L7 4Z" fill="white" stroke="#FFDE59" strokeWidth="0.5"/>
-            <path d="M11 7L11.5 6L12 7L13 7.5L12 8L11.5 9L11 8L10 7.5L11 7Z" fill="white" stroke="#FFDE59" strokeWidth="0.5"/>
-            <path d="M5 7L5.5 6L6 7L7 7.5L6 8L5.5 9L5 8L4 7.5L5 7Z" fill="white" stroke="#FFDE59" strokeWidth="0.5"/>
+          {/* Static part of the heading - single line for consistent spacing */}
+          <div className="bg-gradient-to-r from-blue-300 via-blue-100 to-white bg-clip-text text-transparent">
+            The Future of Business Starts with{" "}
+
+            {/* Magic wand icon */}
+          
+          </div>
+          
+          {/* Container for the changing text with fixed dimensions */}
+          <div className="relative inline-block" style={{ minWidth: '420px', minHeight: '1rem' }}>
+            {/* Background text for spacing (invisible but maintains layout) */}
+            <span 
+              className="absolute top-0 left-0 opacity-0 pointer-events-none bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-400 bg-clip-text text-transparent"
+              aria-hidden="true"
+            >
+              AI & Automation
+            </span>
             
-            {/* Star shape at tip */}
-            <motion.path 
-              d="M8 12L9.5 9L11 12L14 13.5L11 15L9.5 18L8 15L5 13.5L8 12Z" 
-              fill="#FFEB3B" 
-              stroke="#FFC107" 
-              strokeWidth="0.5"
-              animate={{ 
-                opacity: [0.7, 1, 0.7], 
-                scale: [1, 1.1, 1] 
+            {/* Animated typewriter text */}
+            <motion.span 
+              className="relative z-10 bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-400 bg-clip-text text-transparent"
+              key={currentWordIndex} // Force re-render on word change
+            >
+              {displayedText}
+              
+              {/* Sci-fi cursor with pulsing glow effect */}
+              <motion.span
+                className="inline-block ml-1 relative"
+                style={{
+                  width: '2px',
+                  height: '0.8em', // Match the text height exactly
+                  background: 'linear-gradient(180deg, #3b82f6, #60a5fa)',
+                  boxShadow: '0 0 10px #3b82f6, 0 0 20px #60a5fa, 0 0 30px #3b82f6',
+                  borderRadius: '2px',
+                  verticalAlign: 'baseline', // Align with text baseline
+                  transform: 'translateY(0.05em)', // Fine-tune vertical position
+                }}
+                animate={{
+                  opacity: [1, 0.2, 1],
+                  scaleY: [1, 0.9, 1],
+                  boxShadow: [
+                    '0 0 10px #3b82f6, 0 0 20px #60a5fa, 0 0 30px #3b82f6',
+                    '0 0 5px #3b82f6, 0 0 10px #60a5fa, 0 0 15px #3b82f6',
+                    '0 0 10px #3b82f6, 0 0 20px #60a5fa, 0 0 30px #3b82f6'
+                  ]
+                }}
+                transition={{
+                  duration: 1.2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.span>
+            
+            {/* Glitch overlay effect for sci-fi feel */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'linear-gradient(90deg, transparent 0%, rgba(59,130,246,0.1) 45%, rgba(59,130,246,0.1) 55%, transparent 100%)',
+                transform: 'skew(-10deg)',
               }}
-              transition={{ 
-                duration: 2, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
+              animate={{
+                x: [-100, 500],
+                opacity: [0, 0.3, 0]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: "easeInOut"
               }}
             />
-            
-            {/* Main wand stick - tapered */}
-            <path 
-              d="M9 13.5L9.5 14V28H9V13.5Z" 
-              fill="#D4AF37" 
-              stroke="#FFDE59" 
-              strokeWidth="0.5"
-            />
-            <path 
-              d="M10 13.5L10.5 14V28H10V13.5Z" 
-              fill="#D4AF37" 
-              stroke="#FFDE59" 
-              strokeWidth="0.5"
-            />
-            
-            {/* Decorative bands */}
-            <rect x="9" y="16" width="1.5" height="0.5" fill="#FFDE59" stroke="#FFDE59" strokeWidth="0.2"/>
-            <rect x="9" y="19" width="1.5" height="0.5" fill="#FFDE59" stroke="#FFDE59" strokeWidth="0.2"/>
-            <rect x="9" y="22" width="1.5" height="0.5" fill="#FFDE59" stroke="#FFDE59" strokeWidth="0.2"/>
-            
-            {/* Handle with grip texture */}
-            <rect x="8.5" y="28" width="2.5" height="8" rx="0.5" fill="#222222" stroke="#444444" strokeWidth="0.5"/>
-            
-            {/* Grip texture lines */}
-            <line x1="9" y1="29" x2="10.5" y2="29" stroke="#444444" strokeWidth="0.3"/>
-            <line x1="9" y1="30" x2="10.5" y2="30" stroke="#444444" strokeWidth="0.3"/>
-            <line x1="9" y1="31" x2="10.5" y2="31" stroke="#444444" strokeWidth="0.3"/>
-            <line x1="9" y1="32" x2="10.5" y2="32" stroke="#444444" strokeWidth="0.3"/>
-            <line x1="9" y1="33" x2="10.5" y2="33" stroke="#444444" strokeWidth="0.3"/>
-            <line x1="9" y1="34" x2="10.5" y2="34" stroke="#444444" strokeWidth="0.3"/>
-            <line x1="9" y1="35" x2="10.5" y2="35" stroke="#444444" strokeWidth="0.3"/>
-            
-            {/* Bottom cap of handle */}
-            <rect x="8.5" y="36" width="2.5" height="0.5" rx="0.25" fill="#333333" stroke="#555555" strokeWidth="0.2"/>
-          </motion.svg>
-        </motion.h1>
+          </div>
+          
+        </motion.div>
         {/* Description */}
         <motion.p 
           className="font-neutraface text-base md:text-lg text-gray-500 mb-8 text-left max-w-xl"
