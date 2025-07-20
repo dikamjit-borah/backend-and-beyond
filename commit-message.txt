@@ -1,0 +1,8 @@
+### Major UI/UX Redesign and Animation Enhancements
+
+- Refactored **AboutSection** with improved Framer Motion animations, a custom animated counter for numeric highlights.
+- Redesigned **ContactSection**: added animated vertical label and improved accessibility and responsiveness.
+- Overhauled **HeroSection**: implemented animated starfield and shooting stars, added gradient backgrounds, and improved smooth scroll navigation.
+- Updated **Layout**: introduced a sliding active section indicator in the navigation bar, improved smooth scrolling, and enhanced layout consistency and accessibility.
+- Rebuilt **PortfolioSection**: created a new animated carousel with slide-in/slide-out transitions, timer-based auto-slide, and improved project presentation with gradients and overlays.
+- Enhanced **ServicesSection** with improved animations, hover effects, and layout adjustments for better clarity and engagement. 
