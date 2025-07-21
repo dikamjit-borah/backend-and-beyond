@@ -128,7 +128,7 @@ const AboutSection = ({ darkMode }) => {
                     visible: { opacity: 1, y: 0 }
                   }}
                   transition={{ duration: 0.6, delay: 0.7 }}
-                >Boutique By Choice.</motion.h2>
+                >Seamless tech</motion.h2>
                 <motion.h2 
                   className="font-boowie text-3xl md:text-3xl mb-2"
                   variants={{
@@ -136,7 +136,7 @@ const AboutSection = ({ darkMode }) => {
                     visible: { opacity: 1, y: 0 }
                   }}
                   transition={{ duration: 0.6, delay: 0.8 }}
-                >Because You Can't Scale</motion.h2>
+                >elegant design & engineered for </motion.h2>
                 <motion.h2 
                   className="font-boowie text-3xl md:text-3xl mb-2 text-purple-600"
                   variants={{
@@ -144,7 +144,7 @@ const AboutSection = ({ darkMode }) => {
                     visible: { opacity: 1, y: 0 }
                   }}
                   transition={{ duration: 0.6, delay: 0.9 }}
-                >Great Design.</motion.h2>
+                >modern businesses.</motion.h2>
               </div>
             </motion.div>
             
@@ -199,7 +199,7 @@ const AboutSection = ({ darkMode }) => {
                   transition={{ duration: 0.5, delay: 0.6 }}
                 >
                   <p className="text-base leading-relaxed text-gray-300 text-sm font-neutraface">
-                    Design matters to us—and truly exceptional design is rare. Big agencies often scale by standardizing their process, churning out predictable work that, to us, misses the whole point of design.
+                    At Backend and Beyond, we are a multidisciplinary collective of backend engineers, UI/UX designers, full-stack developers, and visual storytellers united by a passion for building purposeful digital experiences. Our team blends the precision of systems architects, the vision of creative technologists, and the craftsmanship of interface artisans to translate complex ideas into intuitive, high-performing solutions.
                   </p>
                 </motion.div>
                 
@@ -212,7 +212,7 @@ const AboutSection = ({ darkMode }) => {
                   transition={{ duration: 0.5, delay: 0.7 }}
                 >
                   <p className="text-base leading-relaxed text-gray-300 text-sm font-neutraface">
-                    Keeping things small allows us to be selective. Every designer or strategist who joins is here intentionally—not because they tick boxes, but because they deliver exceptional work.
+                    We operate at the intersection of functionality and form—engineering tools that are not only powerful but beautifully executed. From clean API architecture to elegant front-end aesthetics, every project we undertake is driven by our commitment to clarity, performance, and design excellence.
                   </p>
                 </motion.div>
               </motion.div>
@@ -234,7 +234,7 @@ const AboutSection = ({ darkMode }) => {
                   transition={{ duration: 0.5, delay: 0.8 }}
                 >
                   <p className="text-base leading-relaxed text-gray-300 text-sm font-neutraface">
-                    because their work speaks for itself. It's less about prestige and more about pride: pride in delivering designs clients are excited to show off.
+                    We specialize in crafting bespoke applications, internal dashboards, automations, and digital products that drive business efficiency, strengthen brand identity, and elevate user engagement. Whether you're a startup with a disruptive idea or an enterprise seeking operational tools, we shape your vision into reality through tailored, scalable solutions.
                   </p>
                 </motion.div>
                 
@@ -247,7 +247,9 @@ const AboutSection = ({ darkMode }) => {
                   transition={{ duration: 0.5, delay: 0.9 }}
                 >
                   <p className="text-base leading-relaxed text-gray-300 text-sm font-neutraface">
-                    Working with us isn't about choosing perfection; it's about choosing people who actually care about how things turn out. The kind of work that looks, feels, and works like it's worth every dollar invested.
+                    From ideation to deployment, we partner with you to build technology that goes beyond just working—it works brilliantly. Backed by clean code, robust infrastructure, and human-centered design, we create digital ecosystems that don’t just solve problems—they move businesses forward.
+
+
                   </p>
                 </motion.div>
               </motion.div>
