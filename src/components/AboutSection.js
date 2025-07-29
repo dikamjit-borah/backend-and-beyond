@@ -69,7 +69,7 @@ const AboutSection = ({ darkMode }) => {
     <motion.section
       ref={ref}
       id="about"
-      className="py-24 bg-[#0D0D0D] text-white"
+      className="py-12 md:py-24 bg-[#0D0D0D] text-white"
       initial="hidden"
       animate={controls}
       variants={{
@@ -78,13 +78,13 @@ const AboutSection = ({ darkMode }) => {
       }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-[1400px] mx-auto px-16 md:px-24 sm:px-8">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24">
         
         
-        <div className="flex flex-col lg:flex-row items-start gap-6">
+        <div className="flex flex-col lg:flex-row items-start gap-6 md:gap-12 lg:gap-6">
           {/* Left column with heading and image */}
           <motion.div 
-            className="flex flex-col items-left lg:w-2/5"
+            className="flex flex-col items-left w-full lg:w-2/5"
             variants={{
               hidden: { opacity: 0, x: -50 },
               visible: { opacity: 1, x: 0 }
@@ -92,14 +92,14 @@ const AboutSection = ({ darkMode }) => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <motion.div 
-              className="mb-4 flex items-center justify-left pl-8"
+              className="mb-4 flex items-center justify-left pl-4 sm:pl-8"
               variants={{
                 hidden: { opacity: 0, y: -20 },
                 visible: { opacity: 1, y: 0 }
               }}
               transition={{ duration: 0.4, delay: 0.3 }}
             >
-              <span className="text-sm uppercase tracking-wider text-gray-400">OUR ETHOS</span>
+              <span className="text-xs sm:text-sm uppercase tracking-wider text-gray-400">OUR ETHOS</span>
               <img
                 src={arrowImg}
                 alt="Arrow"
@@ -107,7 +107,7 @@ const AboutSection = ({ darkMode }) => {
               />
             </motion.div>
             <motion.div 
-              className="relative mb-12 max-w-lg"
+              className="relative mb-8 md:mb-12 max-w-lg"
               variants={{
                 hidden: { opacity: 0 },
                 visible: { opacity: 1 }
@@ -115,14 +115,14 @@ const AboutSection = ({ darkMode }) => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <motion.div 
-                className="absolute top-0 bottom-0 left-0 w-5 bg-gradient-to-b from-purple-900 to-black"
+                className="absolute top-0 bottom-0 left-0 w-3 sm:w-5 bg-gradient-to-b from-purple-900 to-black"
                 initial={{ height: 0 }}
                 animate={{ height: '100%' }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               ></motion.div>
-              <div className="pl-8">
+              <div className="pl-4 sm:pl-8">
                 <motion.h2 
-                  className="font-boowie text-3xl md:text-3xl mb-2"
+                  className="font-boowie text-2xl sm:text-3xl md:text-3xl mb-2"
                   variants={{
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0 }
@@ -130,7 +130,7 @@ const AboutSection = ({ darkMode }) => {
                   transition={{ duration: 0.6, delay: 0.7 }}
                 >Seamless tech</motion.h2>
                 <motion.h2 
-                  className="font-boowie text-3xl md:text-3xl mb-2"
+                  className="font-boowie text-2xl sm:text-3xl md:text-3xl mb-2"
                   variants={{
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0 }
@@ -138,7 +138,7 @@ const AboutSection = ({ darkMode }) => {
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >elegant design & engineered for </motion.h2>
                 <motion.h2 
-                  className="font-boowie text-3xl md:text-3xl mb-2 text-purple-600"
+                  className="font-boowie text-2xl sm:text-3xl md:text-3xl mb-2 text-purple-600"
                   variants={{
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0 }
@@ -149,7 +149,7 @@ const AboutSection = ({ darkMode }) => {
             </motion.div>
             
             <motion.div 
-              className="mt-4 max-w-[25rem] w-full"
+              className="mt-4 max-w-[20rem] sm:max-w-[25rem] w-full"
               variants={{
                 hidden: { opacity: 0, scale: 0.9 },
                 visible: { opacity: 1, scale: 1 }
@@ -166,7 +166,7 @@ const AboutSection = ({ darkMode }) => {
           
           {/* Right column with content */}
           <motion.div 
-            className="flex flex-col items-start lg:w-3/5 pl-8 pt-2"
+            className="flex flex-col items-start w-full lg:w-3/5 pl-0 lg:pl-8 pt-2 mt-4 md:mt-8 lg:mt-0"
             variants={{
               hidden: { opacity: 0, x: 50 },
               visible: { opacity: 1, x: 0 }
@@ -175,7 +175,7 @@ const AboutSection = ({ darkMode }) => {
           >
             {/* Two column layout with two text items in each column */}
             <motion.div 
-              className="flex gap-8 w-full mt-6"
+              className="flex flex-col md:flex-row gap-4 md:gap-8 w-full mt-6"
               variants={{
                 hidden: { opacity: 0 },
                 visible: { opacity: 1 }
@@ -184,7 +184,7 @@ const AboutSection = ({ darkMode }) => {
             >
               {/* Left Column */}
               <motion.div 
-                className="flex-1 flex flex-col space-y-6"
+                className="flex-1 flex flex-col space-y-4 md:space-y-6"
                 variants={{
                   hidden: { opacity: 0 },
                   visible: { opacity: 1 }
@@ -198,7 +198,7 @@ const AboutSection = ({ darkMode }) => {
                   }}
                   transition={{ duration: 0.5, delay: 0.6 }}
                 >
-                  <p className="text-base leading-relaxed text-gray-300 text-sm font-neutraface">
+                  <p className="text-sm md:text-sm leading-relaxed text-gray-300 font-neutraface">
                     At Backend and Beyond, we are a multidisciplinary collective of backend engineers, UI/UX designers, full-stack developers, and visual storytellers united by a passion for building purposeful digital experiences. Our team blends the precision of systems architects, the vision of creative technologists, and the craftsmanship of interface artisans to translate complex ideas into intuitive, high-performing solutions.
                   </p>
                 </motion.div>
@@ -211,7 +211,7 @@ const AboutSection = ({ darkMode }) => {
                   }}
                   transition={{ duration: 0.5, delay: 0.7 }}
                 >
-                  <p className="text-base leading-relaxed text-gray-300 text-sm font-neutraface">
+                  <p className="text-sm md:text-sm leading-relaxed text-gray-300 font-neutraface">
                     We operate at the intersection of functionality and form—engineering tools that are not only powerful but beautifully executed. From clean API architecture to elegant front-end aesthetics, every project we undertake is driven by our commitment to clarity, performance, and design excellence.
                   </p>
                 </motion.div>
@@ -219,7 +219,7 @@ const AboutSection = ({ darkMode }) => {
               
               {/* Right Column */}
               <motion.div 
-                className="flex-1 flex flex-col space-y-6"
+                className="flex-1 flex flex-col space-y-4 md:space-y-6"
                 variants={{
                   hidden: { opacity: 0 },
                   visible: { opacity: 1 }
@@ -233,7 +233,7 @@ const AboutSection = ({ darkMode }) => {
                   }}
                   transition={{ duration: 0.5, delay: 0.8 }}
                 >
-                  <p className="text-base leading-relaxed text-gray-300 text-sm font-neutraface">
+                  <p className="text-sm md:text-sm leading-relaxed text-gray-300 font-neutraface">
                     We specialize in crafting bespoke applications, internal dashboards, automations, and digital products that drive business efficiency, strengthen brand identity, and elevate user engagement. Whether you're a startup with a disruptive idea or an enterprise seeking operational tools, we shape your vision into reality through tailored, scalable solutions.
                   </p>
                 </motion.div>
@@ -246,7 +246,7 @@ const AboutSection = ({ darkMode }) => {
                   }}
                   transition={{ duration: 0.5, delay: 0.9 }}
                 >
-                  <p className="text-base leading-relaxed text-gray-300 text-sm font-neutraface">
+                  <p className="text-sm md:text-base leading-relaxed text-gray-300 font-neutraface">
                     From ideation to deployment, we partner with you to build technology that goes beyond just working—it works brilliantly. Backed by clean code, robust infrastructure, and human-centered design, we create digital ecosystems that don’t just solve problems—they move businesses forward.
 
 
@@ -257,7 +257,7 @@ const AboutSection = ({ darkMode }) => {
             
             {/* Stats section */}
             <motion.div 
-              className="grid grid-cols-4 gap-4 pt-8 mt-8 w-full"
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4 pt-6 md:pt-8 mt-6 md:mt-8 w-full"
               variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 }
@@ -273,14 +273,14 @@ const AboutSection = ({ darkMode }) => {
                 transition={{ duration: 0.5, delay: 1.1 }}
               >
                 <motion.p 
-                  className="text-4xl font-bold text-white"
+                  className="text-2xl sm:text-3xl md:text-4xl font-bold text-white"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.2 }}
                 >
-                  {isInView && <AnimatedCounter value="85%" duration={2.5} className="text-4xl font-bold text-white" />}
+                  {isInView && <AnimatedCounter value="85%" duration={2.5} className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" />}
                 </motion.p>
-                <p className="text-xs text-white mt-1 font-bold font-neutraface">Client Referral Rate</p>
+                <p className="text-xs md:text-xs text-white mt-1 font-bold font-neutraface">Client Referral Rate</p>
               </motion.div>
               <motion.div 
                 className="text-left"
@@ -291,14 +291,14 @@ const AboutSection = ({ darkMode }) => {
                 transition={{ duration: 0.5, delay: 1.2 }}
               >
                 <motion.p 
-                  className="text-4xl font-bold text-white"
+                  className="text-2xl sm:text-3xl md:text-4xl font-bold text-white"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.3 }}
                 >
-                  {isInView && <AnimatedCounter value="210+" duration={2.5} className="text-4xl font-bold text-white" />}
+                  {isInView && <AnimatedCounter value="210+" duration={2.5} className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" />}
                 </motion.p>
-                <p className="text-xs text-white mt-1 font-bold font-neutraface">Projects Delivered</p>
+                <p className="text-xs md:text-xs text-white mt-1 font-bold font-neutraface">Projects Delivered</p>
               </motion.div>
               <motion.div 
                 className="text-left"
@@ -309,14 +309,14 @@ const AboutSection = ({ darkMode }) => {
                 transition={{ duration: 0.5, delay: 1.3 }}
               >
                 <motion.p 
-                  className="text-4xl font-bold text-white"
+                  className="text-2xl sm:text-3xl md:text-4xl font-bold text-white"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.4 }}
                 >
-                  {isInView && <AnimatedCounter value="30+" duration={2.5} className="text-4xl font-bold text-white" />}
+                  {isInView && <AnimatedCounter value="30+" duration={2.5} className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" />}
                 </motion.p>
-                <p className="text-xs text-white mt-1 font-bold font-neutraface">Industry Served</p>
+                <p className="text-xs md:text-xs text-white mt-1 font-bold font-neutraface">Industry Served</p>
               </motion.div>
               <motion.div 
                 className="text-left"
@@ -327,20 +327,20 @@ const AboutSection = ({ darkMode }) => {
                 transition={{ duration: 0.5, delay: 1.4 }}
               >
                 <motion.p 
-                  className="text-4xl font-bold text-white"
+                  className="text-2xl sm:text-3xl md:text-4xl font-bold text-white"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.5 }}
                 >
-                  {isInView && <AnimatedCounter value="100%" duration={2.5} className="text-4xl font-bold text-white" />}
+                  {isInView && <AnimatedCounter value="100%" duration={2.5} className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" />}
                 </motion.p>
-                <p className="text-xs text-white mt-1 font-bold font-neutraface">In-House Designers</p>
+                <p className="text-xs md:text-xs text-white mt-1 font-bold font-neutraface">In-House Designers</p>
               </motion.div>
             </motion.div>
             
             {/* Client logos */}
             <motion.div 
-              className="pt-8 grid grid-cols-5 gap-6 items-center opacity-70 w-full"
+              className="pt-6 md:pt-8 grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 items-center opacity-70 w-full"
               variants={{
                 hidden: { opacity: 0 },
                 visible: { opacity: 0.7 }
@@ -350,35 +350,35 @@ const AboutSection = ({ darkMode }) => {
               <motion.img 
                 src={logo1} 
                 alt="Client Logo" 
-                className="h-15 w-auto filter grayscale" 
+                className="h-16 md:h-18 w-auto filter grayscale" 
                 whileHover={{ scale: 1.1, opacity: 1, filter: "grayscale(0)" }}
                 transition={{ duration: 0.3 }}
               />
               <motion.img 
                 src={logo2} 
                 alt="Client Logo" 
-                className="h-15 w-auto filter grayscale" 
+                className="h-16 md:h-18 w-auto filter grayscale" 
                 whileHover={{ scale: 1.1, opacity: 1, filter: "grayscale(0)" }}
                 transition={{ duration: 0.3 }}
               />
               <motion.img 
                 src={logo3} 
                 alt="Client Logo" 
-                className="h-15 w-auto filter grayscale" 
+                className="h-16 md:h-18 w-auto filter grayscale" 
                 whileHover={{ scale: 1.1, opacity: 1, filter: "grayscale(0)" }}
                 transition={{ duration: 0.3 }}
               />
               <motion.img 
                 src={logo4} 
                 alt="Client Logo" 
-                className="h-15 w-auto filter grayscale" 
+                className="h-16 md:h-18 w-auto filter grayscale" 
                 whileHover={{ scale: 1.1, opacity: 1, filter: "grayscale(0)" }}
                 transition={{ duration: 0.3 }}
               />
               <motion.img 
                 src={logo5} 
                 alt="Client Logo" 
-                className="h-15 w-auto filter grayscale" 
+                className="h-16 md:h-18 w-auto filter grayscale " 
                 whileHover={{ scale: 1.1, opacity: 1, filter: "grayscale(0)" }}
                 transition={{ duration: 0.3 }}
               />
