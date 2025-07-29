@@ -43,11 +43,24 @@ const PortfolioSection = () => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [isPaused, setIsPaused] = useState(false);
 	const [timerKey, setTimerKey] = useState(0); // Key to force timer animation reset
+	const [isMobile, setIsMobile] = useState(false);
 	
 	// Animation controls for scroll-triggered animations
 	const controls = useAnimation();
 	const sectionRef = useRef(null);
 	const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+	
+	// Detect mobile devices
+	useEffect(() => {
+		const checkIfMobile = () => {
+			setIsMobile(window.innerWidth < 768);
+		};
+		
+		checkIfMobile();
+		window.addEventListener('resize', checkIfMobile);
+		
+		return () => window.removeEventListener('resize', checkIfMobile);
+	}, []);
 	
 	// Trigger animations when section comes into view
 	useEffect(() => {
@@ -126,7 +139,7 @@ const PortfolioSection = () => {
 							<motion.img
 								src={projects[previousIndex].image}
 								alt="Previous Project"
-								className={`w-full h-auto min-h-[600px] object-cover object-center absolute top-0 left-0 ${
+								className={`w-full h-auto min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] object-cover object-center absolute top-0 left-0 ${
 									direction > 0 ? 'slide-out-left' : 'slide-out-right'
 								}`}
 								initial={{ opacity: 1 }}
@@ -137,7 +150,7 @@ const PortfolioSection = () => {
 						<motion.img
 							src={projects[current].image}
 							alt="Project Background"
-							className={`w-full h-auto min-h-[600px] object-cover object-center ${
+							className={`w-full h-auto min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] object-cover object-center ${
 								isAnimating ? (direction > 0 ? 'slide-in-right' : 'slide-in-left') : ''
 							}`}
 							initial={{ scale: isAnimating ? 1.05 : 1 }}
@@ -150,21 +163,21 @@ const PortfolioSection = () => {
                         
                         {/* Top Gradient - Moved inside the image container but above the images */}
 						<motion.div 
-							className="absolute top-0 w-full h-96 bg-gradient-to-b from-black/100 to-transparent pointer-events-none z-10"
+							className="absolute top-0 w-full h-48 sm:h-64 md:h-80 lg:h-96 bg-gradient-to-b from-black/100 to-transparent pointer-events-none z-10"
 							initial={{ opacity: 0, y: -50 }}
 							animate={{ 
-								opacity: isHovered ? 1 : 0, 
-								y: isHovered ? 0 : -50 
+								opacity: isMobile ? 1 : (isHovered ? 1 : 0), 
+								y: isMobile ? 0 : (isHovered ? 0 : -50) 
 							}}
 							transition={{ duration: 0.5 }}
 						/>
 						{/* Bottom Gradient - Moved inside the image container but above the images */}
 						<motion.div 
-							className="absolute bottom-0 w-full h-[25rem] bg-gradient-to-t from-black/100 to-transparent pointer-events-none z-10"
+							className="absolute bottom-0 w-full h-[15rem] sm:h-[18rem] md:h-[22rem] lg:h-[25rem] bg-gradient-to-t from-black/100 to-transparent pointer-events-none z-10"
 							initial={{ opacity: 0, y: 50 }}
 							animate={{ 
-								opacity: isHovered ? 1 : 0, 
-								y: isHovered ? 0 : 50 
+								opacity: isMobile ? 1 : (isHovered ? 1 : 0), 
+								y: isMobile ? 0 : (isHovered ? 0 : 50) 
 							}}
 							transition={{ duration: 0.5 }}
 						/>
@@ -177,21 +190,21 @@ const PortfolioSection = () => {
 						{/* Main content container - matches the max-w-[1400px] from other sections */}
 						<div className="absolute inset-0 flex flex-col justify-between z-20">
 							<motion.div 
-								className="max-w-[1400px] mx-auto px-16 md:px-24 sm:px-8 w-full pt-16"
+								className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 w-full pt-8 sm:pt-12 md:pt-16"
 								initial={{ opacity: 0, y: 30 }}
 								animate={{ 
-									opacity: isHovered ? 1 : 0, 
-									y: isHovered ? 0 : 30 
+									opacity: isMobile ? 1 : (isHovered ? 1 : 0), 
+									y: isMobile ? 0 : (isHovered ? 0 : 30) 
 								}}
 								transition={{ duration: 0.5 }}
 							>
-								<div className="flex items-center gap-6">
+								<div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
 									<motion.h2 
-										className="font-boowie text-5xl md:text-5xl text-white mb-8 drop-shadow-xl"
+										className="font-boowie text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-4 sm:mb-8 drop-shadow-xl leading-tight"
 										initial={{ opacity: 0, y: 20 }}
 										animate={{ 
-											opacity: isHovered ? 1 : 0, 
-											y: isHovered ? 0 : 20 
+											opacity: isMobile ? 1 : (isHovered ? 1 : 0), 
+											y: isMobile ? 0 : (isHovered ? 0 : 20) 
 										}}
 										transition={{ 
 											duration: 0.5,
@@ -203,11 +216,11 @@ const PortfolioSection = () => {
 									
 									{/* Circular Timer */}
 									<motion.div 
-										className="relative w-12 h-12 mb-8 cursor-pointer"
+										className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mb-4 sm:mb-8 cursor-pointer flex-shrink-0"
 										initial={{ opacity: 0, scale: 0.8 }}
 										animate={{ 
-											opacity: isHovered ? 0.8 : 1, 
-											scale: isHovered ? 0.8 : 1
+											opacity: isMobile ? 1 : (isHovered ? 0.8 : 1), 
+											scale: isMobile ? 1 : (isHovered ? 0.8 : 1)
 										}}
 										whileHover={{ scale: 1.1 }}
 										transition={{ duration: 0.5 }}
@@ -253,7 +266,7 @@ const PortfolioSection = () => {
 											<motion.span 
 												initial={{ opacity: 0 }}
 												animate={{ opacity: 1 }}
-												className="text-xs"
+												className="text-[8px] sm:text-[10px] md:text-xs"
 											>
 												{current + 1}/{projects.length}
 											</motion.span>
@@ -264,32 +277,32 @@ const PortfolioSection = () => {
 
 							{/* Project Info Overlay - matching the padding/layout of other sections */}
 							<motion.div 
-								className="max-w-[1400px] mx-auto px-16 md:px-24 sm:px-8 w-full pb-16"
+								className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 w-full pb-8 sm:pb-12 md:pb-16"
 								initial={{ opacity: 0 }}
 								animate={{ 
-									opacity: isHovered ? 1 : 0
+									opacity: isMobile ? 1 : (isHovered ? 1 : 0)
 								}}
 								transition={{ duration: 0.5, delay: 0.15 }}
 							>
 								<motion.div 
-									className="max-w-2xl relative" 
-									style={{ position: 'relative', overflow: 'hidden', minHeight: '180px' }}
+									className="max-w-full sm:max-w-2xl relative" 
+									style={{ position: 'relative', overflow: 'hidden', minHeight: '120px' }}
 									initial={{ opacity: 0, y: 30 }}
 									animate={{ 
-										opacity: isHovered ? 1 : 0, 
-										y: isHovered ? 0 : 30 
+										opacity: isMobile ? 1 : (isHovered ? 1 : 0), 
+										y: isMobile ? 0 : (isHovered ? 0 : 30) 
 									}}
 									transition={{ duration: 0.5, delay: 0.2 }}
 								>
 									{isAnimating && previousIndex !== null && (
 										<div className={`absolute w-full ${direction > 0 ? 'slide-out-left' : 'slide-out-right'}`}>
-											<h3 className="font-boowie text-4xl md:text-3xl text-white mb-4 drop-shadow-xl">
+											<h3 className="font-boowie text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-2 sm:mb-3 md:mb-4 drop-shadow-xl">
 												{projects[previousIndex].title}
 											</h3>
-											<p className="text-lg md:text-sm text-white/90 drop-shadow-lg mb-2 font-neutraface">
+											<p className="text-sm sm:text-base md:text-lg text-white/90 drop-shadow-lg mb-1 sm:mb-2 font-neutraface">
 												{projects[previousIndex].description}
 											</p>
-											<p className="text-lg md:text-sm text-white/90 drop-shadow-lg mb-2 leading-relaxed font-neutraface">
+											<p className="text-sm sm:text-base md:text-lg text-white/90 drop-shadow-lg mb-1 sm:mb-2 leading-relaxed font-neutraface">
 												{projects[previousIndex].description2}
 											</p>
 										</div>
@@ -301,7 +314,7 @@ const PortfolioSection = () => {
 										transition={{ duration: 0.5 }}
 									>
 										<motion.h3 
-											className="font-boowie text-4xl md:text-3xl text-white mb-4 drop-shadow-xl"
+											className="font-boowie text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white mb-2 sm:mb-3 md:mb-4 drop-shadow-xl"
 											variants={{
 												hidden: { opacity: 0, y: 20 },
 												visible: { opacity: 1, y: 0 }
@@ -311,7 +324,7 @@ const PortfolioSection = () => {
 											{projects[current].title}
 										</motion.h3>
 										<motion.p 
-											className="text-lg md:text-sm text-white/90 drop-shadow-lg mb-2 font-neutraface"
+											className="text-sm sm:text-base md:text-lg text-white/90 drop-shadow-lg mb-1 sm:mb-2 font-neutraface"
 											variants={{
 												hidden: { opacity: 0, y: 10 },
 												visible: { opacity: 1, y: 0 }
@@ -321,7 +334,7 @@ const PortfolioSection = () => {
 											{projects[current].description}
 										</motion.p>
 										<motion.p 
-											className="text-lg md:text-sm text-white/90 drop-shadow-lg mb-2 leading-relaxed font-neutraface"
+											className="text-sm sm:text-base md:text-lg text-white/90 drop-shadow-lg mb-1 sm:mb-2 leading-relaxed font-neutraface"
 											variants={{
 												hidden: { opacity: 0, y: 10 },
 												visible: { opacity: 1, y: 0 }
@@ -337,16 +350,16 @@ const PortfolioSection = () => {
 
 						{/* Navigation Arrows - Positioned within the layout bounds */}
 						<motion.div 
-							className="absolute w-full max-w-[1400px] left-1/2 -translate-x-1/2 top-0 bottom-0 pointer-events-none px-4 z-30"
+							className="absolute w-full max-w-[1400px] left-1/2 -translate-x-1/2 top-0 bottom-0 pointer-events-none px-2 sm:px-4 z-30"
 							initial={{ opacity: 0 }}
 							animate={{ 
-								opacity: isHovered ? 1 : 0 
+								opacity: isMobile ? 1 : (isHovered ? 1 : 0)
 							}}
 							transition={{ duration: 0.5, delay: 0.25 }}
 						>
 							<motion.button
 								onClick={prev}
-								className="absolute left-8 top-1/2 -translate-y-1/2 bg-transparent hover:bg-white group rounded-full w-26 h-26 flex items-center justify-center transition-all duration-300 pointer-events-auto"
+								className="absolute left-2 sm:left-4 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 bg-transparent hover:bg-white group rounded-full w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-26 lg:h-26 flex items-center justify-center transition-all duration-300 pointer-events-auto"
 								aria-label="Previous"
 								whileHover={{ scale: 1.1 }}
 								whileTap={{ scale: 0.95 }}
@@ -355,10 +368,11 @@ const PortfolioSection = () => {
 								animate={isInView ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
 							>
 								<motion.svg 
-									width="64" 
-									height="64" 
+									width="32" 
+									height="32" 
 									viewBox="0 0 200 200" 
 									xmlns="http://www.w3.org/2000/svg"
+									className="sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-16 lg:h-16"
 									animate={{ x: [0, -5, 0] }}
 									transition={{ repeat: Infinity, repeatType: "mirror", duration: 1.5, ease: "easeInOut" }}
 								>
@@ -373,7 +387,7 @@ const PortfolioSection = () => {
 
 							<motion.button
 								onClick={next}
-								className="absolute right-8 top-1/2 -translate-y-1/2 bg-transparent hover:bg-white group rounded-full w-26 h-26 flex items-center justify-center transition-all duration-300 pointer-events-auto"
+								className="absolute right-2 sm:right-4 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 bg-transparent hover:bg-white group rounded-full w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-26 lg:h-26 flex items-center justify-center transition-all duration-300 pointer-events-auto"
 								aria-label="Next"
 								whileHover={{ scale: 1.1 }}
 								whileTap={{ scale: 0.95 }}
@@ -382,10 +396,11 @@ const PortfolioSection = () => {
 								animate={isInView ? { x: 0, opacity: 1 } : { x: 20, opacity: 0 }}
 							>
 								<motion.svg 
-									width="64" 
-									height="64" 
+									width="32" 
+									height="32" 
 									viewBox="0 0 200 200" 
 									xmlns="http://www.w3.org/2000/svg"
+									className="sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-16 lg:h-16"
 									animate={{ x: [0, 5, 0] }}
 									transition={{ repeat: Infinity, repeatType: "mirror", duration: 1.5, ease: "easeInOut" }}
 								>

@@ -3,6 +3,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 
 const Layout = ({ children }) => {
   const [activeSection, setActiveSection] = useState("home");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Handle smooth scrolling when clicking on navigation links
   const handleNavClick = (e, sectionId) => {
@@ -14,6 +15,8 @@ const Layout = ({ children }) => {
         behavior: 'smooth'
       });
     }
+    // Close mobile menu after navigation
+    setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
@@ -51,17 +54,18 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Navigation */}
-      <nav className="fixed top-4 w-full z-50 backdrop-blur-sm px-20">
+      <nav className="fixed top-0 md:top-4 w-full z-50 backdrop-blur-sm px-4 md:px-8 lg:px-20">
         <div className="mx-auto">
           <div className="flex justify-between items-center h-14">
             {/* Logo */}
-            <div className="flex-1 flex items-center">
-              <span className="font-boowie text-lg tracking-widest select-none">
+            <div className="flex items-center">
+              <span className="font-boowie text-base md:text-lg tracking-widest select-none">
                 Backend&Beyond
               </span>
             </div>
-            {/* Centered Nav Links */}
-            <div className="flex-1 flex justify-center">
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex flex-1 justify-center">
               <div className="relative flex py-2 rounded-full bg-black/30 border border-white/10 shadow-lg shadow-black/20 backdrop-blur-md">
                 {/* Shiny effect overlay */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse pointer-events-none"></div>
@@ -92,13 +96,94 @@ const Layout = ({ children }) => {
                 <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'contact' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Contact</a>
               </div>
             </div>
-            {/* Contact Us Button */}
-            <div className="flex-1 flex justify-end">
+
+            {/* Desktop Contact Us Button */}
+            <div className="hidden md:flex justify-end">
               <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="px-6 py-3 rounded-full bg-black/40 shadow-md text-white font-medium transition-all hover:bg-white/10 text-sm">
                 Contact Us
               </a>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden pr-2">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-full bg-black/30 border border-white/10 shadow-lg shadow-black/20 backdrop-blur-md transition-all hover:bg-white/10"
+              >
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden absolute top-14 left-4 right-6 bg-black/80 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl overflow-hidden">
+              {/* Shiny effect overlay for mobile menu */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse pointer-events-none"></div>
+              <div className="absolute -inset-[1px] bg-gradient-to-tr from-blue-500/20 via-purple-500/10 to-pink-500/20 blur-sm opacity-50 pointer-events-none rounded-xl"></div>
+              
+              <div className="relative z-10 py-3">
+                {/* Mobile Navigation Links */}
+                <div className="space-y-0.5 px-3">
+                  <a 
+                    href="#home" 
+                    onClick={(e) => handleNavClick(e, 'home')} 
+                    className={`block px-3 py-2.5 rounded-lg transition-all text-sm ${
+                      activeSection === 'home' 
+                        ? 'bg-white/10 text-white font-medium' 
+                        : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                    }`}
+                  >
+                    Home
+                  </a>
+                  <a 
+                    href="#about" 
+                    onClick={(e) => handleNavClick(e, 'about')} 
+                    className={`block px-3 py-2.5 rounded-lg transition-all text-sm ${
+                      activeSection === 'about' 
+                        ? 'bg-white/10 text-white font-medium' 
+                        : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                    }`}
+                  >
+                    About
+                  </a>
+                  <a 
+                    href="#services" 
+                    onClick={(e) => handleNavClick(e, 'services')} 
+                    className={`block px-3 py-2.5 rounded-lg transition-all text-sm ${
+                      activeSection === 'services' 
+                        ? 'bg-white/10 text-white font-medium' 
+                        : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                    }`}
+                  >
+                    Services
+                  </a>
+                  <a 
+                    href="#work" 
+                    onClick={(e) => handleNavClick(e, 'work')} 
+                    className={`block px-3 py-2.5 rounded-lg transition-all text-sm ${
+                      activeSection === 'work' 
+                        ? 'bg-white/10 text-white font-medium' 
+                        : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                    }`}
+                  >
+                    Work
+                  </a>
+                  <a 
+                    href="#contact" 
+                    onClick={(e) => handleNavClick(e, 'contact')} 
+                    className={`block px-3 py-2.5 rounded-lg transition-all text-sm ${
+                      activeSection === 'contact' 
+                        ? 'bg-white/10 text-white font-medium' 
+                        : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                    }`}
+                  >
+                    Contact
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
       <main>
