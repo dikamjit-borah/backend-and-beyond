@@ -48,7 +48,7 @@ const ServicesSection = ({ darkMode }) => {
     <motion.section
       ref={ref}
       id="services"
-      className="relative min-h-screen flex items-center justify-center py-12 md:py-24 bg-black"
+      className="relative min-h-screen flex items-center justify-center py-12 md:py-24 bg-black overflow-hidden"
       initial="hidden"
       animate={controls}
       variants={{
@@ -77,7 +77,7 @@ const ServicesSection = ({ darkMode }) => {
       </motion.div>
       {/* Mobile section label - positioned at top */}
       <motion.div 
-        className="absolute top-0 right-5 transform -translate-x-1/2 lg:hidden z-10"
+        className="absolute top-0 right-2 lg:hidden z-10"
         variants={{
           hidden: { opacity: 0, y: -20 },
           visible: { opacity: 1, y: 0 }
@@ -85,17 +85,17 @@ const ServicesSection = ({ darkMode }) => {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <motion.div
-          className="bg-gray-900 px-6 py-3 rounded-b-lg"
+          className="bg-gray-900 px-3 sm:px-4 py-2 sm:py-3 rounded-b-lg"
           style={{ borderRadius: '0 0 0.5rem 0.5rem' }}
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <span className="text-white text-sm sm:text-base font-semibold tracking-widest">SERVICES</span>
+          <span className="text-white text-xs sm:text-sm font-semibold tracking-widest">SERVICES</span>
         </motion.div>
       </motion.div>
       
       {/* Main content */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 relative z-20">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-16 lg:px-24 relative z-20 overflow-hidden">
         
         <div className="flex flex-col lg:flex-row items-start gap-8 md:gap-12 lg:gap-16">
           {/* Left: Services List */}
