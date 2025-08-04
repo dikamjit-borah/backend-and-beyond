@@ -19,7 +19,7 @@ const AboutHeading = () => {
       ></motion.div>
       <div className="pl-5 md:pl-4">
         <motion.h2 
-          className="font-boowie text-2xl sm:text-3xl md:text-3xl mb-2"
+          className="font-boowie text-2xl sm:text-3xl md:text-3xl mb-1 md:mb-2"
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0 }
@@ -27,7 +27,7 @@ const AboutHeading = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
         >Seamless tech</motion.h2>
         <motion.h2 
-          className="font-boowie text-2xl sm:text-3xl md:text-3xl mb-2"
+          className="font-boowie text-2xl sm:text-3xl md:text-3xl mb-1 md:mb-2"
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0 }

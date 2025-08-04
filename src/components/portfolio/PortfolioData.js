@@ -19,14 +19,15 @@ export const projects = [
     description2:"",
 		image: project2,
 	},
-	{
-		title: "Artisan Coffee",
-		description:
-			"Trailblaze Outfitters wanted their website to inspire adventure seekers.",
-    description2:
-    "We created an energetic, bold digital experience featuring striking imagery, interactive product displays, and a seamless e-commerce platform. The final result is a website as rugged and reliable as the gear they offer.",
-		image: project3,
-	},
+	// To Do : Add some more actual projects
+	// {
+	// 	title: "Artisan Coffee",
+	// 	description:
+	// 		"Trailblaze Outfitters wanted their website to inspire adventure seekers.",
+    // description2:
+    // "We created an energetic, bold digital experience featuring striking imagery, interactive product displays, and a seamless e-commerce platform. The final result is a website as rugged and reliable as the gear they offer.",
+	// 	image: project3,
+	// },
 ];
 
 const PortfolioData = () => null; // This is just a data export component

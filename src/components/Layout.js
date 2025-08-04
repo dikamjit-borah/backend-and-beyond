@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
 
 const Layout = ({ children }) => {
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
 
   // Handle smooth scrolling when clicking on navigation links
   const handleNavClick = (e, sectionId) => {
@@ -51,6 +52,24 @@ const Layout = ({ children }) => {
     };
   }, [activeSection]);
 
+  // Handle clicking outside mobile menu to close it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    // Only add event listener if mobile menu is open
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Navigation */}
@@ -65,7 +84,7 @@ const Layout = ({ children }) => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex flex-1 justify-center">
+            <div className="hidden laptop:flex flex-1 justify-center">
               <div className="relative flex py-2 rounded-full bg-black/30 border border-white/10 shadow-lg shadow-black/20 backdrop-blur-md">
                 {/* Shiny effect overlay */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse pointer-events-none"></div>
@@ -98,14 +117,14 @@ const Layout = ({ children }) => {
             </div>
 
             {/* Desktop Contact Us Button */}
-            <div className="hidden md:flex justify-end">
+            <div className="hidden laptop:flex justify-end">
               <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="px-6 py-3 rounded-full bg-black/40 shadow-md text-white font-medium transition-all hover:bg-white/10 text-sm">
                 Contact Us
               </a>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            <div className="laptop:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2 rounded-full bg-black/30 border border-white/10 shadow-lg shadow-black/20 backdrop-blur-md transition-all hover:bg-white/10"
@@ -117,7 +136,10 @@ const Layout = ({ children }) => {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden absolute top-14 left-4 right-6 bg-black/80 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl overflow-hidden">
+            <div 
+              ref={mobileMenuRef}
+              className="laptop:hidden absolute top-14 left-4 right-6 bg-black/80 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl overflow-hidden"
+            >
               {/* Shiny effect overlay for mobile menu */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse pointer-events-none"></div>
               <div className="absolute -inset-[1px] bg-gradient-to-tr from-blue-500/20 via-purple-500/10 to-pink-500/20 blur-sm opacity-50 pointer-events-none rounded-xl"></div>

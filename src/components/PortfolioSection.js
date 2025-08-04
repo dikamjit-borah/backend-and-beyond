@@ -20,6 +20,7 @@ const PortfolioSection = () => {
 	const [isPaused, setIsPaused] = useState(false);
 	const [timerKey, setTimerKey] = useState(0); // Key to force timer animation reset
 	const [isMobile, setIsMobile] = useState(false);
+	const [showMobileInfo, setShowMobileInfo] = useState(true); // Controls info visibility on mobile
 	
 	// Animation controls for scroll-triggered animations
 	const controls = useAnimation();
@@ -29,7 +30,7 @@ const PortfolioSection = () => {
 	// Detect mobile devices
 	useEffect(() => {
 		const checkIfMobile = () => {
-			setIsMobile(window.innerWidth < 768);
+			setIsMobile(window.innerWidth < 1000);
 		};
 		
 		checkIfMobile();
@@ -134,6 +135,8 @@ const PortfolioSection = () => {
 								next={next}
 								isHovered={isHovered}
 								isMobile={isMobile}
+								showMobileInfo={showMobileInfo}
+								setShowMobileInfo={setShowMobileInfo}
 							/>
 
 							<PortfolioContent 
@@ -143,6 +146,7 @@ const PortfolioSection = () => {
 								direction={direction}
 								isHovered={isHovered}
 								isMobile={isMobile}
+								showMobileInfo={showMobileInfo}
 							/>
 						</div>
 

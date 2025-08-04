@@ -10,25 +10,43 @@ const PortfolioHeader = ({
   isAnimating, 
   next, 
   isHovered, 
-  isMobile 
+  isMobile,
+  showMobileInfo,
+  setShowMobileInfo
 }) => {
   return (
-    <motion.div 
-      className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 w-full pt-8 sm:pt-12 md:pt-16"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ 
-        opacity: isMobile ? 1 : (isHovered ? 1 : 0), 
-        y: isMobile ? 0 : (isHovered ? 0 : 30) 
-      }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="relative max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 w-full pt-8 sm:pt-12 md:pt-16">
+      {/* Mobile Info Toggle Button */}
+      {isMobile && (
+        <motion.button
+          onClick={() => setShowMobileInfo(!showMobileInfo)}
+          className="absolute top-4 right-4 bg-gray-600/40 backdrop-blur-sm border border-gray-500/30 text-white text-[0.6rem] px-2 py-1 rounded-full transition-all duration-300 hover:bg-gray-500/50 hover:border-gray-400/40 z-30"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          {showMobileInfo ? 'Hide Info' : 'Show Info'}
+        </motion.button>
+      )}
+      
+      <motion.div 
+        className="w-full"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ 
+          opacity: isMobile ? (showMobileInfo ? 1 : 0) : (isHovered ? 1 : 0), 
+          y: isMobile ? (showMobileInfo ? 0 : 30) : (isHovered ? 0 : 30) 
+        }}
+        transition={{ duration: 0.5 }}
+      >
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
         <motion.h2 
           className="font-boowie text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-4 sm:mb-8 drop-shadow-xl leading-tight"
           initial={{ opacity: 0, y: 20 }}
           animate={{ 
-            opacity: isMobile ? 1 : (isHovered ? 1 : 0), 
-            y: isMobile ? 0 : (isHovered ? 0 : 20) 
+            opacity: isMobile ? (showMobileInfo ? 1 : 0) : (isHovered ? 1 : 0), 
+            y: isMobile ? (showMobileInfo ? 0 : 20) : (isHovered ? 0 : 20) 
           }}
           transition={{ 
             duration: 0.5,
@@ -97,7 +115,8 @@ const PortfolioHeader = ({
           </div>
         </motion.div>
       </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };
 
