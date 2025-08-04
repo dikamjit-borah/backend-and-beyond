@@ -105,7 +105,7 @@ const Layout = ({ children }) => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden pr-2">
+            <div className="md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2 rounded-full bg-black/30 border border-white/10 shadow-lg shadow-black/20 backdrop-blur-md transition-all hover:bg-white/10"

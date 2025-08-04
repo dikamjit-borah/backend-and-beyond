@@ -78,7 +78,7 @@ const AboutSection = ({ darkMode }) => {
       }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-16 lg:px-24 overflow-hidden">
         
         
         <div className="flex flex-col lg:flex-row items-start gap-6 md:gap-12 lg:gap-6">
