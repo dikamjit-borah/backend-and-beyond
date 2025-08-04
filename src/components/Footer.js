@@ -1,7 +1,7 @@
 import React from "react";
 import { Facebook, Linkedin, Twitter, Instagram } from "lucide-react";
 
-const Footer = () => {
+const Footer = ({ showLegal = true }) => {
   return (
     <footer className="bg-black py-12 px-4">
       <div className="max-w-5xl mx-auto pt-12 border-t border-gray-800">
@@ -37,15 +37,18 @@ const Footer = () => {
                 <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a></li>
               </ul>
             </div>
-            
-            <div>
-              <h5 className="text-white font-medium text-sm mb-4">Legal</h5>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Cookie Policy</a></li>
-              </ul>
-            </div>
+
+            {/* To do : Create the legal pages */}
+            {showLegal && (
+              <div>
+                <h5 className="text-white font-medium text-sm mb-4">Legal</h5>
+                <ul className="space-y-2">
+                  <li><a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+                  <li><a href="#" className="hover:text-blue-400 transition-colors">Terms of Service</a></li>
+                  <li><a href="#" className="hover:text-blue-400 transition-colors">Cookie Policy</a></li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>

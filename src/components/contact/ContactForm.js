@@ -38,7 +38,7 @@ const ContactForm = ({
       ) : (
         <motion.form
           onSubmit={handleSubmit}
-          className="space-y-6"
+          className="space-y-4 sm:space-y-6"
           variants={{
             hidden: { opacity: 0 },
             visible: {
@@ -51,11 +51,11 @@ const ContactForm = ({
           }}
         >
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
             variants={itemVariants}
           >
             <div>
-              <label className="block text-sm font-medium mb-3 text-gray-300">First Name</label>
+              <label className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300">First Name</label>
               <motion.input
                 type="text"
                 name="firstName"
@@ -63,7 +63,7 @@ const ContactForm = ({
                 onChange={handleChange}
                 required
                 placeholder="John"
-                className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-sm sm:text-base"
                 whileFocus={{
                   borderColor: "#60A5FA",
                   boxShadow: "0 0 0 2px rgba(96, 165, 250, 0.25)"
@@ -71,7 +71,7 @@ const ContactForm = ({
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-3 text-gray-300">Last Name</label>
+              <label className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300">Last Name</label>
               <motion.input
                 type="text"
                 name="lastName"
@@ -79,7 +79,7 @@ const ContactForm = ({
                 onChange={handleChange}
                 required
                 placeholder="Doe"
-                className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-sm sm:text-base"
                 whileFocus={{
                   borderColor: "#60A5FA",
                   boxShadow: "0 0 0 2px rgba(96, 165, 250, 0.25)"
@@ -89,14 +89,14 @@ const ContactForm = ({
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <label className="block text-sm font-medium mb-3 text-gray-300">Company</label>
+            <label className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300">Company</label>
             <motion.input
               type="text"
               name="companyName"
               value={formData.companyName}
               onChange={handleChange}
               placeholder="Your Company"
-              className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+              className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-sm sm:text-base"
               whileFocus={{
                 borderColor: "#60A5FA",
                 boxShadow: "0 0 0 2px rgba(96, 165, 250, 0.25)"
@@ -105,7 +105,7 @@ const ContactForm = ({
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <label className="block text-sm font-medium mb-3 text-gray-300">Email</label>
+            <label className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300">Email</label>
             <motion.input
               type="email"
               name="email"
@@ -113,7 +113,7 @@ const ContactForm = ({
               onChange={handleChange}
               required
               placeholder="john@company.com"
-              className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+              className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-sm sm:text-base"
               whileFocus={{
                 borderColor: "#60A5FA",
                 boxShadow: "0 0 0 2px rgba(96, 165, 250, 0.25)"
@@ -122,14 +122,14 @@ const ContactForm = ({
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <label className="block text-sm font-medium mb-3 text-gray-300">Phone</label>
+            <label className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300">Phone</label>
             <motion.input
               type="tel"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
               placeholder="+91 XXXXX XXXXX"
-              className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+              className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-sm sm:text-base"
               whileFocus={{
                 borderColor: "#60A5FA",
                 boxShadow: "0 0 0 2px rgba(96, 165, 250, 0.25)"
@@ -138,15 +138,15 @@ const ContactForm = ({
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <label className="block text-sm font-medium mb-3 text-gray-300">Project Details</label>
+            <label className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300">Project Details</label>
             <motion.textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               required
-              rows={5}
+              rows={4}
               placeholder="Tell us about your project, goals, and how we can help bring your vision to life..."
-              className="w-full px-4 py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all resize-none"
+              className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all resize-none text-sm sm:text-base"
               whileFocus={{
                 borderColor: "#60A5FA",
                 boxShadow: "0 0 0 2px rgba(96, 165, 250, 0.25)"
@@ -168,7 +168,7 @@ const ContactForm = ({
               className="w-4 h-4 mt-1 text-blue-600 rounded border border-gray-600 focus:ring-blue-500 bg-gray-900"
               whileHover={{ scale: 1.1 }}
             />
-            <label htmlFor="privacyPolicy" className="text-sm text-gray-400 leading-relaxed">
+            <label htmlFor="privacyPolicy" className="text-xs sm:text-sm text-gray-400 leading-relaxed">
               I agree to the{" "}
               <motion.a
                 href="#"

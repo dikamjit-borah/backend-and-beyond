@@ -8,6 +8,9 @@ module.exports = {
         'boowie': ['BOOWIE', 'sans-serif'],
         'neutraface': ['Neutraface', 'sans-serif'],
       },
+      screens: {
+        'laptop': '1024px'
+      }
     },
   },
   plugins: [],

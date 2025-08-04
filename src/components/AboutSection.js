@@ -62,7 +62,8 @@ const AboutSection = ({ darkMode }) => {
           >
             <AboutContent />
             <AboutStats isInView={isInView} />
-            <AboutLogos />
+            {/* To do : Update the logo with the actual logos */}
+            {/* <AboutLogos /> */}
           </motion.div>
         </div>
       </div>

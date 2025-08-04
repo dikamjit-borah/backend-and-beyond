@@ -8,14 +8,15 @@ const PortfolioContent = ({
   previousIndex, 
   direction, 
   isHovered, 
-  isMobile 
+  isMobile,
+  showMobileInfo
 }) => {
   return (
     <motion.div 
       className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 w-full pb-8 sm:pb-12 md:pb-16"
       initial={{ opacity: 0 }}
       animate={{ 
-        opacity: isMobile ? 1 : (isHovered ? 1 : 0)
+        opacity: isMobile ? (showMobileInfo ? 1 : 0) : (isHovered ? 1 : 0)
       }}
       transition={{ duration: 0.5, delay: 0.15 }}
     >
@@ -24,8 +25,8 @@ const PortfolioContent = ({
         style={{ position: 'relative', overflow: 'hidden', minHeight: '120px' }}
         initial={{ opacity: 0, y: 30 }}
         animate={{ 
-          opacity: isMobile ? 1 : (isHovered ? 1 : 0), 
-          y: isMobile ? 0 : (isHovered ? 0 : 30) 
+          opacity: isMobile ? (showMobileInfo ? 1 : 0) : (isHovered ? 1 : 0), 
+          y: isMobile ? (showMobileInfo ? 0 : 30) : (isHovered ? 0 : 30) 
         }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
