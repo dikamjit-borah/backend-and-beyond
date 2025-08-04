@@ -85,7 +85,7 @@ web_modules/
 
 # Gatsby files
 .cache/
-public/
+public/*
 # Gatsby functions output
 api/
 

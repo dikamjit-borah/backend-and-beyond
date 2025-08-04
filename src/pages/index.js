@@ -6,6 +6,7 @@ import AboutSection from "../components/AboutSection";
 import PortfolioSection from "../components/PortfolioSection";
 import ServicesSection from "../components/ServicesSection";
 import ContactSection from "../components/ContactSection";
+import Footer from "../components/Footer";
 
 const IndexPage = () => {
   return (
@@ -15,6 +16,7 @@ const IndexPage = () => {
       <ServicesSection />
       <PortfolioSection />
       <ContactSection />
+      <Footer />
     </Layout>
   );
 };

@@ -1,18 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  StarField,
+  HeroBadge,
+  HeroHeading,
+  HeroDescription,
+  CTAButton,
+  TrustedBySection
+} from "./hero";
 
 const HeroSection = ({ darkMode }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 1200,
+    height: typeof window !== 'undefined' ? window.innerHeight : 800
+  });
 
+  // Text configurations for the typewriter effect
+  const changingWords = ["Autonomous Systems", "Data-Driven Interfaces", "AI-Crafted Solutions", "Applied Intelligence"];
+  const mobileWords = ["AI Systems", "Smart Interfaces", "AI Solutions", "Intelligence"];
+
+  // Effect for window resize
   useEffect(() => {
-    setIsVisible(true);
-  }, []);
+    // Handle window resize
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
 
-  const scrollToPortfolio = () => {
-    document
-      .getElementById("portfolio")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -21,76 +43,31 @@ const HeroSection = ({ darkMode }) => {
   return (
     <section
       id="home"
-      className={`min-h-screen flex items-center justify-center relative overflow-hidden ${
-        darkMode
-          ? "bg-gradient-to-br from-gray-900 via-gray-800 to-purple-900"
-          : "bg-gradient-to-br from-blue-50 via-white to-purple-50"
-      }`}
+      className="min-h-screen flex items-center relative overflow-hidden bg-black"
+      style={{
+        background: `
+          linear-gradient(120deg, #000 50%, #0f1e36 60%, #2e73e220 70%, #5c99ff40 75%, #ffffff 85%, #ffffff 87%, #3b83f660 93%, #3b83f640 100%)
+        `,
+      }}
     >
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className={`absolute -top-40 -right-40 w-80 h-80 rounded-full opacity-20 ${
-            darkMode ? "bg-blue-500" : "bg-blue-200"
-          } animate-pulse`}
-        ></div>
-        <div
-          className={`absolute -bottom-40 -left-40 w-80 h-80 rounded-full opacity-20 ${
-            darkMode ? "bg-purple-500" : "bg-purple-200"
-          } animate-pulse`}
-          style={{ animationDelay: "1s" }}
-        ></div>
-      </div>
-      <div
-        className={`text-center z-10 px-6 transition-all duration-1000 transform ${
-          isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-        }`}
-      >
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-          Backend & Beyond
-        </h1>
-        <p
-          className={`text-xl md:text-2xl mb-2 max-w-3xl mx-auto ${
-            darkMode ? "text-gray-300" : "text-gray-600"
-          }`}
-        >
-          Your Tech Architects, from Backend to Beyond
-        </p>
-        <p
-          className={`text-lg md:text-xl mb-8 max-w-2xl mx-auto ${
-            darkMode ? "text-gray-400" : "text-gray-500"
-          }`}
-        >
-          Smart Solutions for Ambitious Brands
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            onClick={scrollToPortfolio}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
-          >
-            View Portfolio
-          </button>
-          <button
-            onClick={scrollToContact}
-            className={`border-2 ${
-              darkMode
-                ? "border-gray-600 text-gray-300 hover:bg-gray-800"
-                : "border-gray-300 text-gray-700 hover:bg-gray-50"
-            } px-8 py-4 rounded-full font-semibold transition-all duration-300`}
-          >
-            🎁 Grab a FREE Consultation
-          </button>
-        </div>
+      {/* Star field background */}
+      <StarField windowSize={windowSize} />
 
-        {/* Scroll Indicator */}
-        {/* 
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown
-            className={darkMode ? "text-gray-400" : "text-gray-500"}
-            size={32}
-          />
-        </div>
-        */}
+      {/* Main content */}
+      <div className="relative z-10 flex flex-col items-start justify-center px-4 sm:px-6 md:px-8 lg:px-24 max-w-4xl w-full pt-16 md:pt-0">
+        <HeroBadge />
+        <HeroHeading 
+          changingWords={changingWords}
+          mobileWords={mobileWords}
+        />
+        <HeroDescription />
+        <CTAButton onClick={scrollToContact}>
+          Get a Free Consultation
+        </CTAButton>
       </div>
+
+      {/* Trusted by section */}
+      <TrustedBySection />
     </section>
   );
 };
