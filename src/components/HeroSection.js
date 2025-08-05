@@ -11,16 +11,27 @@ import {
 
 const HeroSection = ({ darkMode }) => {
   const [windowSize, setWindowSize] = useState({
-    width: typeof window !== 'undefined' ? window.innerWidth : 1200,
-    height: typeof window !== 'undefined' ? window.innerHeight : 800
+    width: 0,
+    height: 0
   });
 
   // Text configurations for the typewriter effect
   const changingWords = ["Autonomous Systems", "Data-Driven Interfaces", "AI-Crafted Solutions", "Applied Intelligence"];
   const mobileWords = ["AI Systems", "Smart Interfaces", "AI Solutions", "Intelligence"];
 
-  // Effect for window resize
+  // Effect for window resize and initial size detection
   useEffect(() => {
+    // Set initial window size on client side
+    const setInitialSize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    // Set initial size
+    setInitialSize();
+
     // Handle window resize
     const handleResize = () => {
       setWindowSize({
