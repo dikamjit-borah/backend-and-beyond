@@ -3,6 +3,12 @@ import { motion } from "framer-motion";
 
 const StarField = ({ windowSize }) => {
   const [shootingStars, setShootingStars] = useState([]);
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on the client side and have valid window dimensions
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Star configuration variables - mobile optimized
   const maxStarSize = 2.5;
@@ -16,6 +22,11 @@ const StarField = ({ windowSize }) => {
 
   // Generate star data - mobile optimized
   const stars = useMemo(() => {
+    // Don't render stars during SSR or if window size is invalid
+    if (!isClient || !windowSize.width || !windowSize.height) {
+      return [];
+    }
+
     const starArray = [];
     const count = isMobile ? 150 : 250; // Reduce star count on mobile for better performance
 
@@ -40,10 +51,15 @@ const StarField = ({ windowSize }) => {
     }
 
     return starArray;
-  }, [windowSize, isMobile]);
+  }, [windowSize, isMobile, isClient]);
 
   // Effect for shooting stars
   useEffect(() => {
+    // Don't create shooting stars during SSR or if window size is invalid
+    if (!isClient || !windowSize.width || !windowSize.height) {
+      return;
+    }
+
     // Function to create and animate a shooting star
     function createShootingStar() {
       const edgePosition = Math.random();
@@ -94,7 +110,7 @@ const StarField = ({ windowSize }) => {
     return () => {
       clearInterval(shootingStarInterval);
     };
-  }, [windowSize, isMobile, shootingStarCount, shootingStarFrequency]);
+  }, [windowSize, isMobile, shootingStarCount, shootingStarFrequency, isClient]);
 
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
