@@ -56,30 +56,25 @@ const ContactSection = ({ darkMode = false }) => {
     }
   }, [controls, isInView]);
 
-  // Use Formspree hook
-  const [state, handleSubmit] = useForm("xkgboyjn");
-  const [formData, setFormData] = useState({
+  const defaultFormData = {
     firstName: "",
     lastName: "",
     companyName: "",
     email: "",
     phone: "",
     message: "",
+    referralCode: "",
     privacyPolicy: false,
-  });
+  }
+
+  // Use Formspree hook
+  const [state, handleSubmit] = useForm("meoloedq");
+  const [formData, setFormData] = useState(defaultFormData);
 
   // Reset form fields after successful submission
   React.useEffect(() => {
     if (state.succeeded) {
-      setFormData({
-        firstName: "",
-        lastName: "",
-        companyName: "",
-        email: "",
-        phone: "",
-        message: "",
-        privacyPolicy: false,
-      });
+      setFormData(defaultFormData);
     }
   }, [state.succeeded]);
 

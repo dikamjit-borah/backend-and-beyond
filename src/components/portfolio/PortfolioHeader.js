@@ -53,7 +53,7 @@ const PortfolioHeader = ({
             delay: 0.1
           }}
         >
-          Projects That Left Our Clients Smiling:
+          Projects in 2025 that Left Our Clients Smiling:
         </motion.h2>
         
         {/* Circular Timer */}

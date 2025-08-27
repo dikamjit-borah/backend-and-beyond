@@ -44,7 +44,7 @@ const AboutStats = ({ isInView }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 1.3 }}
         >
-          {isInView && <AnimatedCounter value="210+" duration={2.5} className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" />}
+          {isInView && <AnimatedCounter value="25+" duration={2.5} className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" />}
         </motion.p>
         <p className="text-xs md:text-xs text-white mt-1 font-bold font-neutraface">Projects Delivered</p>
       </motion.div>
@@ -62,7 +62,7 @@ const AboutStats = ({ isInView }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 1.4 }}
         >
-          {isInView && <AnimatedCounter value="30+" duration={2.5} className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" />}
+          {isInView && <AnimatedCounter value="8+" duration={2.5} className="text-2xl sm:text-3xl md:text-4xl font-bold text-white" />}
         </motion.p>
         <p className="text-xs md:text-xs text-white mt-1 font-bold font-neutraface">Industry Served</p>
       </motion.div>

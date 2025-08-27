@@ -1,5 +1,5 @@
 import React from "react";
-import { Facebook, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Linkedin, Twitter, Instagram } from "lucide-react";
 
 const Footer = ({ showLegal = true }) => {
   return (
@@ -10,13 +10,11 @@ const Footer = ({ showLegal = true }) => {
             <h2 className="font-boowie text-2xl text-white mb-3">Backend&Beyond</h2>
             <p className="mb-3 max-w-xs">Creating exceptional digital experiences that capture attention and drive results.</p>
             <div className="flex space-x-4 mb-4">
-              <a href="#" aria-label="Facebook" className="hover:text-blue-400 transition-colors">
-                <Facebook size={16} />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="hover:text-blue-400 transition-colors">
+
+              <a href="https://www.linkedin.com/company/backend-and-beyond" target="_blank" aria-label="LinkedIn" className="hover:text-blue-400 transition-colors">
                 <Linkedin size={16} />
               </a>
-              <a href="#" aria-label="Instagram" className="hover:text-blue-400 transition-colors">
+              <a href="https://www.instagram.com/backendandbeyond/" target="_blank" aria-label="Instagram" className="hover:text-blue-400 transition-colors">
                 <Instagram size={16} />
               </a>
               <a href="#" aria-label="Twitter" className="hover:text-blue-400 transition-colors">

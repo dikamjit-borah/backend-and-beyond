@@ -27,7 +27,8 @@ const SocialLinks = () => {
       }}
     >
       <motion.a
-        href="#"
+        href="https://www.linkedin.com/company/backend-and-beyond"
+        target="_blank"
         aria-label="LinkedIn"
         className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-700 text-gray-400 hover:text-white hover:border-blue-400 transition-all duration-300"
         variants={itemVariants}
@@ -35,6 +36,17 @@ const SocialLinks = () => {
         transition={{ type: "spring", stiffness: 300 }}
       >
         <Linkedin size={16} />
+      </motion.a>
+      <motion.a
+        href="https://www.instagram.com/backendandbeyond/"
+        target="_blank"
+        aria-label="Instagram"
+        className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-700 text-gray-400 hover:text-white hover:border-blue-400 transition-all duration-300"
+        variants={itemVariants}
+        whileHover={{ scale: 1.1, y: -2 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
+        <Instagram size={16} />
       </motion.a>
       <motion.a
         href="#"
@@ -46,16 +58,7 @@ const SocialLinks = () => {
       >
         <Twitter size={16} />
       </motion.a>
-      <motion.a
-        href="#"
-        aria-label="Instagram"
-        className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-700 text-gray-400 hover:text-white hover:border-blue-400 transition-all duration-300"
-        variants={itemVariants}
-        whileHover={{ scale: 1.1, y: -2 }}
-        transition={{ type: "spring", stiffness: 300 }}
-      >
-        <Instagram size={16} />
-      </motion.a>
+
     </motion.div>
   );
 };

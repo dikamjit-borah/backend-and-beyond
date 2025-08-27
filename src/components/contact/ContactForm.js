@@ -89,22 +89,6 @@ const ContactForm = ({
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <label className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300">Company</label>
-            <motion.input
-              type="text"
-              name="companyName"
-              value={formData.companyName}
-              onChange={handleChange}
-              placeholder="Your Company"
-              className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-sm sm:text-base"
-              whileFocus={{
-                borderColor: "#60A5FA",
-                boxShadow: "0 0 0 2px rgba(96, 165, 250, 0.25)"
-              }}
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
             <label className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300">Email</label>
             <motion.input
               type="email"
@@ -129,6 +113,22 @@ const ContactForm = ({
               value={formData.phone}
               onChange={handleChange}
               placeholder="+91 XXXXX XXXXX"
+              className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-sm sm:text-base"
+              whileFocus={{
+                borderColor: "#60A5FA",
+                boxShadow: "0 0 0 2px rgba(96, 165, 250, 0.25)"
+              }}
+            />
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <label className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3 text-gray-300">Referral Code</label>
+            <motion.input
+              type="text"
+              name="referralCode"
+              value={formData.referralCode}
+              onChange={handleChange}
+              placeholder="B&B-XXXXXXX25"
               className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-700 bg-gray-900/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all text-sm sm:text-base"
               whileFocus={{
                 borderColor: "#60A5FA",

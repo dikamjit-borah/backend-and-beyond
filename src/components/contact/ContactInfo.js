@@ -1,5 +1,6 @@
 import React from "react";
 import { Mail, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const ContactInfo = () => {
@@ -42,8 +43,14 @@ const ContactInfo = () => {
         whileHover={{ x: 5 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-        <Phone size={20} className="text-blue-400" />
-        <span className="text-sm">(+91) 70029 36200</span>
+        <div className="flex items-center space-x-2">
+          <Phone size={20} className="text-blue-400" />
+          <FaWhatsapp size={20} className="text-green-400" />
+        </div>
+        <div className="flex flex-col space-y-1">
+          <span className="text-sm">(+91) 70029 36200</span>
+          <span className="text-sm">(+91) 84020 89446</span>
+        </div>
       </motion.div>
     </motion.div>
   );
