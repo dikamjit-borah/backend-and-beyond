@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const TrustedBySection = ({ companies = ["UFTA", "CodeProjekt", "Green Heaven Adventures", "Ocean Visuals"] }) => {
+const TrustedBySection = ({ companies = ["UFTA", "CodeProjekt", "Green Heaven Adventures", "HVMS"] }) => {
   return (
     <motion.div
       className="absolute bottom-6 md:bottom-12 left-0 w-full px-4 md:px-8 lg:px-24"

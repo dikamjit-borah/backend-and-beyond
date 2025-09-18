@@ -16,7 +16,7 @@ const IndexPage = () => {
       <ServicesSection />
       <PortfolioSection />
       <ContactSection />
-      <Footer showLegal={false} />
+      <Footer showLegal={true} />
     </Layout>
   );
 };

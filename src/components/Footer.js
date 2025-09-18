@@ -41,9 +41,9 @@ const Footer = ({ showLegal = true }) => {
               <div>
                 <h5 className="text-white font-medium text-sm mb-4">Legal</h5>
                 <ul className="space-y-2">
-                  <li><a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
-                  <li><a href="#" className="hover:text-blue-400 transition-colors">Terms of Service</a></li>
-                  <li><a href="#" className="hover:text-blue-400 transition-colors">Cookie Policy</a></li>
+                  <li><a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+                  {/* <li><a href="#" className="hover:text-blue-400 transition-colors">Terms of Service</a></li>
+                  <li><a href="#" className="hover:text-blue-400 transition-colors">Cookie Policy</a></li> */}
                 </ul>
               </div>
             )}
