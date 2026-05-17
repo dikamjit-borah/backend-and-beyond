@@ -100,7 +100,7 @@ const ContactSection = ({ darkMode = false }) => {
       {/* Main content */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 relative z-20">
         <motion.div
-          className="flex flex-col md:flex-row items-start gap-8 md:gap-12 lg:gap-16"
+          className="flex flex-col md:flex-row items-start gap-6 md:gap-8 lg:gap-16"
           variants={itemVariants}
         >
           {/* Left Side - Heading and Description */}

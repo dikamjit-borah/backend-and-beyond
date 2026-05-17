@@ -38,7 +38,7 @@ const ServicesSection = ({ darkMode }) => {
       
       {/* Main content */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-16 lg:px-24 relative z-20 overflow-hidden">
-        <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 lg:gap-16">
+        <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8 lg:gap-16">
           {/* Left: Services List */}
           <motion.div
             className="flex flex-col justify-center w-full md:w-2/3"
