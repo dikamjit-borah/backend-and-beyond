@@ -38,10 +38,10 @@ const ServicesSection = ({ darkMode }) => {
       
       {/* Main content */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-16 lg:px-24 relative z-20 overflow-hidden">
-        <div className="flex flex-col lg:flex-row items-start gap-8 md:gap-12 lg:gap-16">
+        <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 lg:gap-16">
           {/* Left: Services List */}
           <motion.div
-            className="flex flex-col justify-center w-full lg:w-2/3"
+            className="flex flex-col justify-center w-full md:w-2/3"
             variants={{
               hidden: { opacity: 0, y: 30 },
               visible: { opacity: 1, y: 0 }
@@ -54,7 +54,7 @@ const ServicesSection = ({ darkMode }) => {
 
           {/* Right: Description and Image */}
           <motion.div
-            className="flex flex-col items-center md:items-end justify-center w-full lg:w-1/3 mt-8 lg:mt-3"
+            className="flex flex-col items-center md:items-end justify-center w-full md:w-1/3 mt-4 md:mt-3"
             variants={{
               hidden: { opacity: 0, x: 50 },
               visible: { opacity: 1, x: 0 }

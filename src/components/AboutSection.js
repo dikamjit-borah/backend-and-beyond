@@ -36,10 +36,10 @@ const AboutSection = ({ darkMode }) => {
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-16 lg:px-24 overflow-hidden">
-        <div className="flex flex-col lg:flex-row items-start gap-6 md:gap-12 lg:gap-6">
+        <div className="flex flex-col md:flex-row items-start gap-6 md:gap-12 lg:gap-6">
           {/* Left column with heading and image */}
           <motion.div 
-            className="flex flex-col items-left w-full lg:w-2/5"
+            className="flex flex-col items-left w-full md:w-2/5"
             variants={{
               hidden: { opacity: 0, x: -50 },
               visible: { opacity: 1, x: 0 }
@@ -53,7 +53,7 @@ const AboutSection = ({ darkMode }) => {
           
           {/* Right column with content */}
           <motion.div 
-            className="flex flex-col items-start w-full lg:w-3/5 pl-0 lg:pl-8 pt-2 mt-4 md:mt-8 lg:mt-0"
+            className="flex flex-col items-start w-full md:w-3/5 pl-0 md:pl-8 pt-2 mt-4 md:mt-0"
             variants={{
               hidden: { opacity: 0, x: 50 },
               visible: { opacity: 1, x: 0 }

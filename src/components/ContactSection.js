@@ -100,7 +100,7 @@ const ContactSection = ({ darkMode = false }) => {
       {/* Main content */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 relative z-20">
         <motion.div
-          className="flex flex-col lg:flex-row items-start gap-8 md:gap-12 lg:gap-16"
+          className="flex flex-col md:flex-row items-start gap-8 md:gap-12 lg:gap-16"
           variants={itemVariants}
         >
           {/* Left Side - Heading and Description */}
@@ -108,7 +108,7 @@ const ContactSection = ({ darkMode = false }) => {
 
           {/* Right Side - Contact Form */}
           <motion.div
-            className="w-full lg:w-1/2"
+            className="w-full md:w-1/2"
             variants={{
               hidden: { opacity: 0, y: 30 },
               visible: { opacity: 1, y: 0 }

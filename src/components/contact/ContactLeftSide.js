@@ -8,7 +8,7 @@ import SocialLinks from "./SocialLinks";
 const ContactLeftSide = ({ isInView }) => {
   return (
     <motion.div
-      className="flex flex-col justify-center w-full lg:w-1/2"
+      className="flex flex-col justify-center w-full md:w-1/2"
       variants={{
         hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0 }
