@@ -119,7 +119,7 @@ const Layout = ({ children }) => {
                 {pillStyle && (
                   <div
                     className="absolute h-full top-0 transition-all duration-300 ease-in-out z-0 rounded-full bg-white/10"
-                    style={{ left: pillStyle.left, width: pillStyle.width }}
+                    style={{ left: `${pillStyle.left}px`, width: `${pillStyle.width}px` }}
                   />
                 )}
                 
