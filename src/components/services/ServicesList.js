@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const services = [
@@ -30,6 +30,14 @@ const services = [
 
 const ServicesList = () => {
   const [hoveredIdx, setHoveredIdx] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   return (
     <motion.div
@@ -60,12 +68,8 @@ const ServicesList = () => {
           ></motion.div>
           <motion.div
             className="relative pt-3 pb-3 md:pt-4 md:pb-4 z-10"
-            animate={{ 
-              x: hoveredIdx === idx ? (typeof window !== 'undefined' && window.innerWidth >= 768 ? 32 : 0) : 0 
-            }}
-            whileHover={{ 
-              scale: typeof window !== 'undefined' && window.innerWidth >= 768 ? 1.02 : 1 
-            }}
+            animate={{ x: hoveredIdx === idx ? (isMobile ? 0 : 32) : 0 }}
+            whileHover={{ scale: isMobile ? 1 : 1.02 }}
             transition={{ type: 'spring', stiffness: 200, damping: 20 }}
           >
             <motion.div
@@ -80,9 +84,7 @@ const ServicesList = () => {
             </motion.div>
             <motion.div
               className="text-xl sm:text-2xl font-semibold text-white mb-2 md:mb-3"
-              animate={{ 
-                scale: hoveredIdx === idx ? (typeof window !== 'undefined' && window.innerWidth >= 768 ? 1.05 : 1) : 1 
-              }}
+              animate={{ scale: hoveredIdx === idx ? (isMobile ? 1 : 1.05) : 1 }}
               transition={{ duration: 0.3 }}
             >
               {service.title}
