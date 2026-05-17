@@ -65,7 +65,7 @@ const HeroSection = ({ darkMode }) => {
       <StarField windowSize={windowSize} />
 
       {/* Main content */}
-      <div className="relative z-10 flex flex-col items-start justify-center px-4 sm:px-6 md:px-8 lg:px-24 max-w-4xl w-full pt-16 md:pt-0">
+      <div className="relative z-10 flex flex-col items-start justify-center px-4 sm:px-6 md:px-8 lg:px-24 max-w-4xl w-full pt-16 md:pt-0 pb-36 md:pb-32">
         <HeroBadge />
         <HeroHeading 
           changingWords={changingWords}

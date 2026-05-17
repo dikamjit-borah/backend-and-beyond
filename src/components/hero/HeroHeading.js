@@ -10,7 +10,7 @@ const HeroHeading = ({ changingWords, mobileWords }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.4 }}
       style={{
-        minHeight: '70px',
+        minHeight: '90px',
         lineHeight: '1.1',
       }}
     >
