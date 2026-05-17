@@ -59,7 +59,7 @@ const TypewriterText = ({ words, mobileWords, className }) => {
   }, [displayedText, currentWordIndex, isDeleting, typingSpeed, currentWords]);
 
   return (
-    <div className={`relative inline-block ${className}`} style={{ minWidth: '250px', minHeight: '1rem' }}>
+    <div className={`relative inline-block min-w-0 ${className}`} style={{ minHeight: '1rem' }}>
       {/* Background text for spacing (invisible but maintains layout) */}
       <span
         className="absolute top-0 left-0 opacity-0 pointer-events-none bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-400 bg-clip-text text-transparent"
