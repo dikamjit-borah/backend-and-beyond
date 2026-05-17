@@ -5,6 +5,9 @@ const Layout = ({ children }) => {
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef(null);
+  const navContainerRef = useRef(null);
+  const navItemRefs = useRef([]);
+  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 });
 
   // Handle smooth scrolling when clicking on navigation links
   const handleNavClick = (e, sectionId) => {
@@ -70,6 +73,25 @@ const Layout = ({ children }) => {
     };
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    const sections = ['home', 'about', 'services', 'work', 'contact'];
+    const measure = () => {
+      const idx = sections.indexOf(activeSection);
+      const item = navItemRefs.current[idx];
+      const container = navContainerRef.current;
+      if (!item || !container) return;
+      const itemRect = item.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      setPillStyle({
+        left: itemRect.left - containerRect.left,
+        width: itemRect.width,
+      });
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [activeSection]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Navigation */}
@@ -85,34 +107,50 @@ const Layout = ({ children }) => {
 
             {/* Desktop Navigation */}
             <div className="hidden laptop:flex flex-1 justify-center">
-              <div className="relative flex py-2 rounded-full bg-black/30 border border-white/10 shadow-lg shadow-black/20 backdrop-blur-md">
+              <div
+                ref={navContainerRef}
+                className="relative flex py-2 rounded-full bg-black/30 border border-white/10 shadow-lg shadow-black/20 backdrop-blur-md"
+              >
                 {/* Shiny effect overlay */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse pointer-events-none"></div>
                 <div className="absolute -inset-[1px] rounded-full bg-gradient-to-tr from-blue-500/20 via-purple-500/10 to-pink-500/20 blur-sm opacity-50 pointer-events-none"></div>
                 
                 {/* Active section indicator that slides between nav items */}
-                <div 
+                <div
                   className="absolute h-full top-0 transition-all duration-300 ease-in-out z-0 rounded-full bg-white/10"
-                  style={{
-                    left: (() => {
-                      switch (activeSection) {
-                        case 'home': return '0%';
-                        case 'about': return '19%';
-                        case 'services': return '39%';
-                        case 'work': return '60%';
-                        case 'contact': return '80%';
-                        default: return '0%';
-                      }
-                    })(),
-                    width: '20%'
-                  }}
+                  style={{ left: pillStyle.left, width: pillStyle.width }}
                 />
                 
-                <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'home' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Home</a>
-                <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'about' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>About</a>
-                <a href="#services" onClick={(e) => handleNavClick(e, 'services')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'services' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Services</a>
-                <a href="#work" onClick={(e) => handleNavClick(e, 'work')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'work' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Work</a>
-                <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'contact' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}>Contact</a>
+                <a
+                  ref={el => { navItemRefs.current[0] = el; }}
+                  href="#home"
+                  onClick={(e) => handleNavClick(e, 'home')}
+                  className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'home' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}
+                >Home</a>
+                <a
+                  ref={el => { navItemRefs.current[1] = el; }}
+                  href="#about"
+                  onClick={(e) => handleNavClick(e, 'about')}
+                  className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'about' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}
+                >About</a>
+                <a
+                  ref={el => { navItemRefs.current[2] = el; }}
+                  href="#services"
+                  onClick={(e) => handleNavClick(e, 'services')}
+                  className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'services' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}
+                >Services</a>
+                <a
+                  ref={el => { navItemRefs.current[3] = el; }}
+                  href="#work"
+                  onClick={(e) => handleNavClick(e, 'work')}
+                  className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'work' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}
+                >Work</a>
+                <a
+                  ref={el => { navItemRefs.current[4] = el; }}
+                  href="#contact"
+                  onClick={(e) => handleNavClick(e, 'contact')}
+                  className={`px-6 py-1 transition-all relative z-10 ${activeSection === 'contact' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'}`}
+                >Contact</a>
               </div>
             </div>
 
