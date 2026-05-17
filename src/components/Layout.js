@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   const mobileMenuRef = useRef(null);
   const navContainerRef = useRef(null);
   const navItemRefs = useRef([]);
-  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 });
+  const [pillStyle, setPillStyle] = useState(null);
 
   // Handle smooth scrolling when clicking on navigation links
   const handleNavClick = (e, sectionId) => {
@@ -116,10 +116,12 @@ const Layout = ({ children }) => {
                 <div className="absolute -inset-[1px] rounded-full bg-gradient-to-tr from-blue-500/20 via-purple-500/10 to-pink-500/20 blur-sm opacity-50 pointer-events-none"></div>
                 
                 {/* Active section indicator that slides between nav items */}
-                <div
-                  className="absolute h-full top-0 transition-all duration-300 ease-in-out z-0 rounded-full bg-white/10"
-                  style={{ left: pillStyle.left, width: pillStyle.width }}
-                />
+                {pillStyle && (
+                  <div
+                    className="absolute h-full top-0 transition-all duration-300 ease-in-out z-0 rounded-full bg-white/10"
+                    style={{ left: pillStyle.left, width: pillStyle.width }}
+                  />
+                )}
                 
                 <a
                   ref={el => { navItemRefs.current[0] = el; }}
