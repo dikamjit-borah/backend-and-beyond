@@ -39,7 +39,7 @@ const AboutSection = ({ darkMode }) => {
         <div className="flex flex-col md:flex-row items-start gap-6">
           {/* Left column with heading and image */}
           <motion.div 
-            className="flex flex-col items-left w-full md:w-2/5"
+            className="flex flex-col items-start w-full md:w-2/5"
             variants={{
               hidden: { opacity: 0, x: -50 },
               visible: { opacity: 1, x: 0 }

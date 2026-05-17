@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const ContactHeading = ({ isInView }) => {
   return (
     <motion.h2
-      className="font-boowie text-2xl md:text-5xl mb-6 md:mb-8 text-white leading-tight"
+      className="font-boowie text-2xl md:text-3xl lg:text-5xl mb-6 md:mb-8 text-white leading-tight"
       variants={{
         hidden: { opacity: 0 },
         visible: { opacity: 1 }

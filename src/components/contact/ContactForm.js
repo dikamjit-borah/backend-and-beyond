@@ -171,7 +171,9 @@ const ContactForm = ({
             <label htmlFor="privacyPolicy" className="text-xs sm:text-sm text-gray-400 leading-relaxed">
               I agree to the{" "}
               <motion.a
-                href="#"
+                href="/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-400 hover:text-blue-300 underline"
                 whileHover={{ color: "#93C5FD" }}
               >

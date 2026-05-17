@@ -11,13 +11,13 @@ const Footer = ({ showLegal = true }) => {
             <p className="mb-3 max-w-xs">Creating exceptional digital experiences that capture attention and drive results.</p>
             <div className="flex space-x-4 mb-4">
 
-              <a href="https://www.linkedin.com/company/backend-and-beyond" target="_blank" aria-label="LinkedIn" className="hover:text-blue-400 transition-colors">
+              <a href="https://www.linkedin.com/company/backend-and-beyond" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-blue-400 transition-colors">
                 <Linkedin size={16} />
               </a>
-              <a href="https://www.instagram.com/backendandbeyond/" target="_blank" aria-label="Instagram" className="hover:text-blue-400 transition-colors">
+              <a href="https://www.instagram.com/backendandbeyond/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-blue-400 transition-colors">
                 <Instagram size={16} />
               </a>
-              <a href="#" aria-label="Twitter" className="hover:text-blue-400 transition-colors">
+              <a href="https://x.com/backendandbeyond" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" className="hover:text-blue-400 transition-colors">
                 <Twitter size={16} />
               </a>
             </div>
@@ -30,7 +30,7 @@ const Footer = ({ showLegal = true }) => {
               <ul className="space-y-2">
                 <li><a href="#home" className="hover:text-blue-400 transition-colors">Home</a></li>
                 <li><a href="#services" className="hover:text-blue-400 transition-colors">Services</a></li>
-                <li><a href="#portfolio" className="hover:text-blue-400 transition-colors">Portfolio</a></li>
+                <li><a href="#work" className="hover:text-blue-400 transition-colors">Portfolio</a></li>
                 <li><a href="#about" className="hover:text-blue-400 transition-colors">About</a></li>
                 <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a></li>
               </ul>
