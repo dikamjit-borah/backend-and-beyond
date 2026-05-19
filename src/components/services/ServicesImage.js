@@ -39,8 +39,8 @@ const ServicesImage = ({ isInView }) => {
       <motion.img
         src={showcaseImg}
         alt="Showcase"
-        className="relative z-10 rounded-2xl shadow-2xl w-[280px] sm:w-[350px] md:w-[420px] border-2 md:border-4 border-gray-800 object-cover"
-        style={{ aspectRatio: '16/10', background: '#222' }}
+        className="relative z-10 w-[280px] sm:w-[350px] md:w-[420px] object-cover"
+        style={{ aspectRatio: '16/10', background: 'var(--ink)', border: '2px solid var(--ink-light)' }}
         animate={isInView ? {
           x: [0, -3, 0, 3, 0],
           y: [0, 3, 0, -3, 0],

@@ -2,122 +2,80 @@ import React from "react";
 import { motion } from "framer-motion";
 import { projects } from "./PortfolioData";
 
-const PortfolioHeader = ({ 
-  current, 
-  timerKey, 
-  isPaused, 
-  isInView, 
-  isAnimating, 
-  next, 
-  isHovered, 
-  isMobile,
-  showMobileInfo,
-  setShowMobileInfo
-}) => {
-  return (
-    <div className="relative max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 w-full pt-8 sm:pt-12 md:pt-16">
-      {/* Mobile Info Toggle Button */}
-      {isMobile && (
-        <motion.button
-          onClick={() => setShowMobileInfo(!showMobileInfo)}
-          className="absolute top-4 right-4 bg-gray-600/40 backdrop-blur-sm border border-gray-500/30 text-white text-[0.6rem] px-2 py-1 rounded-full transition-all duration-300 hover:bg-gray-500/50 hover:border-gray-400/40 z-30"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          {showMobileInfo ? 'Hide Info' : 'Show Info'}
-        </motion.button>
-      )}
-      
-      <motion.div 
-        className="w-full"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ 
-          opacity: isMobile ? (showMobileInfo ? 1 : 0) : (isHovered ? 1 : 0), 
-          y: isMobile ? (showMobileInfo ? 0 : 30) : (isHovered ? 0 : 30) 
-        }}
-        transition={{ duration: 0.5 }}
+const PortfolioHeader = ({
+  current, timerKey, isPaused, isInView,
+  isAnimating, next, isHovered, isMobile,
+  showMobileInfo, setShowMobileInfo
+}) => (
+  <div className="relative max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 w-full pt-8 sm:pt-12 md:pt-16">
+    {isMobile && (
+      <motion.button
+        onClick={() => setShowMobileInfo(!showMobileInfo)}
+        className="absolute top-4 right-4 font-barlow text-[0.6rem] font-bold uppercase tracking-widest px-3 py-1 z-30"
+        style={{ background: 'var(--ink)', color: 'var(--cream)' }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3, delay: 0.2 }}
+        whileTap={{ scale: 0.95 }}
       >
+        {showMobileInfo ? 'Hide' : 'Info'}
+      </motion.button>
+    )}
+
+    <motion.div
+      className="w-full"
+      animate={{
+        opacity: isMobile ? (showMobileInfo ? 1 : 0) : (isHovered ? 1 : 0),
+        y:       isMobile ? (showMobileInfo ? 0 : 24) : (isHovered ? 0 : 24),
+      }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-        <motion.h2 
-          className="font-boowie text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white mb-4 sm:mb-8 drop-shadow-xl leading-tight"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ 
-            opacity: isMobile ? (showMobileInfo ? 1 : 0) : (isHovered ? 1 : 0), 
-            y: isMobile ? (showMobileInfo ? 0 : 20) : (isHovered ? 0 : 20) 
-          }}
-          transition={{ 
-            duration: 0.5,
-            delay: 0.1
-          }}
+        <motion.h2
+          className="font-barlow text-xs font-bold uppercase tracking-widest mb-4 sm:mb-8"
+          style={{ color: 'var(--text-sub)' }}
         >
-          Projects in 2025 that Left Our Clients Smiling:
+          Projects in 2025 that left our clients smiling:
         </motion.h2>
-        
-        {/* Circular Timer */}
-        <motion.div 
+
+        {/* Circular timer */}
+        <motion.div
           className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 mb-4 sm:mb-8 cursor-pointer flex-shrink-0"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
-            opacity: isMobile ? 1 : (isHovered ? 0.8 : 1), 
-            scale: isMobile ? 1 : (isHovered ? 0.8 : 1)
+          animate={{
+            opacity: isMobile ? 1 : (isHovered ? 0.9 : 1),
+            scale:   isMobile ? 1 : (isHovered ? 0.9 : 1),
           }}
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.5 }}
-          onClick={next} // Allow clicking the timer to advance to the next slide
+          onClick={next}
         >
-          {/* Background circle */}
-          <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
-          
-          {/* Progress circle */}
-          <motion.svg 
-            viewBox="0 0 100 100" 
-            className="absolute inset-0 w-full h-full rotate-[-90deg]"
-          >
+          <div className="absolute inset-0 rounded-full" style={{ border: '2px solid rgba(45,10,107,0.2)' }} />
+          <motion.svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full rotate-[-90deg]">
             <motion.circle
               key={timerKey}
-              cx="50"
-              cy="50"
-              r="40"
+              cx="50" cy="50" r="40"
               fill="none"
               strokeWidth="4"
-              stroke="white"
+              stroke="var(--accent)"
               strokeLinecap="round"
-              strokeDasharray={251.2} // Circumference of circle with r=40: 2 * π * r
-              initial={{ strokeDashoffset: 251.2 }} // Start from full offset (empty)
-              animate={{ 
-                strokeDashoffset: isPaused ? 251.2 : 0 // Animate to 0 offset (full circle)
-              }}
-              transition={isPaused ? 
-                { duration: 0 } : 
-                { duration: 4, ease: "linear" }
-              }
-              className="opacity-60"
+              strokeDasharray={251.2}
+              initial={{ strokeDashoffset: 251.2 }}
+              animate={{ strokeDashoffset: isPaused ? 251.2 : 0 }}
+              transition={isPaused ? { duration: 0 } : { duration: 4, ease: "linear" }}
               onAnimationComplete={() => {
-                if (!isPaused && isInView && !isAnimating) {
-                  next(); // Trigger slide change when animation completes
-                }
+                if (!isPaused && isInView && !isAnimating) next();
               }}
             />
           </motion.svg>
-          
-          {/* Number in the middle */}
-          <div className="absolute inset-0 flex items-center justify-center font-medium text-white">
-            <motion.span 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-[8px] sm:text-[10px] md:text-xs"
-            >
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-barlow text-[8px] sm:text-[10px] font-bold" style={{ color: 'var(--ink)' }}>
               {current + 1}/{projects.length}
-            </motion.span>
+            </span>
           </div>
         </motion.div>
       </div>
-      </motion.div>
-    </div>
-  );
-};
+    </motion.div>
+  </div>
+);
 
 export default PortfolioHeader;

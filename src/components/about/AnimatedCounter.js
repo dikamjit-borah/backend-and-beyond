@@ -12,7 +12,7 @@ const AnimatedCounter = ({ value, duration = 2, className }) => {
     const timer = setTimeout(() => {
       let start = 0;
       const end = numericValue;
-      const totalFrames = Math.min(end, duration * 60); // 60fps for [duration] seconds
+      const totalFrames = Math.round(duration * 60); // fixed frame count regardless of end value
       const incrementPerFrame = end / totalFrames;
       
       const timer = setInterval(() => {
