@@ -40,19 +40,20 @@ const ServicesList = () => {
             }}
           />
 
-          {/* Giant number watermark — appears on hover */}
+          {/* Giant number watermark — faint at rest, stronger on hover */}
           <div
-            className="absolute right-0 top-0 bottom-0 flex items-center overflow-hidden pointer-events-none transition-opacity duration-400"
-            style={{ opacity: hoveredIdx === idx ? 1 : 0 }}
+            className="absolute right-0 top-0 bottom-0 flex items-center overflow-hidden pointer-events-none transition-opacity duration-300"
+            style={{ opacity: hoveredIdx === idx ? 1 : 0.4 }}
           >
             <span
               className="font-boowie select-none"
               style={{
                 fontSize: 'clamp(120px, 16vw, 220px)',
                 color: 'var(--cream)',
-                opacity: 0.06,
+                opacity: hoveredIdx === idx ? 0.07 : 0.035,
                 lineHeight: 1,
                 marginRight: '-0.1em',
+                transition: 'opacity 0.3s ease',
               }}
             >
               {service.num}

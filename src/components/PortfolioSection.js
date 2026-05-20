@@ -42,6 +42,9 @@ const PortfolioSection = () => {
   }, [isAnimating, current]);
 
   const proj = projects[current];
+  const isHoveredRef = useRef(false);
+  const handleCarouselEnter = () => { isHoveredRef.current = true; };
+  const handleCarouselLeave = () => { isHoveredRef.current = false; setTimerKey(k => k + 1); };
 
   return (
     <motion.section
@@ -75,7 +78,12 @@ const PortfolioSection = () => {
       </span>
 
       {/* Full-bleed image layer */}
-      <div className="relative w-full" style={{ minHeight: '500px', height: '80vh', maxHeight: '820px' }}>
+      <div
+        className="relative w-full"
+        style={{ minHeight: '500px', height: '80vh', maxHeight: '820px' }}
+        onMouseEnter={handleCarouselEnter}
+        onMouseLeave={handleCarouselLeave}
+      >
 
         {/* Previous image — slides out */}
         {isAnimating && previousIndex !== null && projects[previousIndex].image && (
@@ -247,7 +255,7 @@ const PortfolioSection = () => {
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 5, ease: 'linear' }}
-                  onAnimationComplete={() => go(1)}
+                  onAnimationComplete={() => { if (!isHoveredRef.current) go(1); }}
                 />
               </div>
             </div>

@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
 const Layout = ({ children }) => {
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const mobileMenuRef = useRef(null);
   const navItemRefs = useRef([]);
 
@@ -21,7 +22,7 @@ const Layout = ({ children }) => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["home", "about", "services", "portfolio", "contact"];
-      let currentSection = activeSection;
+      let currentSection = null;
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -34,9 +35,14 @@ const Layout = ({ children }) => {
       }
       if (currentSection !== activeSection) setActiveSection(currentSection);
     };
+    const handleScrollTop = () => setShowScrollTop(window.scrollY > 400);
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScrollTop);
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScrollTop);
+    };
   }, [activeSection]);
 
   useEffect(() => {
@@ -147,6 +153,25 @@ const Layout = ({ children }) => {
       </nav>
 
       <main>{children}</main>
+
+      {/* Scroll-to-top button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="Scroll to top"
+        className="fixed bottom-6 right-6 z-50 w-10 h-10 flex items-center justify-center transition-all duration-300"
+        style={{
+          background: 'var(--ink)',
+          color: 'var(--cream)',
+          border: '1.5px solid rgba(45,10,107,0.2)',
+          opacity: showScrollTop ? 1 : 0,
+          pointerEvents: showScrollTop ? 'auto' : 'none',
+          transform: showScrollTop ? 'translateY(0)' : 'translateY(12px)',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'var(--accent)'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'var(--ink)'; }}
+      >
+        ↑
+      </button>
     </div>
   );
 };

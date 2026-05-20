@@ -7,15 +7,16 @@ const inputStyle = {
   border: 'none',
   borderBottom: '1px solid rgba(250,248,244,0.2)',
   padding: '8px 0',
-  fontFamily: "'Barlow', sans-serif",
+  fontFamily: "'Jost', sans-serif",
   fontSize: '13px',
   color: 'var(--cream)',
   outline: 'none',
+  transition: 'border-color 0.2s ease',
 };
 
 const labelStyle = {
   display: 'block',
-  fontFamily: "'Barlow', sans-serif",
+  fontFamily: "'Jost', sans-serif",
   fontSize: '10px',
   fontWeight: 700,
   textTransform: 'uppercase',
@@ -57,27 +58,27 @@ const ContactForm = ({ state, handleSubmit, formData, handleChange, itemVariants
         <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-5" variants={itemVariants}>
           <div>
             <label style={labelStyle}>First Name</label>
-            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required placeholder="John" style={inputStyle} />
+            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required placeholder="John" style={inputStyle} className="contact-input" />
           </div>
           <div>
             <label style={labelStyle}>Last Name</label>
-            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required placeholder="Doe" style={inputStyle} />
+            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required placeholder="Doe" style={inputStyle} className="contact-input" />
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants}>
           <label style={labelStyle}>Email</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="john@company.com" style={inputStyle} />
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required placeholder="john@company.com" style={inputStyle} className="contact-input" />
         </motion.div>
 
         <motion.div variants={itemVariants}>
           <label style={labelStyle}>Phone</label>
-          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="+91 XXXXX XXXXX" style={inputStyle} />
+          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="+91 XXXXX XXXXX" style={inputStyle} className="contact-input" />
         </motion.div>
 
         <motion.div variants={itemVariants}>
           <label style={labelStyle}>Referral Code</label>
-          <input type="text" name="referralCode" value={formData.referralCode} onChange={handleChange} placeholder="B&B-XXXXXXX25" style={inputStyle} />
+          <input type="text" name="referralCode" value={formData.referralCode} onChange={handleChange} placeholder="B&B-XXXXXXX25" style={inputStyle} className="contact-input" />
         </motion.div>
 
         <motion.div variants={itemVariants}>
@@ -89,6 +90,7 @@ const ContactForm = ({ state, handleSubmit, formData, handleChange, itemVariants
             required
             rows={4}
             placeholder="Tell us about your project..."
+            className="contact-input"
             style={{ ...inputStyle, resize: 'none', borderBottom: '1px solid rgba(250,248,244,0.2)' }}
           />
         </motion.div>
@@ -133,7 +135,7 @@ const ContactForm = ({ state, handleSubmit, formData, handleChange, itemVariants
         </motion.button>
 
         {state.errors && state.errors.length > 0 && (
-          <motion.div className="font-barlow text-xs space-y-1" style={{ color: '#FF6B6B' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <motion.div className="font-barlow text-xs space-y-1" style={{ color: 'var(--accent-lt)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             {state.errors.map((err, idx) => <div key={idx}>{err.message}</div>)}
           </motion.div>
         )}

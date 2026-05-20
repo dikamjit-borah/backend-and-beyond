@@ -5,10 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'boowie':     ['BOOWIE', 'serif'],
-        'neutraface': ['Neutraface', 'sans-serif'],
-        'epilogue':   ['Epilogue', 'sans-serif'],
-        'barlow':     ['Barlow', 'sans-serif'],
+        'boowie':   ['BOOWIE', 'serif'],
+        'epilogue': ['Epilogue', 'sans-serif'],
+        'barlow':   ['Jost', 'sans-serif'],
       },
       colors: {
         cream:      '#FAF8F4',

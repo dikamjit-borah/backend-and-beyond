@@ -8,7 +8,7 @@ const Footer = ({ showLegal = true }) => (
         {/* Brand */}
         <div className="mb-8 md:mb-0">
           <h2 className="font-boowie text-2xl mb-3" style={{ color: 'var(--ink)' }}>
-            Backend<span style={{ color: 'var(--accent)' }}>&</span>Beyond
+            Backend<span style={{ color: 'var(--accent)', fontSize: '1.4em', lineHeight: 1 }}>&</span>Beyond
           </h2>
           <p className="font-barlow text-xs leading-relaxed max-w-xs mb-4" style={{ color: 'var(--text-sub)' }}>
             Creating exceptional digital experiences that capture attention and drive results.

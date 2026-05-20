@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -34,62 +34,14 @@ html {
     font-style: normal;
     font-display: block;
   }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Book.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: fallback;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Book Italic.otf') format('opentype');
-    font-weight: 400;
-    font-style: italic;
-    font-display: fallback;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Light.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: fallback;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Light Italic.otf') format('opentype');
-    font-weight: 300;
-    font-style: italic;
-    font-display: fallback;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Demi.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: fallback;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Demi Italic.otf') format('opentype');
-    font-weight: 600;
-    font-style: italic;
-    font-display: fallback;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: fallback;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Bold Italic.otf') format('opentype');
-    font-weight: 700;
-    font-style: italic;
-    font-display: fallback;
-  }
+}
+
+/* ── Contact form inputs ────────────────────────────────────── */
+.contact-input::placeholder {
+  color: rgba(250, 248, 244, 0.2);
+}
+.contact-input:focus {
+  border-bottom-color: var(--accent) !important;
 }
 
 /* ── Portfolio carousel ─────────────────────────────────────── */

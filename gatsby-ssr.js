@@ -56,7 +56,7 @@ export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
 
           .loader-tagline {
             color: rgba(250,248,244,0.45) !important;
-            font-family: 'Barlow', system-ui, sans-serif !important;
+            font-family: 'Jost', system-ui, sans-serif !important;
             font-size: 0.75rem !important;
             font-weight: 600 !important;
             letter-spacing: 0.2em !important;
@@ -120,7 +120,7 @@ export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
 
           .loading-text {
             color: rgba(250,248,244,0.5) !important;
-            font-family: 'Barlow', system-ui, sans-serif !important;
+            font-family: 'Jost', system-ui, sans-serif !important;
             font-size: 0.75rem !important;
             font-weight: 600 !important;
             letter-spacing: 0.2em !important;
