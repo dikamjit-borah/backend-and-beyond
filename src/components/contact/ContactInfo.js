@@ -19,7 +19,7 @@ const ContactInfo = () => (
         className="flex items-center gap-3 font-barlow text-sm transition-colors duration-200"
         style={{ color: 'rgba(250,248,244,0.6)' }}
         variants={{ hidden: { y: 16, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } } }}
-        whileHover={{ x: 4, color: 'var(--cream)' }}
+        whileHover={{ x: 4, color: '#FAF8F4' }}
         transition={{ type: "spring", stiffness: 300 }}
       >
         <span style={{ color: 'var(--accent)', display: 'flex', gap: '4px', alignItems: 'center' }}>{item.icon}</span>

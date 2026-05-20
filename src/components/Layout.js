@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
     e.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
-      window.scrollTo({ top: element.offsetTop, behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth' });
     } else {
       window.location.href = `/#${sectionId}`;
     }
@@ -62,7 +62,7 @@ const Layout = ({ children }) => {
     <div className="min-h-screen" style={{ background: 'var(--cream)', color: 'var(--text-main)' }}>
       {/* Navigation */}
       <nav
-        className="fixed top-0 w-full z-50 px-4 md:px-8 lg:px-20"
+        className="fixed top-0 w-full z-50 px-4 md:px-8 lg:px-24"
         style={{ background: 'var(--cream)', borderBottom: '2px solid var(--ink)' }}
       >
         <div className="mx-auto">

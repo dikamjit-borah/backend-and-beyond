@@ -63,7 +63,7 @@ const PortfolioSection = () => {
         className="absolute font-epilogue font-black uppercase pointer-events-none select-none hidden lg:block"
         style={{
           fontSize: '100px',
-          color: 'rgba(250,248,244,0.045)',
+          color: 'rgba(45,10,107,0.045)',
           letterSpacing: '0.05em',
           lineHeight: 1,
           zIndex: 40,

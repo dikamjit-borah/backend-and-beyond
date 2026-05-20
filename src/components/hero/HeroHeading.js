@@ -14,7 +14,7 @@ const HeroHeading = ({ changingWords, mobileWords }) => (
       letterSpacing: '-0.02em',
     }}
   >
-    <div className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem]">
+    <div style={{ fontSize: 'clamp(2rem, 4.5vw, 4.5rem)' }}>
       <span className="hidden sm:inline">We Empower Modern Enterprises with </span>
       <span className="sm:hidden">Empowering Enterprises with </span>
       <TypewriterText words={changingWords} mobileWords={mobileWords} />

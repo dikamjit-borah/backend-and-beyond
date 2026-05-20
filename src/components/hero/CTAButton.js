@@ -12,7 +12,7 @@ const CTAButton = ({ onClick, onSeeWork, children }) => (
       onClick={onClick}
       className="font-barlow text-xs font-bold uppercase tracking-widest px-6 py-3 transition-colors duration-200"
       style={{ background: 'var(--ink)', color: 'var(--cream)' }}
-      whileHover={{ backgroundColor: 'var(--ink-mid)' }}
+      whileHover={{ backgroundColor: '#4A1E8C' }}
       whileTap={{ scale: 0.97 }}
     >
       {children}

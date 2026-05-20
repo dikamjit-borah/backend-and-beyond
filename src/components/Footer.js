@@ -3,7 +3,7 @@ import { Linkedin, Twitter, Instagram } from "lucide-react";
 
 const Footer = ({ showLegal = true }) => (
   <footer style={{ background: 'var(--cream-alt)', borderTop: '2px solid var(--ink)' }}>
-    <div className="max-w-5xl mx-auto py-12 px-4">
+    <div className="max-w-[1400px] mx-auto py-12 px-4 sm:px-8 md:px-16 lg:px-24">
       <div className="flex flex-col md:flex-row justify-between items-start">
         {/* Brand */}
         <div className="mb-8 md:mb-0">

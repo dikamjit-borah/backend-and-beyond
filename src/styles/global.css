@@ -36,6 +36,11 @@ html {
   }
 }
 
+/* ── Scroll offset for fixed nav (h-14 = 56px) ─────────────── */
+#home, #about, #services, #portfolio, #contact {
+  scroll-margin-top: 56px;
+}
+
 /* ── Contact form inputs ────────────────────────────────────── */
 .contact-input::placeholder {
   color: rgba(250, 248, 244, 0.2);

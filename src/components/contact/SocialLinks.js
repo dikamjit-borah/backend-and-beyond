@@ -26,7 +26,7 @@ const SocialLinks = () => (
           color: 'rgba(250,248,244,0.5)',
         }}
         variants={{ hidden: { y: 16, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } } }}
-        whileHover={{ scale: 1.08, borderColor: 'var(--accent)', color: 'var(--accent)' }}
+        whileHover={{ scale: 1.08, borderColor: '#E85D00', color: '#E85D00' }}
         whileTap={{ scale: 0.95 }}
       >
         {link.icon}

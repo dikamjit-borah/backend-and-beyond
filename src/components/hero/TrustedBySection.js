@@ -13,7 +13,7 @@ const MARQUEE_ITEMS = [
 const TrustedBySection = () => {
   const text = MARQUEE_ITEMS.map((item, i) => (
     <React.Fragment key={i}>
-      <span style={{ color: 'rgba(250,248,244,0.45)', letterSpacing: '0.18em' }}>{item}</span>
+      <span style={{ color: 'rgba(250,248,244,0.62)', letterSpacing: '0.18em' }}>{item}</span>
       <span style={{ color: 'var(--accent)', margin: '0 20px', opacity: 0.8 }}>✦</span>
     </React.Fragment>
   ));

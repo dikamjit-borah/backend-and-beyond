@@ -32,7 +32,7 @@ const ServicesSection = () => {
         className="absolute right-0 top-8 font-epilogue font-black uppercase pointer-events-none select-none hidden lg:block"
         style={{
           fontSize: '100px',
-          color: 'rgba(250,248,244,0.025)',
+          color: 'rgba(250,248,244,0.04)',
           letterSpacing: '0.05em',
           lineHeight: 1,
         }}

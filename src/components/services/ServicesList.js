@@ -89,7 +89,7 @@ const ServicesList = () => {
               </div>
               <div
                 className="font-barlow text-sm leading-relaxed max-w-2xl transition-colors duration-300"
-                style={{ color: hoveredIdx === idx ? 'rgba(250,248,244,0.8)' : 'rgba(250,248,244,0.45)' }}
+                style={{ color: hoveredIdx === idx ? 'rgba(250,248,244,0.85)' : 'rgba(250,248,244,0.58)' }}
               >
                 {service.desc}
               </div>

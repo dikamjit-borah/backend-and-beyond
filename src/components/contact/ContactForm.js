@@ -57,12 +57,12 @@ const ContactForm = ({ state, handleSubmit, formData, handleChange, itemVariants
       >
         <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-5" variants={itemVariants}>
           <div>
-            <label style={labelStyle}>First Name</label>
-            <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required placeholder="John" style={inputStyle} className="contact-input" />
+            <label htmlFor="firstName" style={labelStyle}>First Name</label>
+            <input id="firstName" type="text" name="firstName" value={formData.firstName} onChange={handleChange} required placeholder="John" style={inputStyle} className="contact-input" />
           </div>
           <div>
-            <label style={labelStyle}>Last Name</label>
-            <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required placeholder="Doe" style={inputStyle} className="contact-input" />
+            <label htmlFor="lastName" style={labelStyle}>Last Name</label>
+            <input id="lastName" type="text" name="lastName" value={formData.lastName} onChange={handleChange} required placeholder="Doe" style={inputStyle} className="contact-input" />
           </div>
         </motion.div>
 
@@ -120,7 +120,7 @@ const ContactForm = ({ state, handleSubmit, formData, handleChange, itemVariants
           className="w-full font-barlow text-xs font-bold uppercase tracking-widest py-4 px-6 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           style={{ background: 'var(--accent)', color: 'var(--cream)', border: 'none' }}
           variants={itemVariants}
-          whileHover={{ backgroundColor: 'var(--accent-lt)' }}
+          whileHover={{ backgroundColor: '#FF7A2F' }}
           whileTap={{ scale: 0.98 }}
         >
           {state.submitting ? (
@@ -134,7 +134,7 @@ const ContactForm = ({ state, handleSubmit, formData, handleChange, itemVariants
           ) : "Send Message →"}
         </motion.button>
 
-        {state.errors && state.errors.length > 0 && (
+        {state.errors?.length > 0 && (
           <motion.div className="font-barlow text-xs space-y-1" style={{ color: 'var(--accent-lt)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             {state.errors.map((err, idx) => <div key={idx}>{err.message}</div>)}
           </motion.div>
