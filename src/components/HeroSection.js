@@ -27,6 +27,10 @@ const HeroSection = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToWork = () => {
+    document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section
       id="home"
@@ -110,7 +114,7 @@ const HeroSection = () => {
             <HeroBadge />
             <HeroHeading changingWords={changingWords} mobileWords={mobileWords} />
             <HeroDescription />
-            <CTAButton onClick={scrollToContact}>
+            <CTAButton onClick={scrollToContact} onSeeWork={scrollToWork}>
               Get a Free Consultation
             </CTAButton>
           </div>

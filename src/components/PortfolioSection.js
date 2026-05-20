@@ -46,7 +46,7 @@ const PortfolioSection = () => {
   return (
     <motion.section
       ref={sectionRef}
-      id="work"
+      id="portfolio"
       className="relative w-full overflow-hidden"
       style={{ background: 'var(--cream)' }}
       initial="hidden"
@@ -57,10 +57,21 @@ const PortfolioSection = () => {
       {/* Watermark */}
       <span
         aria-hidden="true"
-        className="absolute right-0 top-8 font-epilogue font-black uppercase pointer-events-none select-none hidden lg:block"
-        style={{ fontSize: '100px', color: 'rgba(45,10,107,0.045)', letterSpacing: '0.05em', lineHeight: 1, zIndex: 0 }}
+        className="absolute font-epilogue font-black uppercase pointer-events-none select-none hidden lg:block"
+        style={{
+          fontSize: '100px',
+          color: 'rgba(250,248,244,0.045)',
+          letterSpacing: '0.05em',
+          lineHeight: 1,
+          zIndex: 40,
+          right: 0,
+          top: '50%',
+          transform: 'translateY(-50%) rotate(90deg)',
+          whiteSpace: 'nowrap',
+          transformOrigin: 'center center',
+        }}
       >
-        WORK
+        PORTFOLIO
       </span>
 
       {/* Full-bleed image layer */}
@@ -135,7 +146,7 @@ const PortfolioSection = () => {
           {/* Top bar */}
           <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 w-full pt-8 md:pt-12 flex items-center justify-between">
             <span className="font-barlow text-xs font-bold uppercase tracking-widest" style={{ color: 'rgba(250,248,244,0.45)' }}>
-              Selected Work — 2024 / 25
+              Selected Portfolio — 2024 / 25
             </span>
             <span className="font-barlow text-sm font-bold tabular-nums" style={{ color: 'rgba(250,248,244,0.30)' }}>
               {String(current + 1).padStart(2, '0')}&thinsp;/&thinsp;{String(projects.length).padStart(2, '0')}

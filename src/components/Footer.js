@@ -44,7 +44,7 @@ const Footer = ({ showLegal = true }) => (
           <div>
             <h5 className="font-barlow text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink)' }}>Navigation</h5>
             <ul className="space-y-2">
-              {[['#home','Home'],['#services','Services'],['#work','Portfolio'],['#about','About'],['#contact','Contact']].map(([href, label]) => (
+              {[['/#home','Home'],['/#services','Services'],['/#portfolio','Portfolio'],['/#about','About'],['/#contact','Contact']].map(([href, label]) => (
                 <li key={href}>
                   <a
                     href={href}

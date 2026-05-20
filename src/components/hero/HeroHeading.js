@@ -15,10 +15,10 @@ const HeroHeading = ({ changingWords, mobileWords }) => (
     }}
   >
     <div className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem]">
-      <span className="hidden sm:inline">We Empower Modern Enterprises with</span>
-      <span className="sm:hidden">Empowering Enterprises with</span>
+      <span className="hidden sm:inline">We Empower Modern Enterprises with </span>
+      <span className="sm:hidden">Empowering Enterprises with </span>
+      <TypewriterText words={changingWords} mobileWords={mobileWords} />
     </div>
-    <TypewriterText words={changingWords} mobileWords={mobileWords} />
   </motion.div>
 );
 

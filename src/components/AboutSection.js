@@ -148,7 +148,7 @@ const AboutSection = () => {
               {stats.map((stat, idx) => (
                 <motion.div
                   key={stat.label}
-                  className="flex flex-col items-start"
+                  className="flex flex-col items-center text-center"
                   variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
                   transition={{ duration: 0.5, delay: 0.8 + idx * 0.08 }}
                 >

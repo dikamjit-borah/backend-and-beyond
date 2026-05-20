@@ -4,6 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Font smoothing ─────────────────────────────────────────── */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
 /* ── Design tokens ─────────────────────────────────────────── */
 :root {
   --cream:      #FAF8F4;

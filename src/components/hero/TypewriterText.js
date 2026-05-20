@@ -44,11 +44,8 @@ const TypewriterText = ({ words, mobileWords, className }) => {
   }, [displayedText, currentWordIndex, isDeleting, typingSpeed, currentWords]);
 
   return (
-    <div 
-      className={`relative inline-block min-w-0 text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] ${className || ''}`} 
-      style={{ 
-        minHeight: '1rem'
-      }}
+    <span
+      className={`relative inline-block min-w-0 ${className || ''}`}
     >
       {/* Invisible spacer to prevent layout shift */}
       <span className="opacity-0 pointer-events-none absolute top-0 left-0" aria-hidden="true">
@@ -77,7 +74,7 @@ const TypewriterText = ({ words, mobileWords, className }) => {
           transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
         />
       </motion.span>
-    </div>
+    </span>
   );
 };
 

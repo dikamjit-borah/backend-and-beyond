@@ -20,13 +20,13 @@ const SocialLinks = () => (
         target="_blank"
         rel="noopener noreferrer"
         aria-label={link.label}
-        className="w-9 h-9 flex items-center justify-center transition-all duration-200"
+        className="w-9 h-9 flex items-center justify-center"
         style={{
           border: '1.5px solid rgba(250,248,244,0.2)',
           color: 'rgba(250,248,244,0.5)',
         }}
         variants={{ hidden: { y: 16, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } } }}
-        whileHover={{ scale: 1.1, y: -2, borderColor: 'var(--accent)', color: 'var(--accent)' }}
+        whileHover={{ scale: 1.08, borderColor: 'var(--accent)', color: 'var(--accent)' }}
         whileTap={{ scale: 0.95 }}
       >
         {link.icon}

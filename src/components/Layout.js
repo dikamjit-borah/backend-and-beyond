@@ -12,13 +12,15 @@ const Layout = ({ children }) => {
     const element = document.getElementById(sectionId);
     if (element) {
       window.scrollTo({ top: element.offsetTop, behavior: 'smooth' });
+    } else {
+      window.location.href = `/#${sectionId}`;
     }
     setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "services", "work", "contact"];
+      const sections = ["home", "about", "services", "portfolio", "contact"];
       let currentSection = activeSection;
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -47,8 +49,8 @@ const Layout = ({ children }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMobileMenuOpen]);
 
-  const sections = ['home', 'about', 'services', 'work', 'contact'];
-  const labels   = ['Home', 'About', 'Services', 'Work', 'Contact'];
+  const sections = ['home', 'about', 'services', 'portfolio', 'contact'];
+  const labels   = ['Home', 'About', 'Services', 'Portfolio', 'Contact'];
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--cream)', color: 'var(--text-main)' }}>
@@ -72,7 +74,7 @@ const Layout = ({ children }) => {
                 <a
                   key={section}
                   ref={el => { navItemRefs.current[idx] = el; }}
-                  href={`#${section}`}
+                  href={`/#${section}`}
                   onClick={(e) => handleNavClick(e, section)}
                   className="px-5 py-1 font-barlow text-xs font-semibold uppercase tracking-widest relative transition-colors duration-200"
                   style={{
@@ -93,7 +95,7 @@ const Layout = ({ children }) => {
             {/* Desktop CTA */}
             <div className="hidden laptop:flex justify-end">
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
                 className="px-5 py-2 font-barlow text-xs font-bold uppercase tracking-widest transition-colors duration-200"
                 style={{ background: 'var(--ink)', color: 'var(--cream)' }}
@@ -127,7 +129,7 @@ const Layout = ({ children }) => {
                 {sections.map((section, idx) => (
                   <a
                     key={section}
-                    href={`#${section}`}
+                    href={`/#${section}`}
                     onClick={(e) => handleNavClick(e, section)}
                     className="block px-6 py-3 font-barlow text-xs font-semibold uppercase tracking-widest transition-colors duration-200"
                     style={{

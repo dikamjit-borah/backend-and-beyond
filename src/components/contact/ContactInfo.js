@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const items = [
   { icon: <Mail size={16} />, text: "hello@backendandbeyond.com" },
-  { icon: <><Phone size={16} /><FaWhatsapp size={16} style={{ color: '#25D366' }} /></>, text: "(+91) 70029 36200  ·  (+91) 84020 89446" },
+  { icon: <><Phone size={16} /><FaWhatsapp size={16} style={{ color: '#25D366' }} /></>, text: "(+91) 99725 51379  ·  (+91) 84020 89446" },
 ];
 
 const ContactInfo = () => (
