@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backend & Beyond — Full Design Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream:     #FAF8F4;
+    --cream-alt: #F0EBE3;
+    --ink:       #2D0A6B;
+    --ink-mid:   #4A1E8C;
+    --ink-light: #7B56B5;
+    --accent:    #E85D00;
+    --accent-lt: #FF7A2F;
+    --text-main: #1A0845;
+    --text-sub:  #7B68A8;
+    --rule:      #2D0A6B;
+  }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: #111;
+    color: var(--text-main);
+    overflow-x: hidden;
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section-preview {
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .section-label {
+    background: #1A1A1A;
+    padding: 8px 16px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+  }
+
+  /* ─── SHARED ─── */
+  .boowie {
+    /* BOOWIE is loaded locally — fallback to serif for preview */
+    font-family: 'BOOWIE', 'Georgia', serif;
+    font-weight: normal;
+  }
+  .epilogue { font-family: 'Epilogue', sans-serif; font-weight: 900; }
+  .barlow { font-family: 'Barlow', sans-serif; }
+
+  /* ─── NAV ─── */
+  .nav-mock {
+    background: var(--cream);
+    padding: 0 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--ink);
+  }
+  .nav-logo { font-family: 'Georgia', serif; font-size: 16px; font-weight: bold; color: var(--ink); letter-spacing: 0.05em; }
+  .nav-logo em { color: var(--accent); font-style: normal; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-link { font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-sub); }
+  .nav-link.active { color: var(--ink); position: relative; }
+  .nav-link.active::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:2px; background:var(--accent); }
+  .nav-cta { background: var(--ink); color: var(--cream); font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 18px; }
+
+  /* ─── HERO ─── */
+  .hero-mock {
+    background: var(--cream);
+    padding: 40px 32px 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 340px;
+  }
+  .hero-canvas {
+    position: absolute; inset: 0; pointer-events: none;
+    overflow: hidden;
+  }
+  /* Animated geometric fragments */
+  .geo { position: absolute; opacity: 0.07; }
+  .geo-tri1 { width: 0; height: 0; border-left: 45px solid transparent; border-right: 45px solid transparent; border-bottom: 78px solid var(--ink); top: 30px; right: 120px; transform: rotate(15deg); animation: drift1 14s ease-in-out infinite; }
+  .geo-tri2 { width: 0; height: 0; border-left: 25px solid transparent; border-right: 25px solid transparent; border-bottom: 43px solid var(--accent); top: 80px; right: 60px; transform: rotate(-10deg); animation: drift2 18s ease-in-out infinite; opacity: 0.12; }
+  .geo-ring { width: 120px; height: 120px; border: 2px solid var(--ink); border-radius: 50%; top: -20px; right: 200px; animation: spin 30s linear infinite; }
+  .geo-ring2 { width: 60px; height: 60px; border: 1px solid var(--accent); border-radius: 50%; top: 100px; right: 160px; animation: spin 20s linear infinite reverse; opacity: 0.15; }
+  .geo-line1 { width: 200px; height: 1px; background: var(--ink); top: 60px; right: 80px; transform: rotate(-25deg); animation: drift3 16s ease-in-out infinite; }
+  .geo-dot1 { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; top: 140px; right: 100px; animation: pulse 4s ease-in-out infinite; opacity: 0.4; }
+  .geo-dot2 { width: 4px; height: 4px; background: var(--ink); border-radius: 50%; top: 200px; right: 250px; animation: pulse 6s ease-in-out infinite 1s; opacity: 0.3; }
+  .geo-rect { width: 50px; height: 50px; border: 1.5px solid var(--ink); top: 180px; right: 80px; transform: rotate(22deg); animation: drift1 20s ease-in-out infinite 3s; }
+
+  @keyframes drift1 { 0%,100%{transform:rotate(15deg) translateY(0)} 50%{transform:rotate(18deg) translateY(-12px)} }
+  @keyframes drift2 { 0%,100%{transform:rotate(-10deg) translateY(0)} 50%{transform:rotate(-6deg) translateY(10px)} }
+  @keyframes drift3 { 0%,100%{transform:rotate(-25deg) translateX(0)} 50%{transform:rotate(-22deg) translateX(10px)} }
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  @keyframes pulse { 0%,100%{opacity:0.4;transform:scale(1)} 50%{opacity:0.7;transform:scale(1.3)} }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    position: relative; z-index: 2;
+  }
+  .hero-badge-line { width: 24px; height: 1.5px; background: var(--accent); }
+  .hero-h1 {
+    font-family: 'Georgia', serif;
+    font-size: 62px;
+    font-weight: bold;
+    line-height: 0.95;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    position: relative; z-index: 2;
+    margin-bottom: 16px;
+  }
+  .hero-h1 .accent-word { color: var(--accent); }
+  .hero-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    color: var(--text-sub);
+    line-height: 1.6;
+    max-width: 380px;
+    margin-bottom: 22px;
+    position: relative; z-index: 2;
+  }
+  .hero-cta-row { display: flex; gap: 12px; align-items: center; position: relative; z-index: 2; }
+  .hero-cta-primary { background: var(--ink); color: var(--cream); font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 24px; }
+  .hero-cta-sec { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-sub); display: flex; align-items: center; gap: 6px; }
+  .hero-cta-sec::after { content:'→'; color: var(--accent); }
+  .hero-marquee {
+    margin-top: 28px;
+    background: var(--ink);
+    padding: 10px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-marquee-inner {
+    display: inline-block;
+    animation: marquee 18s linear infinite;
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.35);
+  }
+  .hero-marquee-inner .dot { color: var(--accent); margin: 0 18px; opacity: 0.8; }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ─── ABOUT ─── */
+  .about-mock {
+    background: var(--cream-alt);
+    padding: 36px 32px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 40px;
+    position: relative;
+  }
+  .about-mock::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 32px; right: 32px;
+    height: 2px;
+    background: var(--ink);
+    opacity: 0.15;
+  }
+  .section-number { font-family: 'Epilogue', sans-serif; font-size: 64px; font-weight: 900; color: var(--ink); opacity: 0.06; line-height: 1; margin-bottom: -16px; }
+  .section-tag { font-family: 'Barlow', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .section-tag::before { content:''; display:inline-block; width:16px; height:1.5px; background:var(--accent); }
+  .about-heading { font-family: 'Georgia', serif; font-size: 30px; font-weight: bold; color: var(--ink); line-height: 1.0; margin-bottom: 16px; }
+  .about-img-placeholder {
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 100%);
+    opacity: 0.12;
+    margin-top: 12px;
+  }
+  .about-body { font-size: 11px; color: var(--text-sub); line-height: 1.7; margin-bottom: 20px; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .stat-item { border-top: 2px solid var(--ink); padding-top: 10px; }
+  .stat-num { font-family: 'Epilogue', sans-serif; font-size: 28px; font-weight: 900; color: var(--ink); line-height: 1; }
+  .stat-label { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-sub); margin-top: 3px; }
+
+  /* ─── SERVICES ─── */
+  .services-mock {
+    background: var(--ink);
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .services-mock::before {
+    content: 'SERVICES';
+    position: absolute;
+    top: 20px; right: -10px;
+    font-family: 'Epilogue', sans-serif;
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(250,248,244,0.03);
+    letter-spacing: 0.05em;
+    pointer-events: none;
+  }
+  .services-tag { font-family: 'Barlow', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .services-tag::before { content:''; display:inline-block; width:16px; height:1.5px; background:var(--accent); }
+  .services-h2 { font-family: 'Georgia', serif; font-size: 36px; font-weight: bold; color: var(--cream); line-height: 1.0; margin-bottom: 28px; }
+  .service-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-top: 1px solid rgba(250,248,244,0.1);
+    cursor: pointer;
+  }
+  .service-row:last-child { border-bottom: 1px solid rgba(250,248,244,0.1); }
+  .service-row-num { font-family: 'Epilogue', sans-serif; font-size: 10px; font-weight: 900; color: var(--accent); width: 24px; flex-shrink: 0; opacity: 0.6; }
+  .service-row-title { font-family: 'Epilogue', sans-serif; font-size: 16px; font-weight: 900; color: var(--cream); flex: 1; padding: 0 16px; }
+  .service-row-arrow { font-size: 14px; color: rgba(250,248,244,0.2); }
+  .service-row:hover .service-row-title { color: var(--accent); }
+
+  /* ─── PORTFOLIO ─── */
+  .portfolio-mock {
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+  }
+  .portfolio-img-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #C8B8E8 0%, #EDD9C0 100%);
+    opacity: 0.4;
+  }
+  .portfolio-overlay { position: absolute; inset: 0; background: linear-gradient(to right, var(--cream) 0%, transparent 50%); }
+  .portfolio-content { position: absolute; bottom: 20px; left: 32px; }
+  .portfolio-label { font-family: 'Barlow', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .portfolio-title { font-family: 'Georgia', serif; font-size: 22px; font-weight: bold; color: var(--ink); line-height: 1.1; }
+  .portfolio-nav { position: absolute; bottom: 20px; right: 32px; display: flex; gap: 8px; }
+  .portfolio-btn { width: 32px; height: 32px; border: 1.5px solid var(--ink); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--ink); background: transparent; cursor: pointer; }
+  .portfolio-btn.active { background: var(--ink); color: var(--cream); }
+  .portfolio-dots { position: absolute; top: 20px; right: 32px; display: flex; gap: 4px; }
+  .portfolio-dot { width: 16px; height: 2px; background: var(--ink); opacity: 0.15; }
+  .portfolio-dot.active { background: var(--accent); opacity: 1; width: 32px; }
+
+  /* ─── CONTACT ─── */
+  .contact-mock {
+    background: var(--ink);
+    padding: 36px 32px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+  }
+  .contact-tag { font-family: 'Barlow', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .contact-tag::before { content:''; display:inline-block; width:16px; height:1.5px; background:var(--accent); }
+  .contact-h2 { font-family: 'Georgia', serif; font-size: 34px; font-weight: bold; color: var(--cream); line-height: 1.0; margin-bottom: 14px; }
+  .contact-sub { font-size: 11px; color: rgba(250,248,244,0.4); line-height: 1.6; margin-bottom: 20px; }
+  .contact-info { display: flex; flex-direction: column; gap: 10px; }
+  .contact-info-item { font-size: 11px; color: rgba(250,248,244,0.6); display: flex; align-items: center; gap: 8px; }
+  .contact-info-item::before { content:'→'; color: var(--accent); font-size: 10px; }
+  .form-group { margin-bottom: 12px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .form-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(250,248,244,0.2);
+    padding: 8px 0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: var(--cream);
+    outline: none;
+  }
+  .form-input::placeholder { color: rgba(250,248,244,0.3); }
+  .form-submit { background: var(--accent); color: var(--cream); font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 24px; border: none; cursor: pointer; margin-top: 8px; }
+
+  /* ─── FOOTER ─── */
+  .footer-mock {
+    background: var(--cream-alt);
+    padding: 28px 32px;
+    border-top: 2px solid var(--ink);
+  }
+  .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; }
+  .footer-logo { font-family: 'Georgia', serif; font-size: 18px; font-weight: bold; color: var(--ink); margin-bottom: 6px; }
+  .footer-copy { font-size: 10px; color: var(--text-sub); margin-top: 8px; }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-col-title { font-family: 'Barlow', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); margin-bottom: 10px; }
+  .footer-link { display: block; font-size: 10px; color: var(--text-sub); margin-bottom: 6px; }
+  .footer-link:hover { color: var(--accent); }
+
+  /* ─── LAYOUT ─── */
+  .page-wrapper { max-width: 860px; margin: 0 auto; padding: 32px 24px; }
+  h2.page-title { font-family: 'Epilogue', sans-serif; font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+  p.page-sub { font-size: 13px; color: #666; margin-bottom: 28px; line-height: 1.5; }
+  .color-row { display: flex; gap: 6px; margin-bottom: 24px; align-items: center; }
+  .color-swatch { height: 28px; border-radius: 4px; flex: 1; position: relative; }
+  .color-swatch span { position: absolute; bottom: -18px; left: 0; font-size: 9px; color: #666; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+  <h2 class="page-title">Reversed Ink — Deep Indigo</h2>
+  <p class="page-sub">Full design layout preview, section by section. BOOWIE used as primary display font (shown as serif fallback here — real render will use the project font). Let me know if any section needs changes.</p>
+
+  <div class="color-row">
+    <div class="color-swatch" style="background:#FAF8F4; border:1px solid #ddd; flex:2"><span>#FAF8F4 cream base</span></div>
+    <div class="color-swatch" style="background:#F0EBE3; flex:1.5"><span>#F0EBE3 alt bg</span></div>
+    <div class="color-swatch" style="background:#2D0A6B; flex:2"><span>#2D0A6B ink</span></div>
+    <div class="color-swatch" style="background:#4A1E8C; flex:1.5"><span>#4A1E8C ink-mid</span></div>
+    <div class="color-swatch" style="background:#E85D00; flex:1.5"><span>#E85D00 accent</span></div>
+    <div class="color-swatch" style="background:#1A0845; flex:1.5"><span>#1A0845 text</span></div>
+  </div>
+  <div style="margin-bottom:36px"></div>
+
+  <!-- NAV -->
+  <div class="section-preview">
+    <div class="section-label">01 — Navigation (fixed, cream bg)</div>
+    <div class="nav-mock">
+      <div class="nav-logo">Backend<em>&</em>Beyond</div>
+      <div class="nav-links">
+        <span class="nav-link active">Home</span>
+        <span class="nav-link">About</span>
+        <span class="nav-link">Services</span>
+        <span class="nav-link">Work</span>
+        <span class="nav-link">Contact</span>
+        <span class="nav-cta">Contact Us</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="section-preview">
+    <div class="section-label">02 — Hero (cream bg + animated geometry — floats, rotates, pulses)</div>
+    <div class="hero-mock">
+      <div class="hero-canvas">
+        <div class="geo geo-tri1"></div>
+        <div class="geo geo-tri2"></div>
+        <div class="geo geo-ring"></div>
+        <div class="geo geo-ring2"></div>
+        <div class="geo geo-line1"></div>
+        <div class="geo geo-dot1"></div>
+        <div class="geo geo-dot2"></div>
+        <div class="geo geo-rect"></div>
+      </div>
+      <div class="hero-badge"><span class="hero-badge-line"></span>Next-Gen Tech Partner</div>
+      <div class="hero-h1">We Empower<br/>Modern<br/><span class="accent-word">Enterprises</span></div>
+      <div class="hero-sub">Autonomous systems, data-driven interfaces, and AI-crafted solutions — built to scale beautifully.</div>
+      <div class="hero-cta-row">
+        <div class="hero-cta-primary">Get a Free Consultation</div>
+        <div class="hero-cta-sec">See Our Work</div>
+      </div>
+      <div class="hero-marquee">
+        <div class="hero-marquee-inner">
+          AI Agents &amp; Automation<span class="dot">✦</span>Smart Software Systems<span class="dot">✦</span>Data Intelligence<span class="dot">✦</span>Brand &amp; UI/UX Design<span class="dot">✦</span>Blockchain Development<span class="dot">✦</span>Full-Stack Engineering<span class="dot">✦</span>
+          AI Agents &amp; Automation<span class="dot">✦</span>Smart Software Systems<span class="dot">✦</span>Data Intelligence<span class="dot">✦</span>Brand &amp; UI/UX Design<span class="dot">✦</span>Blockchain Development<span class="dot">✦</span>Full-Stack Engineering<span class="dot">✦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section-preview">
+    <div class="section-label">03 — About (cream-alt bg, two-column, stats)</div>
+    <div class="about-mock">
+      <div>
+        <div class="section-number">01</div>
+        <div class="section-tag">About Us</div>
+        <div class="about-heading">Building the<br/>Future of<br/>Digital</div>
+        <div class="about-img-placeholder"></div>
+      </div>
+      <div>
+        <div class="about-body" style="margin-top:20px">
+          We are a technology agency specialising in intelligent systems, full-stack product development, and data-driven interfaces. We partner with enterprises and startups to ship products that actually move the needle — from AI automation to polished customer-facing applications.
+          <br/><br/>
+          Our team blends engineering rigour with design thinking, delivering solutions that are as intuitive as they are scalable.
+        </div>
+        <div class="stats-row">
+          <div class="stat-item"><div class="stat-num">40+</div><div class="stat-label">Projects Delivered</div></div>
+          <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Years of Excellence</div></div>
+          <div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">Client Satisfaction</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="section-preview">
+    <div class="section-label">04 — Services (full-bleed indigo band, cream text, hover → orange)</div>
+    <div class="services-mock">
+      <div class="services-tag">What We Do</div>
+      <div class="services-h2">Smart Systems.<br/>Seamless Scale.</div>
+      <div class="service-row">
+        <div class="service-row-num">01</div>
+        <div class="service-row-title">Smart Software & Seamless Systems</div>
+        <div class="service-row-arrow">→</div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-num">02</div>
+        <div class="service-row-title">AI Agents & Automation Architecture</div>
+        <div class="service-row-arrow">→</div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-num">03</div>
+        <div class="service-row-title">Data, Decoded</div>
+        <div class="service-row-arrow">→</div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-num">04</div>
+        <div class="service-row-title">Brand Beyond Aesthetics</div>
+        <div class="service-row-arrow">→</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <div class="section-preview">
+    <div class="section-label">05 — Portfolio (full-bleed carousel, cream-side overlay, indigo UI)</div>
+    <div class="portfolio-mock">
+      <div class="portfolio-img-bg"></div>
+      <div class="portfolio-overlay"></div>
+      <div class="portfolio-dots">
+        <div class="portfolio-dot active"></div>
+        <div class="portfolio-dot"></div>
+        <div class="portfolio-dot"></div>
+        <div class="portfolio-dot"></div>
+      </div>
+      <div class="portfolio-content">
+        <div class="portfolio-label">Case Study · 01</div>
+        <div class="portfolio-title">Apex Luxe<br/>E-Commerce Platform</div>
+      </div>
+      <div class="portfolio-nav">
+        <div class="portfolio-btn">←</div>
+        <div class="portfolio-btn active">→</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section-preview">
+    <div class="section-label">06 — Contact (indigo band, bottom-border inputs, orange submit)</div>
+    <div class="contact-mock">
+      <div>
+        <div class="contact-tag">Get in Touch</div>
+        <div class="contact-h2">Let's Build<br/>Something<br/>Great.</div>
+        <div class="contact-sub">Ready to transform your vision into reality? Tell us about your project.</div>
+        <div class="contact-info">
+          <div class="contact-info-item">hello@backendandbeyond.com</div>
+          <div class="contact-info-item">LinkedIn · Instagram · X</div>
+        </div>
+      </div>
+      <div>
+        <div class="form-row">
+          <input class="form-input" placeholder="First Name" />
+          <input class="form-input" placeholder="Last Name" />
+        </div>
+        <div class="form-group"><input class="form-input" placeholder="Company Name" style="width:100%" /></div>
+        <div class="form-group"><input class="form-input" placeholder="Email Address" style="width:100%" /></div>
+        <div class="form-group"><input class="form-input" placeholder="Your Message" style="width:100%" /></div>
+        <button class="form-submit">Send Message →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="section-preview">
+    <div class="section-label">07 — Footer (cream-alt bg, indigo top border)</div>
+    <div class="footer-mock">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">Backend&amp;Beyond</div>
+          <div style="font-size:11px;color:#7B68A8;max-width:200px;margin-top:6px;line-height:1.5">Creating exceptional digital experiences that capture attention and drive results.</div>
+          <div class="footer-copy">© 2025 backend&amp;beyond. All rights reserved.</div>
+        </div>
+        <div class="footer-links">
+          <div>
+            <div class="footer-col-title">Navigation</div>
+            <a class="footer-link">Home</a>
+            <a class="footer-link">Services</a>
+            <a class="footer-link">Portfolio</a>
+            <a class="footer-link">About</a>
+          </div>
+          <div>
+            <div class="footer-col-title">Legal</div>
+            <a class="footer-link">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

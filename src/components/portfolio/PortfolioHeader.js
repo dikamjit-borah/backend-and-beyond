@@ -11,7 +11,7 @@ const PortfolioHeader = ({
     {isMobile && (
       <motion.button
         onClick={() => setShowMobileInfo(!showMobileInfo)}
-        className="absolute top-4 right-4 font-barlow text-[0.6rem] font-bold uppercase tracking-widest px-3 py-1 z-30"
+        className="absolute top-4 right-4 font-jost text-[0.6rem] font-bold uppercase tracking-widest px-3 py-1 z-30"
         style={{ background: 'var(--ink)', color: 'var(--cream)' }}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -32,7 +32,7 @@ const PortfolioHeader = ({
     >
       <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
         <motion.h2
-          className="font-barlow text-xs font-bold uppercase tracking-widest mb-4 sm:mb-8"
+          className="font-jost text-xs font-bold uppercase tracking-widest mb-4 sm:mb-8"
           style={{ color: 'var(--text-sub)' }}
         >
           Projects in 2025 that left our clients smiling:
@@ -68,7 +68,7 @@ const PortfolioHeader = ({
             />
           </motion.svg>
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-barlow text-[8px] sm:text-[10px] font-bold" style={{ color: 'var(--ink)' }}>
+            <span className="font-jost text-[8px] sm:text-[10px] font-bold" style={{ color: 'var(--ink)' }}>
               {current + 1}/{projects.length}
             </span>
           </div>

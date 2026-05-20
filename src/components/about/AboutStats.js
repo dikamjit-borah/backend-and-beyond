@@ -32,7 +32,7 @@ const AboutStats = ({ isInView }) => (
             />
           )}
         </p>
-        <p className="font-barlow text-xs font-semibold uppercase tracking-wide mt-1" style={{ color: 'var(--text-sub)' }}>
+        <p className="font-jost text-xs font-semibold uppercase tracking-wide mt-1" style={{ color: 'var(--text-sub)' }}>
           {stat.label}
         </p>
       </motion.div>

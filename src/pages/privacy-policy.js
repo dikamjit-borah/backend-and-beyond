@@ -98,7 +98,7 @@ const PrivacyPolicyPage = () => {
             {/* Badge */}
             <div className="flex items-center gap-3 mb-8">
               <span style={{ display: 'inline-block', width: '20px', height: '1.5px', background: 'var(--accent)', flexShrink: 0 }} />
-              <span className="font-barlow text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
+              <span className="font-jost text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
                 Legal
               </span>
             </div>
@@ -117,7 +117,7 @@ const PrivacyPolicyPage = () => {
             </h1>
 
             <p
-              className="font-barlow text-xs font-semibold uppercase tracking-widest"
+              className="font-jost text-xs font-semibold uppercase tracking-widest"
               style={{ color: 'rgba(45,10,107,0.35)' }}
             >
               Last updated:{" "}
@@ -138,7 +138,7 @@ const PrivacyPolicyPage = () => {
               <div key={s.num}>
                 <div className="flex items-baseline gap-4 mb-3">
                   <span
-                    className="font-barlow text-xs font-bold uppercase tracking-widest flex-shrink-0"
+                    className="font-jost text-xs font-bold uppercase tracking-widest flex-shrink-0"
                     style={{ color: 'var(--accent)' }}
                   >
                     {s.num}
@@ -157,7 +157,7 @@ const PrivacyPolicyPage = () => {
 
                 {s.body && (
                   <p
-                    className="font-barlow text-base leading-relaxed"
+                    className="font-jost text-base leading-relaxed"
                     style={{ color: 'var(--text-sub)', paddingLeft: '2.5rem' }}
                   >
                     {s.body}
@@ -166,7 +166,7 @@ const PrivacyPolicyPage = () => {
 
                 {s.list && (
                   <ul
-                    className="space-y-2 font-barlow text-base leading-relaxed"
+                    className="space-y-2 font-jost text-base leading-relaxed"
                     style={{ color: 'var(--text-sub)', paddingLeft: '2.5rem', listStyle: 'none' }}
                   >
                     {s.list.map((item, i) => (
@@ -195,7 +195,7 @@ const PrivacyPolicyPage = () => {
 
                 {s.contact && (
                   <p
-                    className="font-barlow text-base leading-relaxed"
+                    className="font-jost text-base leading-relaxed"
                     style={{ color: 'var(--text-sub)', paddingLeft: '2.5rem' }}
                   >
                     For privacy requests, please email us at{" "}

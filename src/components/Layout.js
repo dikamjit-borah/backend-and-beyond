@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "services", "portfolio", "contact"];
+      const sections = ["home", "services", "portfolio", "about", "contact"];
       let currentSection = null;
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -55,8 +55,8 @@ const Layout = ({ children }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMobileMenuOpen]);
 
-  const sections = ['home', 'about', 'services', 'portfolio', 'contact'];
-  const labels   = ['Home', 'About', 'Services', 'Portfolio', 'Contact'];
+  const sections = ['home', 'services', 'portfolio', 'about', 'contact'];
+  const labels   = ['Home', 'Services', 'Portfolio', 'About', 'Contact'];
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--cream)', color: 'var(--text-main)' }}>
@@ -82,7 +82,7 @@ const Layout = ({ children }) => {
                   ref={el => { navItemRefs.current[idx] = el; }}
                   href={`/#${section}`}
                   onClick={(e) => handleNavClick(e, section)}
-                  className="px-5 py-1 font-barlow text-xs font-semibold uppercase tracking-widest relative transition-colors duration-200"
+                  className="px-5 py-1 font-jost text-xs font-semibold uppercase tracking-widest relative transition-colors duration-200"
                   style={{
                     color: activeSection === section ? 'var(--ink)' : 'var(--text-sub)',
                   }}
@@ -103,12 +103,12 @@ const Layout = ({ children }) => {
               <a
                 href="/#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
-                className="px-5 py-2 font-barlow text-xs font-bold uppercase tracking-widest transition-colors duration-200"
+                className="px-5 py-2 font-jost text-xs font-bold uppercase tracking-widest transition-colors duration-200"
                 style={{ background: 'var(--ink)', color: 'var(--cream)' }}
                 onMouseEnter={e => e.currentTarget.style.background = 'var(--ink-mid)'}
                 onMouseLeave={e => e.currentTarget.style.background = 'var(--ink)'}
               >
-                Contact Us
+                Start a Project
               </a>
             </div>
 
@@ -137,7 +137,7 @@ const Layout = ({ children }) => {
                     key={section}
                     href={`/#${section}`}
                     onClick={(e) => handleNavClick(e, section)}
-                    className="block px-6 py-3 font-barlow text-xs font-semibold uppercase tracking-widest transition-colors duration-200"
+                    className="block px-6 py-3 font-jost text-xs font-semibold uppercase tracking-widest transition-colors duration-200"
                     style={{
                       color: activeSection === section ? 'var(--accent)' : 'var(--text-sub)',
                       borderLeft: activeSection === section ? '3px solid var(--accent)' : '3px solid transparent',

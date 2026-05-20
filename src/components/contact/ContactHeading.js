@@ -36,7 +36,7 @@ const ContactHeading = ({ isInView }) => (
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6, delay: 0.7 }}
     >
-      great.
+      worth shipping.
     </motion.span>
   </motion.h2>
 );

@@ -10,11 +10,11 @@ const HeroBadge = () => (
   >
     <span style={{ display: 'inline-block', width: '28px', height: '2px', background: 'var(--accent)', flexShrink: 0 }} />
     <span
-      className="font-barlow text-xs font-bold uppercase tracking-widest"
+      className="font-jost text-xs font-bold uppercase tracking-widest"
       style={{ color: 'var(--accent)' }}
     >
-      <span className="hidden sm:inline">Your Strategic Partner in Next-Gen Tech Innovation</span>
-      <span className="sm:hidden">Next-Gen Tech Partner</span>
+      <span className="hidden sm:inline">Software Engineering & AI Studio</span>
+      <span className="sm:hidden">Software Engineering & AI Studio</span>
     </span>
   </motion.div>
 );

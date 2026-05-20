@@ -12,7 +12,7 @@ const AboutContent = () => (
       variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
     >
       <motion.p
-        className="font-barlow text-sm leading-relaxed"
+        className="font-jost text-sm leading-relaxed"
         style={{ color: 'var(--text-sub)' }}
         variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.5, delay: 0.6 }}
@@ -20,7 +20,7 @@ const AboutContent = () => (
         At Backend and Beyond, we are a multidisciplinary collective of backend engineers, UI/UX designers, full-stack developers, and visual storytellers united by a passion for building purposeful digital experiences.
       </motion.p>
       <motion.p
-        className="font-barlow text-sm leading-relaxed"
+        className="font-jost text-sm leading-relaxed"
         style={{ color: 'var(--text-sub)' }}
         variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.5, delay: 0.7 }}
@@ -34,7 +34,7 @@ const AboutContent = () => (
       variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
     >
       <motion.p
-        className="font-barlow text-sm leading-relaxed"
+        className="font-jost text-sm leading-relaxed"
         style={{ color: 'var(--text-sub)' }}
         variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.5, delay: 0.8 }}
@@ -42,7 +42,7 @@ const AboutContent = () => (
         We specialise in bespoke applications, internal dashboards, automations, and digital products that drive business efficiency and elevate user engagement.
       </motion.p>
       <motion.p
-        className="font-barlow text-sm leading-relaxed"
+        className="font-jost text-sm leading-relaxed"
         style={{ color: 'var(--text-sub)' }}
         variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
         transition={{ duration: 0.5, delay: 0.9 }}

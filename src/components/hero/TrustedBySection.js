@@ -2,12 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const MARQUEE_ITEMS = [
-  "AI Agents & Automation",
-  "Smart Software Systems",
-  "Data Intelligence",
-  "Brand & UI/UX Design",
-  "Blockchain Development",
-  "Full-Stack Engineering",
+  "Backend Engineering",
+  "AI Agent Development",
+  "Custom Software",
+  "Dashboard & Analytics",
+  "Full-Stack Web Apps",
+  "Mobile Applications",
+  "Automation Pipelines",
+  "API Architecture",
 ];
 
 const TrustedBySection = () => {
@@ -27,7 +29,7 @@ const TrustedBySection = () => {
       transition={{ duration: 0.7, delay: 1.2 }}
     >
       <div className="py-3 overflow-hidden">
-        <div className="marquee-track font-barlow text-xs font-bold uppercase">
+        <div className="marquee-track font-jost text-xs font-bold uppercase">
           {text}{text}
         </div>
       </div>

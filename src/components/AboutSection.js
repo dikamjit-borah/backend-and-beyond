@@ -3,16 +3,16 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import AnimatedCounter from "./about/AnimatedCounter";
 
 const stats = [
-  { value: "7+",  label: "Years in Business" },
-  { value: "30+", label: "Projects Delivered" },
-  { value: "99%", label: "Uptime Guarantee" },
-  { value: "4x",  label: "Revenue Growth" },
+  { value: "7+",  label: "Years Active" },
+  { value: "30+", label: "Projects Shipped" },
+  { value: "15+", label: "Clients Served" },
+  { value: "24h", label: "Response Time" },
 ];
 
 const copy = [
-  "At Backend and Beyond, we are a multidisciplinary collective of backend engineers, UI/UX designers, full-stack developers, and visual storytellers united by a passion for building purposeful digital experiences.",
-  "We operate at the intersection of functionality and form — engineering tools that are not only powerful but beautifully executed.",
-  "From ideation to deployment, we partner with you to build technology that goes beyond just working — it works brilliantly.",
+  "Backend & Beyond is a software engineering studio. We work with founders, operators, and product teams to design and build systems that are technically rigorous and commercially effective.",
+  "We build backend infrastructure, AI automation pipelines, web and mobile applications, and analytics tools — code written to run in production, not just pass a review or close a funding round.",
+  "Every engagement is direct. No account managers, no offshore handoffs. You work with the engineers and designers who own the output.",
 ];
 
 const AboutSection = () => {
@@ -80,8 +80,8 @@ const AboutSection = () => {
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
                 <span style={{ display: 'inline-block', width: '20px', height: '1.5px', background: 'var(--accent)', flexShrink: 0 }} />
-                <span className="font-barlow text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
-                  Our Ethos
+                <span className="font-jost text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
+                  Who We Are
                 </span>
               </motion.div>
 
@@ -97,9 +97,9 @@ const AboutSection = () => {
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.7, delay: 0.4 }}
               >
-                Seamless tech,<br />
-                elegant design &<br />
-                <span style={{ color: 'var(--accent)' }}>engineered<br />to scale.</span>
+                Precision engineering.<br />
+                Thoughtful design.<br />
+                <span style={{ color: 'var(--accent)' }}>Built to last.</span>
               </motion.h2>
             </div>
 
@@ -116,11 +116,8 @@ const AboutSection = () => {
             variants={{ hidden: { opacity: 0, x: 32 }, visible: { opacity: 1, x: 0 } }}
             transition={{ duration: 0.7, delay: 0.25 }}
           >
-            {/* Section marker */}
+            {/* Section divider */}
             <div className="flex items-center gap-3 mb-10">
-              <span className="font-barlow text-xs font-bold tracking-widest" style={{ color: 'rgba(45,10,107,0.20)' }}>
-                01 / 04
-              </span>
               <div className="flex-1 h-px" style={{ background: 'rgba(45,10,107,0.10)' }} />
             </div>
 
@@ -129,7 +126,7 @@ const AboutSection = () => {
               {copy.map((para, i) => (
                 <motion.p
                   key={i}
-                  className="font-barlow text-base leading-relaxed"
+                  className="font-jost text-base leading-relaxed"
                   style={{ color: 'var(--text-sub)' }}
                   variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
                   transition={{ duration: 0.55, delay: 0.5 + i * 0.12 }}
@@ -157,7 +154,7 @@ const AboutSection = () => {
                       <AnimatedCounter value={stat.value} duration={2.5} className="font-epilogue font-black" />
                     ) : stat.value}
                   </p>
-                  <p className="font-barlow text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--text-sub)' }}>
+                  <p className="font-jost text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--text-sub)' }}>
                     {stat.label}
                   </p>
                 </motion.div>

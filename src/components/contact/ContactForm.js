@@ -46,8 +46,8 @@ const ContactForm = ({ state, handleSubmit, formData, handleChange, itemVariants
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </motion.svg>
-        <h3 className="font-boowie text-xl mb-2" style={{ color: 'var(--cream)' }}>Message Sent!</h3>
-        <p className="font-barlow text-sm" style={{ color: 'rgba(250,248,244,0.5)' }}>We'll get back to you within 24 hours.</p>
+        <h3 className="font-boowie text-xl mb-2" style={{ color: 'var(--cream)' }}>Message received.</h3>
+        <p className="font-jost text-sm" style={{ color: 'rgba(250,248,244,0.5)' }}>We'll be in touch within 24 hours. Expect a direct reply from the team building your product — not an automated sequence.</p>
       </motion.div>
     ) : (
       <motion.form
@@ -105,7 +105,7 @@ const ContactForm = ({ state, handleSubmit, formData, handleChange, itemVariants
             required
             style={{ marginTop: '3px', accentColor: 'var(--accent)' }}
           />
-          <label htmlFor="privacyPolicy" className="font-barlow text-xs leading-relaxed" style={{ color: 'rgba(250,248,244,0.45)' }}>
+          <label htmlFor="privacyPolicy" className="font-jost text-xs leading-relaxed" style={{ color: 'rgba(250,248,244,0.45)' }}>
             I agree to the{" "}
             <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>
               Privacy Policy
@@ -117,7 +117,7 @@ const ContactForm = ({ state, handleSubmit, formData, handleChange, itemVariants
         <motion.button
           type="submit"
           disabled={state.submitting}
-          className="w-full font-barlow text-xs font-bold uppercase tracking-widest py-4 px-6 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full font-jost text-xs font-bold uppercase tracking-widest py-4 px-6 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           style={{ background: 'var(--accent)', color: 'var(--cream)', border: 'none' }}
           variants={itemVariants}
           whileHover={{ backgroundColor: '#FF7A2F' }}
@@ -131,11 +131,11 @@ const ContactForm = ({ state, handleSubmit, formData, handleChange, itemVariants
               </svg>
               Sending...
             </span>
-          ) : "Send Message →"}
+          ) : "Submit Inquiry →"}
         </motion.button>
 
         {state.errors?.length > 0 && (
-          <motion.div className="font-barlow text-xs space-y-1" style={{ color: 'var(--accent-lt)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <motion.div className="font-jost text-xs space-y-1" style={{ color: 'var(--accent-lt)' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             {state.errors.map((err, idx) => <div key={idx}>{err.message}</div>)}
           </motion.div>
         )}

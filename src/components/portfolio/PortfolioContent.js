@@ -25,13 +25,13 @@ const PortfolioContent = ({
       {/* Exiting slide */}
       {isAnimating && previousIndex !== null && (
         <div className={`absolute w-full ${direction > 0 ? 'slide-out-left' : 'slide-out-right'}`}>
-          <div className="font-barlow text-xs font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--accent)' }}>
+          <div className="font-jost text-xs font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--accent)' }}>
             Case Study · {String(previousIndex + 1).padStart(2, '0')}
           </div>
           <h3 className="font-boowie text-xl sm:text-2xl md:text-3xl mb-2" style={{ color: 'var(--ink)' }}>
             {projects[previousIndex].title.replace(/^[^\w]+/, '')}
           </h3>
-          <p className="font-barlow text-sm leading-relaxed" style={{ color: 'var(--text-sub)' }}>
+          <p className="font-jost text-sm leading-relaxed" style={{ color: 'var(--text-sub)' }}>
             {projects[previousIndex].description}
           </p>
         </div>
@@ -44,7 +44,7 @@ const PortfolioContent = ({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="font-barlow text-xs font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--accent)' }}>
+        <div className="font-jost text-xs font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--accent)' }}>
           Case Study · {String(current + 1).padStart(2, '0')}
         </div>
         <motion.h3
@@ -56,7 +56,7 @@ const PortfolioContent = ({
           {projects[current].title.replace(/^[^\w]+/, '')}
         </motion.h3>
         <motion.p
-          className="font-barlow text-sm leading-relaxed"
+          className="font-jost text-sm leading-relaxed"
           style={{ color: 'var(--text-sub)' }}
           variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 } }}
           transition={{ duration: 0.6, delay: 0.2 }}
