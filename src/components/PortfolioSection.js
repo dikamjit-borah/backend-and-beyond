@@ -63,7 +63,7 @@ const PortfolioSection = () => {
         className="absolute font-epilogue font-black uppercase pointer-events-none select-none hidden lg:block"
         style={{
           fontSize: '100px',
-          color: 'rgba(250,248,244,0.045)',
+          color: 'rgba(45,10,107,0.045)',
           letterSpacing: '0.05em',
           lineHeight: 1,
           zIndex: 40,
@@ -153,10 +153,10 @@ const PortfolioSection = () => {
 
           {/* Top bar */}
           <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 w-full pt-8 md:pt-12 flex items-center justify-between">
-            <span className="font-barlow text-xs font-bold uppercase tracking-widest" style={{ color: 'rgba(250,248,244,0.45)' }}>
+            <span className="font-jost text-xs font-bold uppercase tracking-widest" style={{ color: 'rgba(250,248,244,0.45)' }}>
               Selected Portfolio — 2024 / 25
             </span>
-            <span className="font-barlow text-sm font-bold tabular-nums" style={{ color: 'rgba(250,248,244,0.30)' }}>
+            <span className="font-jost text-sm font-bold tabular-nums" style={{ color: 'rgba(250,248,244,0.30)' }}>
               {String(current + 1).padStart(2, '0')}&thinsp;/&thinsp;{String(projects.length).padStart(2, '0')}
             </span>
           </div>
@@ -178,7 +178,7 @@ const PortfolioSection = () => {
               >
                 {/* Category */}
                 <span
-                  className="font-barlow text-xs font-bold uppercase tracking-widest inline-block px-3 py-1 mb-5"
+                  className="font-jost text-xs font-bold uppercase tracking-widest inline-block px-3 py-1 mb-5"
                   style={{ background: 'var(--accent)', color: 'var(--cream)' }}
                 >
                   {proj.category}
@@ -193,13 +193,13 @@ const PortfolioSection = () => {
                 </h2>
 
                 {/* Subtitle */}
-                <p className="font-barlow text-sm mb-5" style={{ color: 'rgba(250,248,244,0.50)' }}>
+                <p className="font-jost text-sm mb-5" style={{ color: 'rgba(250,248,244,0.50)' }}>
                   {proj.subtitle}
                 </p>
 
                 {/* Description — max 2 lines */}
                 <p
-                  className="font-barlow text-sm leading-relaxed mb-7 hidden sm:block"
+                  className="font-jost text-sm leading-relaxed mb-7 hidden sm:block"
                   style={{ color: 'rgba(250,248,244,0.72)', maxWidth: '52ch' }}
                 >
                   {proj.description}
@@ -210,7 +210,7 @@ const PortfolioSection = () => {
                   {proj.tags.map(tag => (
                     <span
                       key={tag}
-                      className="font-barlow text-xs font-bold uppercase tracking-wider px-2 py-1"
+                      className="font-jost text-xs font-bold uppercase tracking-wider px-2 py-1"
                       style={{ border: '1px solid rgba(250,248,244,0.18)', color: 'rgba(250,248,244,0.45)' }}
                     >
                       {tag}
@@ -220,7 +220,7 @@ const PortfolioSection = () => {
                     href={proj.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-barlow text-sm font-bold uppercase tracking-wider inline-flex items-center gap-1 ml-2 transition-opacity duration-200 hover:opacity-70"
+                    className="font-jost text-sm font-bold uppercase tracking-wider inline-flex items-center gap-1 ml-2 transition-opacity duration-200 hover:opacity-70"
                     style={{ color: 'var(--accent)' }}
                   >
                     Visit ↗

@@ -10,9 +10,9 @@ const CTAButton = ({ onClick, onSeeWork, children }) => (
   >
     <motion.button
       onClick={onClick}
-      className="font-barlow text-xs font-bold uppercase tracking-widest px-6 py-3 transition-colors duration-200"
+      className="font-jost text-xs font-bold uppercase tracking-widest px-6 py-3 transition-colors duration-200"
       style={{ background: 'var(--ink)', color: 'var(--cream)' }}
-      whileHover={{ backgroundColor: 'var(--ink-mid)' }}
+      whileHover={{ backgroundColor: '#4A1E8C' }}
       whileTap={{ scale: 0.97 }}
     >
       {children}
@@ -20,11 +20,11 @@ const CTAButton = ({ onClick, onSeeWork, children }) => (
 
     <motion.button
       onClick={onSeeWork}
-      className="font-barlow text-xs font-semibold uppercase tracking-widest transition-colors duration-200 flex items-center gap-2"
+      className="font-jost text-xs font-semibold uppercase tracking-widest transition-colors duration-200 flex items-center gap-2"
       style={{ color: 'var(--text-sub)', background: 'transparent', border: 'none' }}
       whileHover={{ color: 'var(--accent)' }}
     >
-      See Our Portfolio
+      See Our Work
       <span style={{ color: 'var(--accent)' }}>→</span>
     </motion.button>
   </motion.div>

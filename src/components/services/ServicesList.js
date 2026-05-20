@@ -2,10 +2,26 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const services = [
-  { num: '01', title: 'Smart Software & Seamless Systems',    desc: 'From intelligent SaaS platforms to full-stack web and mobile applications, we engineer high-performance tools tailored to your business logic.' },
-  { num: '02', title: 'AI Agents & Automation Architecture',  desc: 'From autonomous agents to custom process automations, we integrate AI where it matters — augmenting workflows and reducing human overhead.' },
-  { num: '03', title: 'Data, Decoded',                        desc: 'Turn raw data into visual intelligence. We craft next-gen dashboards and analytics layers that transform complexity into actionable clarity.' },
-  { num: '04', title: 'Brand Beyond Aesthetics',              desc: 'We shape your brand from the inside out — merging UI/UX design with cohesive brand identity to create experiences that are intuitive and unforgettable.' },
+  {
+    num: '01',
+    title: 'Custom Software & Web Application Development',
+    desc: 'Full-stack web and mobile applications engineered for performance and maintainability. SaaS platforms, internal tools, and client-facing products — built to your exact specifications and deployed to production standards.',
+  },
+  {
+    num: '02',
+    title: 'AI Agent Development & Workflow Automation',
+    desc: 'We design and deploy AI agents, automation pipelines, and LLM-powered systems that eliminate manual overhead and scale with your operations. Built for real business processes, not conference demos.',
+  },
+  {
+    num: '03',
+    title: 'Analytics Dashboard & Data Visualization',
+    desc: 'Custom dashboards, reporting layers, and data pipelines that make operational data readable and actionable. Clarity over complexity — designed for the people who make decisions.',
+  },
+  {
+    num: '04',
+    title: 'Backend Engineering & System Architecture',
+    desc: 'API design, database architecture, cloud infrastructure, and scalable backend systems. We build the technical foundation your product needs to grow without breaking.',
+  },
 ];
 
 const ServicesList = () => {
@@ -40,7 +56,7 @@ const ServicesList = () => {
             }}
           />
 
-          {/* Giant number watermark — faint at rest, stronger on hover */}
+          {/* Giant number watermark */}
           <div
             className="absolute right-0 top-0 bottom-0 flex items-center overflow-hidden pointer-events-none transition-opacity duration-300"
             style={{ opacity: hoveredIdx === idx ? 1 : 0.4 }}
@@ -67,7 +83,7 @@ const ServicesList = () => {
           >
             {/* Number */}
             <span
-              className="font-barlow text-xs font-bold tracking-widest flex-shrink-0 mt-2"
+              className="font-jost text-xs font-bold tracking-widest flex-shrink-0 mt-2"
               style={{
                 color: hoveredIdx === idx ? 'var(--accent)' : 'rgba(250,248,244,0.3)',
                 minWidth: '2rem',
@@ -88,8 +104,8 @@ const ServicesList = () => {
                 {service.title}
               </div>
               <div
-                className="font-barlow text-sm leading-relaxed max-w-2xl transition-colors duration-300"
-                style={{ color: hoveredIdx === idx ? 'rgba(250,248,244,0.8)' : 'rgba(250,248,244,0.45)' }}
+                className="font-jost text-sm leading-relaxed max-w-2xl transition-colors duration-300"
+                style={{ color: hoveredIdx === idx ? 'rgba(250,248,244,0.85)' : 'rgba(250,248,244,0.58)' }}
               >
                 {service.desc}
               </div>

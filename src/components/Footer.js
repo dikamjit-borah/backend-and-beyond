@@ -3,15 +3,15 @@ import { Linkedin, Twitter, Instagram } from "lucide-react";
 
 const Footer = ({ showLegal = true }) => (
   <footer style={{ background: 'var(--cream-alt)', borderTop: '2px solid var(--ink)' }}>
-    <div className="max-w-5xl mx-auto py-12 px-4">
+    <div className="max-w-[1400px] mx-auto py-12 px-4 sm:px-8 md:px-16 lg:px-24">
       <div className="flex flex-col md:flex-row justify-between items-start">
         {/* Brand */}
         <div className="mb-8 md:mb-0">
           <h2 className="font-boowie text-2xl mb-3" style={{ color: 'var(--ink)' }}>
             Backend<span style={{ color: 'var(--accent)', fontSize: '1.4em', lineHeight: 1 }}>&</span>Beyond
           </h2>
-          <p className="font-barlow text-xs leading-relaxed max-w-xs mb-4" style={{ color: 'var(--text-sub)' }}>
-            Creating exceptional digital experiences that capture attention and drive results.
+          <p className="font-jost text-xs leading-relaxed max-w-xs mb-4" style={{ color: 'var(--text-sub)' }}>
+            Software engineering studio. Building systems that scale.
           </p>
           <div className="flex space-x-3 mb-5">
             {[
@@ -34,7 +34,7 @@ const Footer = ({ showLegal = true }) => (
               </a>
             ))}
           </div>
-          <p className="font-barlow text-xs" style={{ color: 'var(--text-sub)' }}>
+          <p className="font-jost text-xs" style={{ color: 'var(--text-sub)' }}>
             © {new Date().getFullYear()} backend&amp;beyond. All rights reserved.
           </p>
         </div>
@@ -42,13 +42,38 @@ const Footer = ({ showLegal = true }) => (
         {/* Links */}
         <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-14 mt-2 md:mt-0">
           <div>
-            <h5 className="font-barlow text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink)' }}>Navigation</h5>
+            <h5 className="font-jost text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink)' }}>Navigation</h5>
             <ul className="space-y-2">
               {[['/#home','Home'],['/#services','Services'],['/#portfolio','Portfolio'],['/#about','About'],['/#contact','Contact']].map(([href, label]) => (
                 <li key={href}>
                   <a
                     href={href}
-                    className="font-barlow text-xs transition-colors duration-200"
+                    className="font-jost text-xs transition-colors duration-200"
+                    style={{ color: 'var(--text-sub)' }}
+                    onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
+                    onMouseLeave={e => e.currentTarget.style.color = 'var(--text-sub)'}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h5 className="font-jost text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink)' }}>Services</h5>
+            <ul className="space-y-2">
+              {[
+                'AI Agent Development',
+                'Custom Software',
+                'Backend Engineering',
+                'Dashboard Development',
+                'Web & Mobile Apps',
+              ].map(label => (
+                <li key={label}>
+                  <a
+                    href="/#services"
+                    className="font-jost text-xs transition-colors duration-200"
                     style={{ color: 'var(--text-sub)' }}
                     onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
                     onMouseLeave={e => e.currentTarget.style.color = 'var(--text-sub)'}
@@ -62,14 +87,14 @@ const Footer = ({ showLegal = true }) => (
 
           {showLegal && (
             <div>
-              <h5 className="font-barlow text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink)' }}>Legal</h5>
+              <h5 className="font-jost text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink)' }}>Legal</h5>
               <ul className="space-y-2">
                 <li>
                   <a
                     href="/privacy-policy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-barlow text-xs transition-colors duration-200"
+                    className="font-jost text-xs transition-colors duration-200"
                     style={{ color: 'var(--text-sub)' }}
                     onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
                     onMouseLeave={e => e.currentTarget.style.color = 'var(--text-sub)'}

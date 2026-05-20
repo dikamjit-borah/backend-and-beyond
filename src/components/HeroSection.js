@@ -11,9 +11,6 @@ import {
 } from "./hero";
 
 const HeroSection = () => {
-  const changingWords = ["Autonomous Systems", "Data-Driven Interfaces", "AI-Crafted Solutions", "Applied Intelligence"];
-  const mobileWords   = ["AI Systems", "Smart Interfaces", "AI Solutions", "Intelligence"];
-
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -80,7 +77,7 @@ const HeroSection = () => {
 
         {/* Vertical label */}
         <div
-          className="absolute bottom-16 right-8 font-barlow text-xs font-bold uppercase tracking-widest hidden lg:block"
+          className="absolute bottom-16 right-8 font-jost text-xs font-bold uppercase tracking-widest hidden lg:block"
           style={{
             color: 'rgba(45,10,107,0.22)',
             writingMode: 'vertical-rl',
@@ -112,10 +109,10 @@ const HeroSection = () => {
 
           <div className="relative">
             <HeroBadge />
-            <HeroHeading changingWords={changingWords} mobileWords={mobileWords} />
+            <HeroHeading />
             <HeroDescription />
             <CTAButton onClick={scrollToContact} onSeeWork={scrollToWork}>
-              Get a Free Consultation
+              Start a Project →
             </CTAButton>
           </div>
         </div>

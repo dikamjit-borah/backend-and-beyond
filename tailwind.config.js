@@ -7,7 +7,7 @@ module.exports = {
       fontFamily: {
         'boowie':   ['BOOWIE', 'serif'],
         'epilogue': ['Epilogue', 'sans-serif'],
-        'barlow':   ['Jost', 'sans-serif'],
+        'jost':     ['Jost', 'sans-serif'],
       },
       colors: {
         cream:      '#FAF8F4',

@@ -3,10 +3,18 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `backend-and-beyond`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `Backend & Beyond`,
+    description: `We build custom SaaS platforms, AI agents, and full-stack web applications. Backend & Beyond is a software engineering studio that turns ideas into production systems.`,
+    siteUrl: `https://backendandbeyond.com`,
+    twitterHandle: `@backendandbeyond`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/`,
+      },
+    },
     {
       resolve: "gatsby-plugin-google-gtag",
       options: {

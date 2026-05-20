@@ -8,8 +8,8 @@ const ContactLabel = () => (
     transition={{ duration: 0.5, delay: 0.2 }}
   >
     <span style={{ display: 'inline-block', width: '20px', height: '1.5px', background: 'var(--accent)', flexShrink: 0 }} />
-    <span className="font-barlow text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
-      Get in Touch
+    <span className="font-jost text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
+      Work with Us
     </span>
   </motion.div>
 );

@@ -32,8 +32,13 @@ html {
     src: url('../fonts/BOOWIE.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-    font-display: block;
+    font-display: swap;
   }
+}
+
+/* ── Scroll offset for fixed nav (h-14 = 56px) ─────────────── */
+#home, #about, #services, #portfolio, #contact {
+  scroll-margin-top: 56px;
 }
 
 /* ── Contact form inputs ────────────────────────────────────── */

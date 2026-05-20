@@ -24,7 +24,7 @@ const NotFoundPage = () => (
         {/* Badge */}
         <div className="flex items-center gap-3 mb-10">
           <span style={{ display: 'inline-block', width: '20px', height: '1.5px', background: 'var(--accent)', flexShrink: 0 }} />
-          <span className="font-barlow text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
+          <span className="font-jost text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
             Error
           </span>
         </div>
@@ -43,7 +43,7 @@ const NotFoundPage = () => (
         </h1>
 
         <p
-          className="font-barlow text-base leading-relaxed mb-12"
+          className="font-jost text-base leading-relaxed mb-12"
           style={{ color: 'var(--text-sub)', maxWidth: '42ch' }}
         >
           The page you're looking for doesn't exist or has been moved. Let's get you back on track.
@@ -51,7 +51,7 @@ const NotFoundPage = () => (
 
         <Link
           to="/"
-          className="font-barlow text-xs font-bold uppercase tracking-widest px-7 py-3 inline-block transition-colors duration-200"
+          className="font-jost text-xs font-bold uppercase tracking-widest px-7 py-3 inline-block transition-colors duration-200"
           style={{ background: 'var(--ink)', color: 'var(--cream)' }}
           onMouseEnter={e => e.currentTarget.style.background = 'var(--ink-mid)'}
           onMouseLeave={e => e.currentTarget.style.background = 'var(--ink)'}
@@ -69,6 +69,8 @@ export default NotFoundPage;
 export const Head = () => (
   <>
     <title>Page Not Found | Backend & Beyond</title>
-    <meta name="robots" content="noindex" />
+    <meta name="robots"      content="noindex, nofollow" />
+    <meta name="viewport"    content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2D0A6B" />
   </>
 );

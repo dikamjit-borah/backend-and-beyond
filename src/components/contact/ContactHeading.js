@@ -5,7 +5,7 @@ const ContactHeading = ({ isInView }) => (
   <motion.h2
     className="font-boowie leading-none mb-8 md:mb-12"
     style={{
-      fontSize: "clamp(3rem, 8.5vw, 10rem)",
+      fontSize: "clamp(3rem, 8.5vw, 7.5rem)",
       color: "var(--cream)",
       letterSpacing: "-0.02em",
     }}
@@ -36,7 +36,7 @@ const ContactHeading = ({ isInView }) => (
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6, delay: 0.7 }}
     >
-      great.
+      worth shipping.
     </motion.span>
   </motion.h2>
 );
