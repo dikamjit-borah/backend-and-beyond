@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 
-const StarField = ({ windowSize }) => {
+const StarField = ({ windowSize, starColor = '#ffffff' }) => {
   const [shootingStars, setShootingStars] = useState([]);
   const [isClient, setIsClient] = useState(false);
 
@@ -13,8 +13,8 @@ const StarField = ({ windowSize }) => {
   // Star configuration variables - mobile optimized
   const maxStarSize = 2.5;
   const isMobile = windowSize.width < 768;
-  const shootingStarCount = isMobile ? 1 : 2; // Reduce shooting stars on mobile
-  const shootingStarFrequency = isMobile ? 6000 : 4000; // Less frequent on mobile
+  const shootingStarCount = isMobile ? 1 : 2;
+  const shootingStarFrequency = isMobile ? 6000 : 4000;
   const maxShootingStarSpeed = 1.2;
   const minShootingStarSpeed = 0.8;
   const maxShootingStarThickness = 0.8;
@@ -28,12 +28,11 @@ const StarField = ({ windowSize }) => {
     }
 
     const starArray = [];
-    const count = isMobile ? 150 : 250; // Reduce star count on mobile for better performance
+    const count = isMobile ? 150 : 280;
 
     for (let i = 0; i < count; i++) {
-      // Adjust star placement for mobile - cover more of the screen
       let x, y;
-      const starRegion = isMobile ? 0.3 : 0.65; // Cover more area on mobile
+      const starRegion = isMobile ? 0.3 : 0.40;
       do {
         x = Math.random() * windowSize.width;
         y = Math.random() * windowSize.height;
@@ -46,7 +45,7 @@ const StarField = ({ windowSize }) => {
         size: Math.random() * (maxStarSize - 1) + 1,
         blinkDelay: Math.random() * 8,
         blinkDuration: Math.random() * 2 + 1.5,
-        shouldBlink: Math.random() < (isMobile ? 0.2 : 0.3) // Less blinking on mobile
+        shouldBlink: Math.random() < (isMobile ? 0.2 : 0.3)
       });
     }
 
@@ -119,8 +118,9 @@ const StarField = ({ windowSize }) => {
       {stars.map(star => (
         <motion.div
           key={star.id}
-          className="absolute bg-white"
+          className="absolute"
           style={{
+            background: starColor,
             left: star.x,
             top: star.y,
             width: star.size,
@@ -183,8 +183,8 @@ const StarField = ({ windowSize }) => {
               width: shootingStar.length,
               height: shootingStar.thickness || 2,
               borderRadius: '4px',
-              background: 'linear-gradient(270deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 60%, rgba(70,151,255,0.9) 100%)',
-              boxShadow: '0 0 8px 1px rgba(255, 255, 255, 0.5)'
+              background: `linear-gradient(270deg, transparent 0%, ${starColor} 60%, ${starColor} 100%)`,
+              boxShadow: `0 0 8px 1px ${starColor}40`
             }}
             animate={{
               scaleX: [0.3, 1, 0.6],
@@ -202,10 +202,10 @@ const StarField = ({ windowSize }) => {
               style={{
                 width: shootingStar.thickness * 5,
                 height: shootingStar.thickness * 5,
-                background: '#ffffff',
+                background: starColor,
                 borderRadius: '50%',
                 filter: 'blur(1px)',
-                boxShadow: '0 0 10px 3px rgba(255, 255, 255, 0.8), 0 0 20px 6px rgba(70, 151, 255, 0.7)',
+                boxShadow: `0 0 10px 3px ${starColor}cc, 0 0 20px 6px ${starColor}80`,
                 transform: 'translate(-50%, -50%)'
               }}
               animate={{
@@ -229,9 +229,9 @@ const StarField = ({ windowSize }) => {
                   top: (Math.random() - 0.5) * (shootingStar.thickness * 2),
                   width: Math.random() * shootingStar.thickness + 1,
                   height: Math.random() * shootingStar.thickness + 1,
-                  background: '#ffffff',
+                  background: starColor,
                   borderRadius: '50%',
-                  boxShadow: '0 0 4px 1px rgba(255, 255, 255, 0.8)',
+                  boxShadow: `0 0 4px 1px ${starColor}cc`,
                 }}
                 animate={{
                   opacity: [0, 0.8, 0],

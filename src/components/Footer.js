@@ -1,57 +1,89 @@
 import React from "react";
 import { Linkedin, Twitter, Instagram } from "lucide-react";
 
-const Footer = ({ showLegal = true }) => {
-  return (
-    <footer className="bg-black py-12 px-4">
-      <div className="max-w-5xl mx-auto pt-12 border-t border-gray-800">
-        <div className="flex flex-col md:flex-row justify-between items-start text-gray-400 text-xs">
-          <div className="mb-6 md:mb-0">
-            <h2 className="font-boowie text-2xl text-white mb-3">Backend&Beyond</h2>
-            <p className="mb-3 max-w-xs">Creating exceptional digital experiences that capture attention and drive results.</p>
-            <div className="flex space-x-4 mb-4">
-
-              <a href="https://www.linkedin.com/company/backend-and-beyond" target="_blank" aria-label="LinkedIn" className="hover:text-blue-400 transition-colors">
-                <Linkedin size={16} />
+const Footer = ({ showLegal = true }) => (
+  <footer style={{ background: 'var(--cream-alt)', borderTop: '2px solid var(--ink)' }}>
+    <div className="max-w-5xl mx-auto py-12 px-4">
+      <div className="flex flex-col md:flex-row justify-between items-start">
+        {/* Brand */}
+        <div className="mb-8 md:mb-0">
+          <h2 className="font-boowie text-2xl mb-3" style={{ color: 'var(--ink)' }}>
+            Backend<span style={{ color: 'var(--accent)', fontSize: '1.4em', lineHeight: 1 }}>&</span>Beyond
+          </h2>
+          <p className="font-barlow text-xs leading-relaxed max-w-xs mb-4" style={{ color: 'var(--text-sub)' }}>
+            Creating exceptional digital experiences that capture attention and drive results.
+          </p>
+          <div className="flex space-x-3 mb-5">
+            {[
+              { href: "https://www.linkedin.com/company/backend-and-beyond", icon: <Linkedin size={14} />, label: "LinkedIn" },
+              { href: "https://www.instagram.com/backendandbeyond/",          icon: <Instagram size={14} />, label: "Instagram" },
+              { href: "https://x.com/backendandbeyond",                        icon: <Twitter size={14} />,   label: "Twitter / X" },
+            ].map(link => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.label}
+                className="transition-colors duration-200"
+                style={{ color: 'var(--text-sub)' }}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--text-sub)'}
+              >
+                {link.icon}
               </a>
-              <a href="https://www.instagram.com/backendandbeyond/" target="_blank" aria-label="Instagram" className="hover:text-blue-400 transition-colors">
-                <Instagram size={16} />
-              </a>
-              <a href="#" aria-label="Twitter" className="hover:text-blue-400 transition-colors">
-                <Twitter size={16} />
-              </a>
-            </div>
-            <p>© {new Date().getFullYear()} backend&beyond. All rights reserved.</p>
+            ))}
           </div>
-          
-          <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-12 mt-6 md:mt-0">
+          <p className="font-barlow text-xs" style={{ color: 'var(--text-sub)' }}>
+            © {new Date().getFullYear()} backend&amp;beyond. All rights reserved.
+          </p>
+        </div>
+
+        {/* Links */}
+        <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-14 mt-2 md:mt-0">
+          <div>
+            <h5 className="font-barlow text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink)' }}>Navigation</h5>
+            <ul className="space-y-2">
+              {[['/#home','Home'],['/#services','Services'],['/#portfolio','Portfolio'],['/#about','About'],['/#contact','Contact']].map(([href, label]) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    className="font-barlow text-xs transition-colors duration-200"
+                    style={{ color: 'var(--text-sub)' }}
+                    onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
+                    onMouseLeave={e => e.currentTarget.style.color = 'var(--text-sub)'}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {showLegal && (
             <div>
-              <h5 className="text-white font-medium text-sm mb-4">Navigation</h5>
+              <h5 className="font-barlow text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink)' }}>Legal</h5>
               <ul className="space-y-2">
-                <li><a href="#home" className="hover:text-blue-400 transition-colors">Home</a></li>
-                <li><a href="#services" className="hover:text-blue-400 transition-colors">Services</a></li>
-                <li><a href="#portfolio" className="hover:text-blue-400 transition-colors">Portfolio</a></li>
-                <li><a href="#about" className="hover:text-blue-400 transition-colors">About</a></li>
-                <li><a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a></li>
+                <li>
+                  <a
+                    href="/privacy-policy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-barlow text-xs transition-colors duration-200"
+                    style={{ color: 'var(--text-sub)' }}
+                    onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
+                    onMouseLeave={e => e.currentTarget.style.color = 'var(--text-sub)'}
+                  >
+                    Privacy Policy
+                  </a>
+                </li>
               </ul>
             </div>
-
-            {/* To do : Create the legal pages */}
-            {showLegal && (
-              <div>
-                <h5 className="text-white font-medium text-sm mb-4">Legal</h5>
-                <ul className="space-y-2">
-                  <li><a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
-                  {/* <li><a href="#" className="hover:text-blue-400 transition-colors">Terms of Service</a></li>
-                  <li><a href="#" className="hover:text-blue-400 transition-colors">Cookie Policy</a></li> */}
-                </ul>
-              </div>
-            )}
-          </div>
+          )}
         </div>
       </div>
-    </footer>
-  );
-};
+    </div>
+  </footer>
+);
 
 export default Footer;

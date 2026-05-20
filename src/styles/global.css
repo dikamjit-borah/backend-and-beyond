@@ -1,148 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ── Font smoothing ─────────────────────────────────────────── */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  --cream:      #FAF8F4;
+  --cream-alt:  #F0EBE3;
+  --ink:        #2D0A6B;
+  --ink-mid:    #4A1E8C;
+  --ink-light:  #7B56B5;
+  --accent:     #E85D00;
+  --accent-lt:  #FF7A2F;
+  --text-main:  #1A0845;
+  --text-sub:   #7B68A8;
+}
+
+/* ── Local fonts ────────────────────────────────────────────── */
 @layer base {
   @font-face {
     font-family: 'BOOWIE';
     src: url('../fonts/BOOWIE.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Book.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Book Italic.otf') format('opentype');
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Light.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Light Italic.otf') format('opentype');
-    font-weight: 300;
-    font-style: italic;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Demi.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Demi Italic.otf') format('opentype');
-    font-weight: 600;
-    font-style: italic;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Neutraface';
-    src: url('../fonts/Neutraface Text Bold Italic.otf') format('opentype');
-    font-weight: 700;
-    font-style: italic;
-    font-display: swap;
+    font-display: block;
   }
 }
 
-/* Carousel animation styles */
+/* ── Contact form inputs ────────────────────────────────────── */
+.contact-input::placeholder {
+  color: rgba(250, 248, 244, 0.2);
+}
+.contact-input:focus {
+  border-bottom-color: var(--accent) !important;
+}
+
+/* ── Portfolio carousel ─────────────────────────────────────── */
 @keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-100%);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  0%   { transform: translateX(-100%); opacity: 1; }
+  100% { transform: translateX(0);     opacity: 1; }
 }
-
 @keyframes slideInFromRight {
-  0% {
-    transform: translateX(100%);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  0%   { transform: translateX(100%);  opacity: 1; }
+  100% { transform: translateX(0);     opacity: 1; }
 }
-
 @keyframes slideOutToLeft {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-100%);
-    opacity: 1;
-  }
+  0%   { transform: translateX(0);    opacity: 1; }
+  100% { transform: translateX(-100%); opacity: 1; }
 }
-
 @keyframes slideOutToRight {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 1;
-  }
+  0%   { transform: translateX(0);   opacity: 1; }
+  100% { transform: translateX(100%); opacity: 1; }
 }
 
-.carousel-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
+.carousel-container { position: relative; overflow: hidden; width: 100%; }
+.slide-in-left  { animation: slideInFromLeft  0.8s ease-in-out forwards; position: relative; z-index: 2; }
+.slide-in-right { animation: slideInFromRight 0.8s ease-in-out forwards; position: relative; z-index: 2; }
+.slide-out-left { animation: slideOutToLeft   0.8s ease-in-out forwards; position: absolute; top: 0; left: 0; z-index: 1; }
+.slide-out-right{ animation: slideOutToRight  0.8s ease-in-out forwards; position: absolute; top: 0; left: 0; z-index: 1; }
 
-.slide-in-left {
-  animation: slideInFromLeft 0.8s ease-in-out forwards;
-  position: relative;
-  z-index: 2;
+/* ── Hero marquee ───────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
-
-.slide-in-right {
-  animation: slideInFromRight 0.8s ease-in-out forwards;
-  position: relative;
-  z-index: 2;
+.marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 18s linear infinite;
 }
+.marquee-track:hover { animation-play-state: paused; }
 
-.slide-out-left {
-  animation: slideOutToLeft 0.8s ease-in-out forwards;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
+/* ── Geometric hero shapes ──────────────────────────────────── */
+@keyframes geo-drift-a {
+  0%, 100% { transform: rotate(15deg) translateY(0px); }
+  50%       { transform: rotate(18deg) translateY(-14px); }
 }
-
-.slide-out-right {
-  animation: slideOutToRight 0.8s ease-in-out forwards;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
+@keyframes geo-drift-b {
+  0%, 100% { transform: rotate(-10deg) translateY(0px); }
+  50%       { transform: rotate(-6deg) translateY(12px); }
+}
+@keyframes geo-drift-c {
+  0%, 100% { transform: rotate(-28deg) translateX(0px); }
+  50%       { transform: rotate(-24deg) translateX(10px); }
+}
+@keyframes geo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes geo-spin-rev {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@keyframes geo-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.75; transform: scale(1.35); }
+}
+@keyframes geo-drift-d {
+  0%, 100% { transform: rotate(22deg) translateY(0px); }
+  50%       { transform: rotate(26deg) translateY(-10px); }
 }
