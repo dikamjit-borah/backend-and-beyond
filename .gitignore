@@ -118,3 +118,8 @@ Thumbs.db
 .yarn/unplugged
 .yarn/build-state.yml
 .yarn/install
+
+# Claude Code / Superpowers (local tooling, not for repo)
+.claude/
+.superpowers/
+docs/superpowers/
