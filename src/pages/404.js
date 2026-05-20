@@ -69,6 +69,8 @@ export default NotFoundPage;
 export const Head = () => (
   <>
     <title>Page Not Found | Backend & Beyond</title>
-    <meta name="robots" content="noindex" />
+    <meta name="robots"      content="noindex, nofollow" />
+    <meta name="viewport"    content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2D0A6B" />
   </>
 );

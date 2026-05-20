@@ -226,8 +226,15 @@ export default PrivacyPolicyPage;
 export const Head = () => (
   <>
     <title>Privacy Policy | Backend & Beyond</title>
-    <meta name="description" content="Learn how Backend & Beyond collects and uses information." />
-    <meta name="robots" content="index,follow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"  content="Learn how Backend & Beyond collects, uses, and protects the information you share with us." />
+    <meta name="robots"       content="index, follow" />
+    <meta name="viewport"     content="width=device-width, initial-scale=1" />
+    <meta name="theme-color"  content="#2D0A6B" />
+    <link rel="canonical"     href="https://backendandbeyond.com/privacy-policy/" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content="https://backendandbeyond.com/privacy-policy/" />
+    <meta property="og:site_name"   content="Backend & Beyond" />
+    <meta property="og:title"       content="Privacy Policy | Backend & Beyond" />
+    <meta property="og:description" content="Learn how Backend & Beyond collects, uses, and protects the information you share with us." />
   </>
 );
