@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   StarField,
-  GeometricField,
   HeroBadge,
   HeroHeading,
   HeroDescription,
@@ -93,11 +92,6 @@ const HeroSection = () => {
           className="relative flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-24 w-full lg:w-3/5 pt-24 lg:pt-0 pb-32 lg:pb-24"
           style={{ zIndex: 3 }}
         >
-          {/* Mobile geometric field */}
-          <div className="lg:hidden absolute inset-0 pointer-events-none overflow-hidden">
-            <GeometricField />
-          </div>
-
           {/* Vertical accent bar */}
           <motion.div
             className="absolute left-0 top-1/4 bottom-1/4 w-0.5 hidden md:block"
@@ -112,7 +106,7 @@ const HeroSection = () => {
             <HeroHeading />
             <HeroDescription />
             <CTAButton onClick={scrollToContact} onSeeWork={scrollToWork}>
-              Start a Project →
+              Start a Project
             </CTAButton>
           </div>
         </div>
