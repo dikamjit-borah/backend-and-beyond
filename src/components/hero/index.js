@@ -1,4 +1,3 @@
-export { default as GeometricField }   from './GeometricField';
 export { default as StarField }        from './StarField';
 export { default as HeroBadge }        from './HeroBadge';
 export { default as HeroHeading }      from './HeroHeading';
