@@ -5,11 +5,15 @@ const MARQUEE_ITEMS = [
   "Backend Engineering",
   "AI Agent Development",
   "Custom Software",
+  "Brand Identity",
   "Dashboard & Analytics",
   "Full-Stack Web Apps",
+  "SEO & Visibility",
   "Mobile Applications",
   "Automation Pipelines",
+  "UI/UX Design",
   "API Architecture",
+  "Launch Strategy",
 ];
 
 const TrustedBySection = () => {

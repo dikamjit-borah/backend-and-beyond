@@ -8,7 +8,7 @@ const faqs = [
   },
   {
     q: 'How long does a project take?',
-    a: 'Scope determines timeline. A focused MVP ships in 4–6 weeks. Full-scale systems typically take 3–6 months. You get an honest estimate after the discovery call — not a number designed to win the deal.',
+    a: 'Scope determines timeline. A focused MVP ships in 4 to 6 weeks. Full-scale systems typically take 3 to 6 months. After the discovery call you get a realistic estimate, not a number reverse-engineered from your budget.',
   },
   {
     q: 'Do you work with early-stage startups?',
