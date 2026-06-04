@@ -29,31 +29,37 @@ const Layout = ({ children }) => {
   };
 
   useEffect(() => {
+    setPathname(window.location.pathname);
+    let rafId = null;
+
     const handleScroll = () => {
-      const anchorIds = ["home", "about", "services", "contact"];
-      let currentSection = null;
-      for (const id of anchorIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            currentSection = id;
-            break;
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        const anchorIds = ["home", "about", "services", "contact"];
+        let currentSection = null;
+        for (const id of anchorIds) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 100 && rect.bottom >= 100) {
+              currentSection = id;
+              break;
+            }
           }
         }
-      }
-      if (currentSection !== activeSection) setActiveSection(currentSection);
+        setActiveSection(prev => prev !== currentSection ? currentSection : prev);
+        setShowScrollTop(window.scrollY > 400);
+        rafId = null;
+      });
     };
-    setPathname(window.location.pathname);
-    const handleScrollTop = () => setShowScrollTop(window.scrollY > 400);
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('scroll', handleScrollTop);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scroll', handleScrollTop);
+      if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [activeSection]);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -184,7 +190,12 @@ const Layout = ({ children }) => {
         onMouseEnter={e => { e.currentTarget.style.background = 'var(--accent)'; }}
         onMouseLeave={e => { e.currentTarget.style.background = 'var(--ink)'; }}
       >
-        ↑
+        <span
+          className="font-jost font-bold text-sm"
+          style={{ display: 'inline-block', transform: 'rotate(-90deg)', lineHeight: 1 }}
+        >
+          →
+        </span>
       </button>
     </div>
   );

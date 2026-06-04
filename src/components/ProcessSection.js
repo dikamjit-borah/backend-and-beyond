@@ -5,22 +5,22 @@ const steps = [
   {
     num: '01',
     title: 'Discovery',
-    desc: 'One call to scope the full engagement — development requirements, brand brief, SEO targets, and launch goals. You leave knowing exactly what we\'re building, how it will look, and how it will be found.',
+    desc: 'One call to scope the full engagement: development requirements, brand brief, SEO targets, and launch goals. You leave with a clear picture of what we are building, what it will cost, and when it ships.',
   },
   {
     num: '02',
     title: 'Brand & Architecture',
-    desc: 'Visual identity, brand systems, and UI/UX design are established in parallel with technical architecture — data models, API structure, and tech stack. The brand informs the product from day one.',
+    desc: 'Visual identity, brand systems, and UI/UX design are established alongside technical architecture: data models, API structure, and tech stack. Brand and engineering decisions move together.',
   },
   {
     num: '03',
     title: 'Build',
-    desc: 'Iterative development in sprints with weekly check-ins. Engineering, design production, and content creation run in parallel. Real progress — not a big reveal at the end of three months of silence.',
+    desc: 'Iterative development in sprints with weekly check-ins. Engineering, design, and content run in parallel. You see real progress throughout, not a presentation at the end.',
   },
   {
     num: '04',
     title: 'Launch & Handover',
-    desc: 'Deployment, SEO implementation, digital presence setup, and a 30-day support window. You leave with production-ready software, a complete brand identity, and visibility that works from day one.',
+    desc: 'Deployment, SEO implementation, digital presence, and a 30-day support window. You receive working software, a complete brand, and search visibility that starts on launch day.',
   },
 ];
 
@@ -94,7 +94,7 @@ const ProcessSection = () => {
           variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          A structured engagement — not an open-ended retainer with weekly status calls going nowhere.
+          A structured engagement with clear deliverables at every stage.
         </motion.p>
 
         {/* Steps */}

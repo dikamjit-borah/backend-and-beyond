@@ -248,7 +248,7 @@ const GeometricField = ({ dark = false, panel = false }) => {
       <div style={{ position: 'absolute', top: '110px', right: '14%', width: '200px', height: '1.5px', background: primary, opacity: line1Op, animation: 'geo-drift-c 20s ease-in-out infinite' }} />
       <div style={{ position: 'absolute', top: '320px', right: '28%', width: '120px', height: '1.5px', background: accentColor, opacity: line2Op, transform: 'rotate(-18deg)', animation: 'geo-drift-b 26s ease-in-out infinite 2s' }} />
       <div style={{ position: 'absolute', top: '240px', right: '45%', width: '70px', height: '1px', background: primary, opacity: line3Op, transform: 'rotate(30deg)', animation: 'geo-drift-a 16s ease-in-out infinite 1s' }} />
-      {DOTS.map(([top, right, size, isAccent, delay], i) => (
+      {DOTS.slice(0, 12).map(([top, right, size, isAccent, delay], i) => (
         <div key={i} style={{ position: 'absolute', top: `${top}%`, right: `${right}%`, width: `${size}px`, height: `${size}px`, background: isAccent ? accentColor : primary, borderRadius: '50%', opacity: isAccent ? dotAccentOp : dotPrimaryOp, animation: `geo-pulse ${4 + (i % 3)}s ease-in-out infinite ${delay}s` }} />
       ))}
       <div style={{ position: 'absolute', top: '45%', right: '16%', width: '10px', height: '10px', background: accentColor, borderRadius: '50%', opacity: bigDotOp, animation: 'geo-pulse 3.5s ease-in-out infinite' }} />

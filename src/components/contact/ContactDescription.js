@@ -8,7 +8,7 @@ const ContactDescription = () => (
     variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
     transition={{ duration: 0.6, delay: 0.5 }}
   >
-    Tell us what you're working on. We respond within one business day and can typically scope a project within the first call.
+    Tell us what you are working on. We reply within one business day and can usually scope a project on the first call.
   </motion.p>
 );
 

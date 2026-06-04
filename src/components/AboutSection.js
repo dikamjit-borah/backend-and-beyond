@@ -10,8 +10,8 @@ const stats = [
 ];
 
 const copy = [
-  "Backend & Beyond is a software engineering studio. We work with founders, operators, and product teams to design and build systems that are technically rigorous and commercially effective.",
-  "We build backend infrastructure, AI automation pipelines, web and mobile applications, and analytics tools — code written to run in production, not just pass a review or close a funding round.",
+  "Backend & Beyond is a software engineering studio. We work with founders, operators, and product teams to build systems that are technically sound and commercially focused.",
+  "We build backend infrastructure, AI automation pipelines, web and mobile applications, and analytics tools. Code written to run in production, not just pass a review.",
   "Every engagement is direct. No account managers, no offshore handoffs. You work with the engineers and designers who own the output.",
 ];
 

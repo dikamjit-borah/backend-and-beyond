@@ -1,44 +1,40 @@
 import React, { useEffect, useState } from "react";
 
-// Custom component for animated counting
 const AnimatedCounter = ({ value, duration = 2, className }) => {
   const [count, setCount] = useState(0);
-  
+
   useEffect(() => {
-    // Extract numeric part and suffix (like + or %)
-    const numericValue = parseInt(value.toString().replace(/[^0-9]/g, ''));
-    
-    // Don't start animation immediately, wait a bit
-    const timer = setTimeout(() => {
-      let start = 0;
-      const end = numericValue;
-      const totalFrames = Math.round(duration * 60); // fixed frame count regardless of end value
-      const incrementPerFrame = end / totalFrames;
-      
-      const timer = setInterval(() => {
-        start += incrementPerFrame;
-        if (start > end) {
-          setCount(end);
-          clearInterval(timer);
+    const end    = parseInt(value.toString().replace(/[^0-9]/g, ''), 10);
+    let rafId;
+    let startTime = null;
+
+    // 500ms delay before starting so scroll-in animation completes first
+    const delayTimer = setTimeout(() => {
+      const tick = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const elapsed  = timestamp - startTime;
+        const progress = Math.min(elapsed / (duration * 1000), 1);
+        // Ease-out cubic — fast start, smooth finish
+        const eased    = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.floor(eased * end));
+        if (progress < 1) {
+          rafId = requestAnimationFrame(tick);
         } else {
-          setCount(Math.floor(start));
+          setCount(end);
         }
-      }, 1000 / 60); // 60fps
-      
-      return () => clearInterval(timer);
-    }, 500); // 500ms delay before starting
-    
-    return () => clearTimeout(timer);
+      };
+      rafId = requestAnimationFrame(tick);
+    }, 500);
+
+    return () => {
+      clearTimeout(delayTimer);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [value, duration]);
-  
-  // Display the value with the original suffix
+
   const suffix = value.toString().replace(/[0-9]/g, '');
-  
-  return (
-    <span className={className}>
-      {count}{suffix}
-    </span>
-  );
+
+  return <span className={className}>{count}{suffix}</span>;
 };
 
 export default AnimatedCounter;

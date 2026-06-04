@@ -14,8 +14,8 @@ const IndexPage = () => {
   return (
     <Layout>
       <HeroSection />
-      <AboutSection />
       <BuildLaunchSection />
+      <AboutSection />
       <ProcessSection />
       <ServicesSection />
       <FAQSection />
@@ -58,7 +58,21 @@ export const Head = () => (
     {/* Canonical */}
     <link rel="canonical" href="https://backendandbeyond.com/" />
 
-    {/* Schema */}
+    {/* FAQPage schema */}
+    <script type="application/ld+json">{JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What types of projects do you take on?",   "acceptedAnswer": { "@type": "Answer", "text": "Custom software, AI automation systems, backend infrastructure, analytics dashboards, and web and mobile applications. Projects range from 4-week focused builds to longer-term engineering engagements." } },
+        { "@type": "Question", "name": "How long does a project take?",             "acceptedAnswer": { "@type": "Answer", "text": "Scope determines timeline. A focused MVP ships in 4 to 6 weeks. Full-scale systems typically take 3 to 6 months." } },
+        { "@type": "Question", "name": "Do you work with early-stage startups?",   "acceptedAnswer": { "@type": "Answer", "text": "Yes. We have helped founders go from zero to deployed. Budget and timeline need to be realistic, but we are experienced with MVP-first thinking." } },
+        { "@type": "Question", "name": "Who will I be working with?",              "acceptedAnswer": { "@type": "Answer", "text": "Directly with the engineers and designers building your product. No account managers, no third-party outsourcing." } },
+        { "@type": "Question", "name": "What happens after launch?",               "acceptedAnswer": { "@type": "Answer", "text": "All projects include a 30-day support window post-launch. We also offer ongoing retainer engagements for teams that need continued engineering capacity." } },
+        { "@type": "Question", "name": "Do you sign NDAs?",                        "acceptedAnswer": { "@type": "Answer", "text": "Yes, on request before any project discussion." } }
+      ]
+    })}</script>
+
+    {/* Organisation schema */}
     <script type="application/ld+json">{JSON.stringify({
       "@context": "https://schema.org",
       "@type": "ProfessionalService",

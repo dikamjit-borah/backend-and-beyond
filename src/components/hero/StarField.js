@@ -3,249 +3,116 @@ import { motion } from "framer-motion";
 
 const StarField = ({ windowSize, starColor = '#ffffff' }) => {
   const [shootingStars, setShootingStars] = useState([]);
-  const [isClient, setIsClient] = useState(false);
+  const [isClient, setIsClient]           = useState(false);
 
-  // Ensure we're on the client side and have valid window dimensions
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // Star configuration variables - mobile optimized
-  const maxStarSize = 2.5;
   const isMobile = windowSize.width < 768;
-  const shootingStarCount = isMobile ? 1 : 2;
-  const shootingStarFrequency = isMobile ? 6000 : 4000;
-  const maxShootingStarSpeed = 1.2;
-  const minShootingStarSpeed = 0.8;
-  const maxShootingStarThickness = 0.8;
-  const minShootingStarThickness = 0.5;
 
-  // Generate star data - mobile optimized
+  useEffect(() => { setIsClient(true); }, []);
+
+  // Plain data — no Framer Motion per star
   const stars = useMemo(() => {
-    // Don't render stars during SSR or if window size is invalid
-    if (!isClient || !windowSize.width || !windowSize.height) {
-      return [];
-    }
-
-    const starArray = [];
-    const count = isMobile ? 150 : 280;
-
-    for (let i = 0; i < count; i++) {
+    if (!isClient || !windowSize.width || !windowSize.height) return [];
+    const count      = isMobile ? 80 : 180;
+    const starRegion = 0.40;
+    return Array.from({ length: count }, (_, i) => {
       let x, y;
-      const starRegion = isMobile ? 0.3 : 0.40;
       do {
         x = Math.random() * windowSize.width;
         y = Math.random() * windowSize.height;
       } while (x < windowSize.width * starRegion);
-
-      starArray.push({
-        id: i,
-        x,
-        y,
-        size: Math.random() * (maxStarSize - 1) + 1,
-        blinkDelay: Math.random() * 8,
-        blinkDuration: Math.random() * 2 + 1.5,
-        shouldBlink: Math.random() < (isMobile ? 0.2 : 0.3)
-      });
-    }
-
-    return starArray;
+      return {
+        id:            i,
+        x, y,
+        size:          Math.random() * 1.5 + 0.8,
+        opacity:       Math.random() * 0.35 + 0.45,
+        shouldBlink:   Math.random() < 0.22,
+        blinkDuration: Math.random() * 2.5 + 1.8,
+        blinkDelay:    Math.random() * 7,
+      };
+    });
   }, [windowSize, isMobile, isClient]);
 
-  // Effect for shooting stars
   useEffect(() => {
-    // Don't create shooting stars during SSR or if window size is invalid
-    if (!isClient || !windowSize.width || !windowSize.height) {
-      return;
-    }
+    if (!isClient || !windowSize.width || !windowSize.height) return;
 
-    // Function to create and animate a shooting star
-    function createShootingStar() {
-      const edgePosition = Math.random();
-      const isTopEdge = edgePosition > 0.3;
-
-      let startX, startY;
-      if (isTopEdge) {
-        startX = windowSize.width * 0.3 + (windowSize.width * 0.7 * Math.random());
-        startY = 0;
-      } else {
-        startX = windowSize.width;
-        startY = windowSize.height * 0.7 * Math.random();
-      }
-
-      const angle = Math.random() * 20 + 110;
-
-      const newShootingStar = {
-        id: Math.random().toString(36).substring(7),
-        startX: startX,
-        startY: startY,
-        length: Math.random() * 100 + 60,
-        angle: angle,
-        speed: Math.random() * (maxShootingStarSpeed - minShootingStarSpeed) + minShootingStarSpeed,
-        opacity: Math.random() * 0.3 + 0.7,
-        thickness: Math.random() * (maxShootingStarThickness - minShootingStarThickness) + minShootingStarThickness,
+    const create = () => {
+      const isTop  = Math.random() > 0.3;
+      const startX = isTop
+        ? windowSize.width * 0.3 + windowSize.width * 0.7 * Math.random()
+        : windowSize.width;
+      const startY = isTop ? 0 : windowSize.height * 0.7 * Math.random();
+      const speed  = Math.random() * 0.4 + 0.8;
+      const star   = {
+        id: Math.random().toString(36).slice(2),
+        startX, startY, speed,
+        length:    Math.random() * 80 + 60,
+        angle:     Math.random() * 20 + 110,
+        opacity:   Math.random() * 0.3 + 0.7,
+        thickness: Math.random() * 0.3 + 0.5,
       };
-
-      setShootingStars(prev => [...prev, newShootingStar]);
-
-      const duration = 2500 / newShootingStar.speed;
-      setTimeout(() => {
-        setShootingStars(prev => prev.filter(star => star.id !== newShootingStar.id));
-      }, duration + 500);
-    }
-
-    // Create initial batch of shooting stars immediately
-    for (let i = 0; i < shootingStarCount; i++) {
-      setTimeout(() => {
-        createShootingStar();
-      }, i * 500);
-    }
-
-    // Create and animate shooting stars periodically
-    const shootingStarInterval = setInterval(() => {
-      createShootingStar();
-    }, shootingStarFrequency);
-
-    return () => {
-      clearInterval(shootingStarInterval);
+      setShootingStars(prev => [...prev, star]);
+      setTimeout(
+        () => setShootingStars(prev => prev.filter(s => s.id !== star.id)),
+        (2500 / speed) + 500,
+      );
     };
-  }, [windowSize, isMobile, shootingStarCount, shootingStarFrequency, isClient]);
+
+    const count = isMobile ? 1 : 2;
+    for (let i = 0; i < count; i++) setTimeout(create, i * 600);
+    const interval = setInterval(create, isMobile ? 7000 : 5000);
+    return () => clearInterval(interval);
+  }, [windowSize, isMobile, isClient]);
 
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
-         style={{ willChange: 'transform' }}> {/* Optimize for mobile performance */}
-      {/* Regular stars */}
+    <div
+      className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
+      style={{ willChange: 'transform' }}
+    >
+      {/* Stars — plain divs. CSS handles blinking; zero Framer Motion overhead. */}
       {stars.map(star => (
-        <motion.div
+        <div
           key={star.id}
-          className="absolute"
+          className={star.shouldBlink ? 'absolute star-blink' : 'absolute'}
           style={{
-            background: starColor,
-            left: star.x,
-            top: star.y,
-            width: star.size,
-            height: star.size,
-            borderRadius: '50%'
+            background:        starColor,
+            left:              star.x,
+            top:               star.y,
+            width:             star.size,
+            height:            star.size,
+            borderRadius:      '50%',
+            opacity:           star.shouldBlink ? 0.25 : star.opacity,
+            animationDuration: star.shouldBlink ? `${star.blinkDuration}s` : undefined,
+            animationDelay:    star.shouldBlink ? `${star.blinkDelay}s`    : undefined,
           }}
-          initial={{ opacity: star.shouldBlink ? 0.3 : star.size > 2 ? 0.9 : 0.7 }}
-          animate={star.shouldBlink ? {
-            opacity: [0.2, 0.9, 0.2],
-            scale: [1, 1.2, 1]
-          } : {}}
-          transition={star.shouldBlink ? {
-            duration: star.blinkDuration,
-            repeat: Infinity,
-            delay: star.blinkDelay,
-            ease: "easeInOut"
-          } : {}}
         />
       ))}
 
-      {/* Shooting stars with enhanced Framer Motion animations */}
-      {shootingStars.map(shootingStar => (
+      {/* Shooting stars — one Framer Motion element each, no nested particles */}
+      {shootingStars.map(star => (
         <motion.div
-          key={shootingStar.id}
-          className="absolute z-20"
-          initial={{
-            opacity: 0,
-            x: shootingStar.startX,
-            y: shootingStar.startY,
-            scale: 0,
-            rotate: shootingStar.angle - 180,
-          }}
+          key={star.id}
+          className="absolute"
+          style={{ transformOrigin: 'left center', pointerEvents: 'none' }}
+          initial={{ opacity: 0, x: star.startX, y: star.startY, rotate: star.angle - 180 }}
           animate={{
-            opacity: [0, shootingStar.opacity, shootingStar.opacity, 0],
-            x: [
-              shootingStar.startX,
-              shootingStar.startX + (shootingStar.length * 8 * shootingStar.speed * Math.cos(shootingStar.angle * Math.PI / 180))
-            ],
-            y: [
-              shootingStar.startY,
-              shootingStar.startY + (shootingStar.length * 8 * shootingStar.speed * Math.sin(shootingStar.angle * Math.PI / 180))
-            ],
-            scale: [0, 1, 1, 0.2],
+            opacity: [0, star.opacity, star.opacity, 0],
+            x: star.startX + star.length * 8 * star.speed * Math.cos(star.angle * Math.PI / 180),
+            y: star.startY + star.length * 8 * star.speed * Math.sin(star.angle * Math.PI / 180),
           }}
           transition={{
-            duration: 2.2 / shootingStar.speed,
-            ease: [0.25, 0.1, 0.25, 1],
-            times: [0, 0.15, 0.85, 1]
-          }}
-          style={{
-            position: 'absolute',
-            transformOrigin: 'left center',
-            pointerEvents: 'none'
+            duration: 2.2 / star.speed,
+            ease:     [0.25, 0.1, 0.25, 1],
+            opacity:  { times: [0, 0.15, 0.85, 1] },
           }}
         >
-          {/* Shooting star trail */}
-          <motion.div
-            className="relative"
+          <div
             style={{
-              width: shootingStar.length,
-              height: shootingStar.thickness || 2,
+              width:        star.length,
+              height:       star.thickness,
               borderRadius: '4px',
-              background: `linear-gradient(270deg, transparent 0%, ${starColor} 60%, ${starColor} 100%)`,
-              boxShadow: `0 0 8px 1px ${starColor}40`
+              background:   `linear-gradient(270deg, transparent 0%, ${starColor} 100%)`,
             }}
-            animate={{
-              scaleX: [0.3, 1, 0.6],
-              opacity: [0.3, 1, 0.3]
-            }}
-            transition={{
-              duration: 2.2 / shootingStar.speed,
-              times: [0, 0.5, 1],
-              ease: "easeOut"
-            }}
-          >
-            {/* Shooting star head/glow effect */}
-            <motion.div
-              className="absolute top-[-2px]"
-              style={{
-                width: shootingStar.thickness * 5,
-                height: shootingStar.thickness * 5,
-                background: starColor,
-                borderRadius: '50%',
-                filter: 'blur(1px)',
-                boxShadow: `0 0 10px 3px ${starColor}cc, 0 0 20px 6px ${starColor}80`,
-                transform: 'translate(-50%, -50%)'
-              }}
-              animate={{
-                opacity: [0, 1, 0.8, 0],
-                scale: [0.5, 1.3, 1, 0.8]
-              }}
-              transition={{
-                duration: 2.2 / shootingStar.speed,
-                times: [0, 0.3, 0.7, 1],
-                ease: "easeOut"
-              }}
-            />
-
-            {/* Sparkle particles following the star */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute"
-                style={{
-                  left: Math.random() * shootingStar.length * 0.7 + shootingStar.length * 0.2,
-                  top: (Math.random() - 0.5) * (shootingStar.thickness * 2),
-                  width: Math.random() * shootingStar.thickness + 1,
-                  height: Math.random() * shootingStar.thickness + 1,
-                  background: starColor,
-                  borderRadius: '50%',
-                  boxShadow: `0 0 4px 1px ${starColor}cc`,
-                }}
-                animate={{
-                  opacity: [0, 0.8, 0],
-                  scale: [0, 1, 0],
-                  y: [0, (Math.random() - 0.5) * 15]
-                }}
-                transition={{
-                  duration: 1.8 / shootingStar.speed,
-                  delay: Math.random() * 0.3,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
-          </motion.div>
+          />
         </motion.div>
       ))}
     </div>

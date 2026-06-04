@@ -1,31 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 
 const pillars = [
   {
     tag: 'Build',
     title: 'Engineering-first development.',
-    desc: 'Backend systems, AI agents, web and mobile applications built for production — not demos. Code that scales, is properly documented, and is entirely yours at handover.',
+    desc: 'Backend systems, AI agents, web and mobile applications. Written for production, documented properly, and handed over with full ownership.',
     items: ['Custom Software', 'AI Agent Development', 'Backend Engineering', 'Web & Mobile Apps', 'Analytics Dashboards'],
   },
   {
     tag: 'Brand',
     title: 'Identity that earns trust on sight.',
-    desc: 'Visual identity, brand systems, and UI/UX design that make your product look credible from day one. Design decisions made with commercial intent, not aesthetic preference.',
+    desc: 'Visual identity, brand systems, and UI/UX design that make your product look like it belongs in the market it is entering. Every decision is made to earn attention, not just look good.',
     items: ['Logo & Visual Identity', 'Brand Systems', 'UI/UX Design', 'Design Language', 'Product Design'],
   },
   {
     tag: 'Launch',
     title: 'Visibility built in, not bolted on.',
-    desc: 'SEO architecture, content strategy, and digital presence — planned from the start so the right audience finds you the moment you go live. Not an afterthought.',
+    desc: 'SEO architecture, content strategy, and digital presence. Planned early so the right audience finds you when you launch, not months after.',
     items: ['SEO Architecture', 'Content Strategy', 'Digital Presence', 'Launch Strategy', 'Growth Planning'],
   },
 ];
 
 const BuildLaunchSection = () => {
-  const controls = useAnimation();
-  const ref      = React.useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const controls  = useAnimation();
+  const ref       = React.useRef(null);
+  const isInView  = useInView(ref, { once: true, margin: '-100px' });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     if (isInView) controls.start('visible');
@@ -93,10 +101,9 @@ const BuildLaunchSection = () => {
             variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.5, delay: 0.45 }}
           >
-            Most studios stop at the code. We don't. Backend & Beyond handles
-            the full product journey — from the first line of backend to the
-            brand identity, SEO, and market visibility — so you don't have to
-            stitch together three different agencies.
+            Most studios stop at the code. We don't. Backend & Beyond covers
+            development, brand, and go-to-market visibility. One team, one
+            conversation, one point of accountability.
           </motion.p>
         </div>
 
@@ -114,8 +121,9 @@ const BuildLaunchSection = () => {
               style={{
                 paddingTop: 'clamp(2rem, 3.5vw, 3rem)',
                 paddingBottom: 'clamp(2rem, 3.5vw, 3rem)',
-                paddingLeft: idx === 0 ? '0' : 'clamp(1.5rem, 2.5vw, 2.5rem)',
-                paddingRight: idx === pillars.length - 1 ? '0' : 'clamp(1.5rem, 2.5vw, 2.5rem)',
+                paddingLeft: isMobile ? '0' : (idx === 0 ? '0' : 'clamp(1.5rem, 2.5vw, 2.5rem)'),
+                paddingRight: isMobile ? '0' : (idx === pillars.length - 1 ? '0' : 'clamp(1.5rem, 2.5vw, 2.5rem)'),
+                borderTop: isMobile && idx > 0 ? '1px solid rgba(45,10,107,0.15)' : 'none',
               }}
             >
               {/* Vertical divider — floats with equal gap from top and bottom borders */}

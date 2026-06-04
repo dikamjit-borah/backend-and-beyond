@@ -5,27 +5,27 @@ const services = [
   {
     num: '01',
     title: 'Custom Software & Web Application Development',
-    desc: 'Full-stack web and mobile applications engineered for performance and maintainability. SaaS platforms, internal tools, and client-facing products — built to your exact specifications and deployed to production standards.',
+    desc: 'Full-stack web and mobile applications engineered for performance and maintainability. SaaS platforms, internal tools, and client-facing products built to your exact specifications and shipped to production standards.',
   },
   {
     num: '02',
     title: 'AI Agent Development & Workflow Automation',
-    desc: 'We design and deploy AI agents, automation pipelines, and LLM-powered systems that eliminate manual overhead and scale with your operations. Built for real business processes, not conference demos.',
+    desc: 'We design and deploy AI agents, automation pipelines, and LLM-powered systems that reduce manual overhead and scale with your operations. Scoped for actual workflows, not proof-of-concept use cases.',
   },
   {
     num: '03',
     title: 'Analytics Dashboard & Data Visualization',
-    desc: 'Custom dashboards, reporting layers, and data pipelines that make operational data readable and actionable. Clarity over complexity — designed for the people who make decisions.',
+    desc: 'Custom dashboards, reporting layers, and data pipelines that give operators a clear view of what is happening. Built for the people who act on data, not just display it.',
   },
   {
     num: '04',
     title: 'Backend Engineering & System Architecture',
-    desc: 'API design, database architecture, cloud infrastructure, and scalable backend systems. We build the technical foundation your product needs to grow without breaking.',
+    desc: 'API design, database architecture, cloud infrastructure, and scalable backend systems. The technical foundation your product needs to grow without the architecture becoming the bottleneck.',
   },
   {
     num: '05',
     title: 'Brand Identity & Digital Visibility',
-    desc: 'Visual identity, brand systems, UI/UX design, SEO architecture, and content strategy — the launch layer that makes your product credible, discoverable, and trusted. Built in from the start, not bolted on after.',
+    desc: 'Visual identity, brand systems, UI/UX design, SEO, and content strategy. The work that makes your product credible and findable before someone even signs up.',
   },
 ];
 
