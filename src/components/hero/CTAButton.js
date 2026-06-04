@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const CTAButton = ({ onClick, onSeeWork, children }) => (
+const CTAButton = ({ onClick, children }) => (
   <motion.div
     className="flex items-center gap-6 mb-8 md:mb-12"
     initial={{ opacity: 0, y: 20 }}
@@ -18,15 +18,14 @@ const CTAButton = ({ onClick, onSeeWork, children }) => (
       {children}
     </motion.button>
 
-    <motion.button
-      onClick={onSeeWork}
-      className="font-jost text-xs font-semibold uppercase tracking-widest transition-colors duration-200 flex items-center gap-2"
-      style={{ color: 'var(--text-sub)', background: 'transparent', border: 'none' }}
-      whileHover={{ color: 'var(--accent)' }}
+    <a
+      href="/portfolio"
+      className="font-jost text-xs font-semibold uppercase tracking-widest transition-opacity duration-200 flex items-center gap-2 hover:opacity-60"
+      style={{ color: 'var(--text-sub)' }}
     >
       See Our Work
       <span style={{ color: 'var(--accent)' }}>→</span>
-    </motion.button>
+    </a>
   </motion.div>
 );
 

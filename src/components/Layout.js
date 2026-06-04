@@ -1,40 +1,50 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
-const Layout = ({ children }) => {
-  const [activeSection, setActiveSection] = useState(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
-  const mobileMenuRef = useRef(null);
-  const navItemRefs = useRef([]);
+const navItems = [
+  { id: 'home',      label: 'Home',      href: '/#home',      isPage: false },
+  { id: 'about',     label: 'About',     href: '/#about',     isPage: false },
+  { id: 'services',  label: 'Services',  href: '/#services',  isPage: false },
+  { id: 'portfolio', label: 'Portfolio', href: '/portfolio',   isPage: true  },
+  { id: 'contact',   label: 'Contact',   href: '/#contact',   isPage: false },
+];
 
-  const handleNavClick = (e, sectionId) => {
+const Layout = ({ children }) => {
+  const [activeSection, setActiveSection]     = useState(null);
+  const [pathname, setPathname]               = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop]     = useState(false);
+  const mobileMenuRef = useRef(null);
+
+  const handleNavClick = (e, item) => {
+    if (item.isPage) return; // let the browser navigate normally
     e.preventDefault();
-    const element = document.getElementById(sectionId);
+    const element = document.getElementById(item.id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     } else {
-      window.location.href = `/#${sectionId}`;
+      window.location.href = item.href;
     }
     setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "services", "portfolio", "about", "contact"];
+      const anchorIds = ["home", "about", "services", "contact"];
       let currentSection = null;
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
+      for (const id of anchorIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
           if (rect.top <= 100 && rect.bottom >= 100) {
-            currentSection = section;
+            currentSection = id;
             break;
           }
         }
       }
       if (currentSection !== activeSection) setActiveSection(currentSection);
     };
+    setPathname(window.location.pathname);
     const handleScrollTop = () => setShowScrollTop(window.scrollY > 400);
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('scroll', handleScrollTop);
@@ -55,9 +65,6 @@ const Layout = ({ children }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMobileMenuOpen]);
 
-  const sections = ['home', 'services', 'portfolio', 'about', 'contact'];
-  const labels   = ['Home', 'Services', 'Portfolio', 'About', 'Contact'];
-
   return (
     <div className="min-h-screen" style={{ background: 'var(--cream)', color: 'var(--text-main)' }}>
       {/* Navigation */}
@@ -68,41 +75,43 @@ const Layout = ({ children }) => {
         <div className="mx-auto">
           <div className="flex justify-between items-center h-14">
             {/* Logo */}
-            <div className="flex items-center">
+            <a href="/" className="flex items-center">
               <span className="font-boowie text-base md:text-lg select-none" style={{ color: 'var(--ink)' }}>
                 Backend<span style={{ color: 'var(--accent)' }}>&</span>Beyond
               </span>
-            </div>
+            </a>
 
             {/* Desktop Navigation */}
             <div className="hidden laptop:flex items-center gap-1">
-              {sections.map((section, idx) => (
-                <a
-                  key={section}
-                  ref={el => { navItemRefs.current[idx] = el; }}
-                  href={`/#${section}`}
-                  onClick={(e) => handleNavClick(e, section)}
-                  className="px-5 py-1 font-jost text-xs font-semibold uppercase tracking-widest relative transition-colors duration-200"
-                  style={{
-                    color: activeSection === section ? 'var(--ink)' : 'var(--text-sub)',
-                  }}
-                >
-                  {labels[idx]}
-                  {activeSection === section && (
-                    <span
-                      className="absolute bottom-0 left-5 right-5 h-0.5"
-                      style={{ background: 'var(--accent)' }}
-                    />
-                  )}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const isActive = item.isPage
+                  ? pathname.startsWith(item.href)
+                  : activeSection === item.id;
+                return (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item)}
+                    className="px-5 py-1 font-jost text-xs font-semibold uppercase tracking-widest relative transition-colors duration-200"
+                    style={{ color: isActive ? 'var(--ink)' : 'var(--text-sub)' }}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <span
+                        className="absolute bottom-0 left-5 right-5 h-0.5"
+                        style={{ background: 'var(--accent)' }}
+                      />
+                    )}
+                  </a>
+                );
+              })}
             </div>
 
             {/* Desktop CTA */}
             <div className="hidden laptop:flex justify-end">
               <a
                 href="/#contact"
-                onClick={(e) => handleNavClick(e, 'contact')}
+                onClick={(e) => handleNavClick(e, { id: 'contact', href: '/#contact', isPage: false })}
                 className="px-5 py-2 font-jost text-xs font-bold uppercase tracking-widest transition-colors duration-200"
                 style={{ background: 'var(--ink)', color: 'var(--cream)' }}
                 onMouseEnter={e => e.currentTarget.style.background = 'var(--ink-mid)'}
@@ -132,20 +141,25 @@ const Layout = ({ children }) => {
               style={{ background: 'var(--cream)', borderBottom: '2px solid var(--ink)' }}
             >
               <div className="py-2">
-                {sections.map((section, idx) => (
-                  <a
-                    key={section}
-                    href={`/#${section}`}
-                    onClick={(e) => handleNavClick(e, section)}
-                    className="block px-6 py-3 font-jost text-xs font-semibold uppercase tracking-widest transition-colors duration-200"
-                    style={{
-                      color: activeSection === section ? 'var(--accent)' : 'var(--text-sub)',
-                      borderLeft: activeSection === section ? '3px solid var(--accent)' : '3px solid transparent',
-                    }}
-                  >
-                    {labels[idx]}
-                  </a>
-                ))}
+                {navItems.map((item) => {
+                  const isActive = item.isPage
+                    ? pathname.startsWith(item.href)
+                    : activeSection === item.id;
+                  return (
+                    <a
+                      key={item.id}
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item)}
+                      className="block px-6 py-3 font-jost text-xs font-semibold uppercase tracking-widest transition-colors duration-200"
+                      style={{
+                        color: isActive ? 'var(--accent)' : 'var(--text-sub)',
+                        borderLeft: isActive ? '3px solid var(--accent)' : '3px solid transparent',
+                      }}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -154,7 +168,7 @@ const Layout = ({ children }) => {
 
       <main>{children}</main>
 
-      {/* Scroll-to-top button */}
+      {/* Scroll-to-top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label="Scroll to top"
@@ -170,9 +184,7 @@ const Layout = ({ children }) => {
         onMouseEnter={e => { e.currentTarget.style.background = 'var(--accent)'; }}
         onMouseLeave={e => { e.currentTarget.style.background = 'var(--ink)'; }}
       >
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 11.5V2.5M7 2.5L2.5 7M7 2.5L11.5 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        ↑
       </button>
     </div>
   );

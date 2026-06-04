@@ -3,7 +3,7 @@ import "./../styles/global.css";
 import Layout from "../components/Layout";
 import HeroSection from "../components/HeroSection";
 import ServicesSection from "../components/ServicesSection";
-import PortfolioSection from "../components/PortfolioSection";
+import BuildLaunchSection from "../components/BuildLaunchSection";
 import ProcessSection from "../components/ProcessSection";
 import AboutSection from "../components/AboutSection";
 import FAQSection from "../components/FAQSection";
@@ -14,13 +14,13 @@ const IndexPage = () => {
   return (
     <Layout>
       <HeroSection />
-      <ServicesSection />
-      <PortfolioSection />
-      <ProcessSection />
       <AboutSection />
+      <BuildLaunchSection />
+      <ProcessSection />
+      <ServicesSection />
       <FAQSection />
       <ContactSection />
-      <Footer showLegal={true} />
+      <Footer />
     </Layout>
   );
 };
@@ -73,7 +73,9 @@ export const Head = () => (
         "Dashboard Development",
         "Web Application Development",
         "Mobile App Development",
-        "Automation Systems"
+        "Automation Systems",
+        "Brand Identity Design",
+        "SEO & Digital Visibility"
       ],
       "areaServed": "Worldwide",
       "sameAs": [

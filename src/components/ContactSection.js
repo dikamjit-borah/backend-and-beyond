@@ -23,7 +23,7 @@ const ContactSection = () => {
   }, [controls, isInView]);
 
   const defaultFormData = {
-    firstName: "", lastName: "", companyName: "",
+    firstName: "", lastName: "",
     email: "", phone: "", message: "", referralCode: "", privacyPolicy: false,
   };
 
@@ -55,7 +55,7 @@ const ContactSection = () => {
         className="absolute right-0 top-8 font-epilogue font-black uppercase pointer-events-none select-none hidden lg:block"
         style={{
           fontSize: '100px',
-          color: 'rgba(250,248,244,0.025)',
+          color: 'rgba(250,248,244,0.04)',
           letterSpacing: '0.05em',
           lineHeight: 1,
         }}
@@ -80,7 +80,7 @@ const ContactSection = () => {
 
         {/* Two columns: info left, form right */}
         <div className="flex flex-col md:flex-row items-start gap-10 md:gap-16 lg:gap-24">
-          <ContactLeftSide isInView={isInView} />
+          <ContactLeftSide />
           <motion.div
             className="w-full md:w-1/2 flex-shrink-0"
             variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}

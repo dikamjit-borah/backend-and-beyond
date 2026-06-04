@@ -1,15 +1,15 @@
 import React from "react";
 import { Linkedin, Twitter, Instagram } from "lucide-react";
 
-const Footer = ({ showLegal = true }) => (
+const Footer = () => (
   <footer style={{ background: 'var(--cream-alt)', borderTop: '2px solid var(--ink)' }}>
     <div className="max-w-[1400px] mx-auto py-12 px-4 sm:px-8 md:px-16 lg:px-24">
       <div className="flex flex-col md:flex-row justify-between items-start">
         {/* Brand */}
         <div className="mb-8 md:mb-0">
-          <h2 className="font-boowie text-2xl mb-3" style={{ color: 'var(--ink)' }}>
+          <p className="font-boowie text-2xl mb-3" style={{ color: 'var(--ink)' }}>
             Backend<span style={{ color: 'var(--accent)', fontSize: '1.4em', lineHeight: 1 }}>&</span>Beyond
-          </h2>
+          </p>
           <p className="font-jost text-xs leading-relaxed max-w-xs mb-4" style={{ color: 'var(--text-sub)' }}>
             Software engineering studio. Building systems that scale.
           </p>
@@ -35,7 +35,7 @@ const Footer = ({ showLegal = true }) => (
             ))}
           </div>
           <p className="font-jost text-xs" style={{ color: 'var(--text-sub)' }}>
-            © {new Date().getFullYear()} backend&amp;beyond. All rights reserved.
+            © {new Date().getFullYear()} Backend & Beyond. All rights reserved.
           </p>
         </div>
 
@@ -44,7 +44,7 @@ const Footer = ({ showLegal = true }) => (
           <div>
             <h5 className="font-jost text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink)' }}>Navigation</h5>
             <ul className="space-y-2">
-              {[['/#home','Home'],['/#services','Services'],['/#portfolio','Portfolio'],['/#about','About'],['/#contact','Contact']].map(([href, label]) => (
+              {[['/#home','Home'],['/#services','Services'],['/portfolio','Portfolio'],['/#about','About'],['/#contact','Contact']].map(([href, label]) => (
                 <li key={href}>
                   <a
                     href={href}
@@ -69,6 +69,8 @@ const Footer = ({ showLegal = true }) => (
                 'Backend Engineering',
                 'Dashboard Development',
                 'Web & Mobile Apps',
+                'Brand Identity',
+                'SEO & Visibility',
               ].map(label => (
                 <li key={label}>
                   <a
@@ -85,8 +87,7 @@ const Footer = ({ showLegal = true }) => (
             </ul>
           </div>
 
-          {showLegal && (
-            <div>
+          <div>
               <h5 className="font-jost text-xs font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink)' }}>Legal</h5>
               <ul className="space-y-2">
                 <li>
@@ -104,7 +105,6 @@ const Footer = ({ showLegal = true }) => (
                 </li>
               </ul>
             </div>
-          )}
         </div>
       </div>
     </div>

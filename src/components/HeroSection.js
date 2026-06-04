@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   StarField,
+  GeometricField,
   HeroBadge,
   HeroHeading,
   HeroDescription,
@@ -21,10 +22,6 @@ const HeroSection = () => {
 
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToWork = () => {
-    document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -101,12 +98,17 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           />
 
+          {/* Mobile background field */}
+          <div className="lg:hidden absolute inset-0 pointer-events-none overflow-hidden">
+            <GeometricField />
+          </div>
+
           <div className="relative">
             <HeroBadge />
             <HeroHeading />
             <HeroDescription />
-            <CTAButton onClick={scrollToContact} onSeeWork={scrollToWork}>
-              Start a Project
+            <CTAButton onClick={scrollToContact}>
+              Start a Project →
             </CTAButton>
           </div>
         </div>

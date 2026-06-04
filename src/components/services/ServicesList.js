@@ -22,6 +22,11 @@ const services = [
     title: 'Backend Engineering & System Architecture',
     desc: 'API design, database architecture, cloud infrastructure, and scalable backend systems. We build the technical foundation your product needs to grow without breaking.',
   },
+  {
+    num: '05',
+    title: 'Brand Identity & Digital Visibility',
+    desc: 'Visual identity, brand systems, UI/UX design, SEO architecture, and content strategy — the launch layer that makes your product credible, discoverable, and trusted. Built in from the start, not bolted on after.',
+  },
 ];
 
 const ServicesList = () => {
