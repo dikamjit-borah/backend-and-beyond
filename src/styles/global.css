@@ -97,6 +97,18 @@ html {
   will-change: opacity, transform;
 }
 
+/* ── Hero star field mask — right-side fade on desktop, full coverage on mobile ── */
+.hero-star-mask {
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+@media (min-width: 1024px) {
+  .hero-star-mask {
+    mask-image: linear-gradient(to right, transparent 0%, transparent 42%, rgba(0,0,0,0.45) 58%, black 72%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 42%, rgba(0,0,0,0.45) 58%, black 72%);
+  }
+}
+
 /* ── Geometric hero shapes ──────────────────────────────────── */
 @keyframes geo-drift-a {
   0%, 100% { transform: rotate(15deg) translateY(0px); }

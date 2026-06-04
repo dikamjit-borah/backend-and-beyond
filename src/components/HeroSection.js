@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   StarField,
-  GeometricField,
   HeroBadge,
   HeroHeading,
   HeroDescription,
@@ -44,14 +43,10 @@ const HeroSection = () => {
           }}
         />
 
-        {/* Full-screen star field masked to emerge from the right — no hard edge */}
+        {/* Star field — full coverage on mobile, right-side masked on desktop */}
         <div
-          className="hidden lg:block absolute inset-0 pointer-events-none overflow-hidden"
-          style={{
-            zIndex: 1,
-            maskImage: 'linear-gradient(to right, transparent 0%, transparent 42%, rgba(0,0,0,0.45) 58%, black 72%)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, transparent 42%, rgba(0,0,0,0.45) 58%, black 72%)',
-          }}
+          className="hero-star-mask absolute inset-0 pointer-events-none overflow-hidden"
+          style={{ zIndex: 1 }}
         >
           <StarField windowSize={windowSize} starColor="#2D0A6B" />
         </div>
@@ -98,17 +93,12 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           />
 
-          {/* Mobile background field */}
-          <div className="lg:hidden absolute inset-0 pointer-events-none overflow-hidden">
-            <GeometricField />
-          </div>
-
           <div className="relative">
             <HeroBadge />
             <HeroHeading />
             <HeroDescription />
             <CTAButton onClick={scrollToContact}>
-              Start a Project →
+              Start a Project
             </CTAButton>
           </div>
         </div>

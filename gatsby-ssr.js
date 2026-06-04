@@ -3,6 +3,8 @@ import React from "react";
 export const onRenderBody = ({ setHeadComponents, setPreBodyComponents }) => {
   // Inject critical CSS in head for immediate rendering
   setHeadComponents([
+    <link key="favicon-svg"      rel="icon"          type="image/svg+xml" href="/favicon.svg" />,
+    <link key="favicon-shortcut" rel="shortcut icon" href="/favicon.svg" />,
     <style
       key="immediate-loader-critical"
       dangerouslySetInnerHTML={{
