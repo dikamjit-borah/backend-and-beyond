@@ -62,6 +62,21 @@ const HeroSection = () => {
         {/* Canvas particle field — full-screen, z-index 0 */}
         <ParticleCanvas color="#2D0A6B" />
 
+        {/* Grain overlay — inline SVG so the feTurbulence filter is DOM-resident
+            and renders correctly across all browsers */}
+        <svg
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 100 }}
+        >
+          <defs>
+            <filter id="hero-grain" x="0%" y="0%" width="100%" height="100%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+              <feColorMatrix type="saturate" values="0" />
+            </filter>
+          </defs>
+          <rect width="100%" height="100%" filter="url(#hero-grain)" opacity="0.10" />
+        </svg>
+
         {/* Atmospheric depth — desktop only */}
         <div
           className="hidden lg:block absolute inset-0 pointer-events-none"
