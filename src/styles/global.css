@@ -38,7 +38,7 @@ html {
 
 /* ── Scroll offset for fixed nav (h-14 = 56px) ─────────────── */
 #home, #about, #services, #contact,
-#build-launch, #process, #faq {
+#build-launch, #process, #faq, #mvp {
   scroll-margin-top: 56px;
 }
 
