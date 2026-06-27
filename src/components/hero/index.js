@@ -1,5 +1,4 @@
-export { default as StarField }        from './StarField';
-export { default as GeometricField }   from './GeometricField';
+export { default as ParticleCanvas }   from './ParticleCanvas';
 export { default as HeroBadge }        from './HeroBadge';
 export { default as HeroHeading }      from './HeroHeading';
 export { default as HeroDescription }  from './HeroDescription';
