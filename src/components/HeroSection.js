@@ -1,22 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import ParticleCanvas from "./hero/ParticleCanvas";
 import {
-  StarField,
   HeroBadge,
   HeroHeading,
   HeroDescription,
   CTAButton,
-  TrustedBySection
+  TrustedBySection,
 } from "./hero";
 
 const HeroSection = () => {
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const badgeRef   = useRef(null);
+  const headingRef = useRef(null);
+  const descRef    = useRef(null);
+  const ampRef     = useRef(null);
+  const labelRef   = useRef(null);
 
+  // rAF-throttled scroll parallax — stops past hero height
   useEffect(() => {
-    const update = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const section = document.getElementById('home');
+    let heroH = section?.offsetHeight ?? window.innerHeight;
+    const onResize = () => { heroH = section?.offsetHeight ?? window.innerHeight; };
+    window.addEventListener('resize', onResize, { passive: true });
+
+    let pending = false;
+    const update = () => {
+      const y = window.scrollY;
+      if (y <= heroH) {
+        if (badgeRef.current)   badgeRef.current.style.setProperty('--py',   `${y * -0.08}px`);
+        if (headingRef.current) headingRef.current.style.setProperty('--py', `${y * -0.12}px`);
+        if (descRef.current)    descRef.current.style.setProperty('--py',    `${y * -0.16}px`);
+        if (ampRef.current)     ampRef.current.style.setProperty('--py',     `${y * -0.05}px`);
+        if (labelRef.current)   labelRef.current.style.setProperty('--py',   `${y * -0.04}px`);
+      }
+      pending = false;
+    };
+
+    const onScroll = () => { if (!pending) { pending = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
   const scrollToContact = () => {
@@ -31,7 +59,10 @@ const HeroSection = () => {
     >
       <div className="flex-1 flex relative min-h-screen">
 
-        {/* Atmospheric right-side depth — very subtle ink + accent glows */}
+        {/* Canvas particle field — full-screen, z-index 0 */}
+        <ParticleCanvas color="#2D0A6B" />
+
+        {/* Atmospheric depth — desktop only */}
         <div
           className="hidden lg:block absolute inset-0 pointer-events-none"
           style={{
@@ -39,21 +70,14 @@ const HeroSection = () => {
               radial-gradient(ellipse at 85% 35%, rgba(45,10,107,0.055) 0%, transparent 52%),
               radial-gradient(ellipse at 68% 72%, rgba(232,93,0,0.022) 0%, transparent 38%)
             `,
-            zIndex: 0,
+            zIndex: 1,
           }}
         />
 
-        {/* Star field — full coverage on mobile, right-side masked on desktop */}
+        {/* Giant "&" backdrop */}
         <div
-          className="hero-star-mask absolute inset-0 pointer-events-none overflow-hidden"
-          style={{ zIndex: 1 }}
-        >
-          <StarField windowSize={windowSize} starColor="#2D0A6B" />
-        </div>
-
-        {/* Giant "&" backdrop — anchored in right zone */}
-        <span
-          className="font-boowie select-none pointer-events-none absolute hidden lg:block"
+          ref={ampRef}
+          className="parallax-layer font-boowie select-none pointer-events-none absolute hidden lg:block"
           style={{
             fontSize: 'clamp(180px, 20vw, 360px)',
             color: 'var(--ink)',
@@ -64,11 +88,12 @@ const HeroSection = () => {
             transform: 'translateY(-50%)',
             zIndex: 2,
           }}
-        >&</span>
+        >&</div>
 
         {/* Vertical label */}
         <div
-          className="absolute bottom-16 right-8 font-jost text-xs font-bold uppercase tracking-widest hidden lg:block"
+          ref={labelRef}
+          className="parallax-layer absolute bottom-16 right-8 font-jost text-xs font-bold uppercase tracking-widest hidden lg:block"
           style={{
             color: 'rgba(45,10,107,0.22)',
             writingMode: 'vertical-rl',
@@ -94,12 +119,23 @@ const HeroSection = () => {
           />
 
           <div className="relative">
-            <HeroBadge />
-            <HeroHeading />
-            <HeroDescription />
-            <CTAButton onClick={scrollToContact}>
-              Start a Project
-            </CTAButton>
+            {/* Badge */}
+            <div ref={badgeRef} className="parallax-layer">
+              <HeroBadge />
+            </div>
+
+            {/* Heading */}
+            <div ref={headingRef} className="parallax-layer">
+              <HeroHeading />
+            </div>
+
+            {/* Description + CTA grouped — faster parallax for depth */}
+            <div ref={descRef} className="parallax-layer">
+              <HeroDescription />
+              <CTAButton onClick={scrollToContact}>
+                Start a Project
+              </CTAButton>
+            </div>
           </div>
         </div>
       </div>
