@@ -9,11 +9,13 @@ import AboutSection from "../components/AboutSection";
 import FAQSection from "../components/FAQSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
+import MVPSection from "../components/MVPSection";
 
 const IndexPage = () => {
   return (
     <Layout>
       <HeroSection />
+      <MVPSection />
       <BuildLaunchSection />
       <AboutSection />
       <ProcessSection />

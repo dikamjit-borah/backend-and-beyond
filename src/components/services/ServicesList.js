@@ -27,6 +27,11 @@ const services = [
     title: 'Brand Identity & Digital Visibility',
     desc: 'Visual identity, brand systems, UI/UX design, SEO, and content strategy. The work that makes your product credible and findable before someone even signs up.',
   },
+  {
+    num: '06',
+    title: 'Idea to MVP — 30-Day Sprint',
+    desc: 'We take your idea and ship a working software product in 30 days. Scoped to your business, built for real users, priced on what it takes. The fastest way to test your market before you over-invest.',
+  },
 ];
 
 const ServicesList = () => {
