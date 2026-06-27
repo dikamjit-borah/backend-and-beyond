@@ -32,6 +32,16 @@ export const projects = [
     url: 'https://codeprojekt.shop/',
     image: project2,
   },
+  {
+    num: '04',
+    title: 'Camlynk',
+    subtitle: 'Home Security & Smart Home Solutions',
+    category: 'Security Tech',
+    description: 'Marketing and lead-generation site for a Guwahati home security company — CCTV, burglar alarms, and smart home automation. Structured across residential, smart-home, and commercial tiers with a same-day survey booking form, stat-led proof sections, and clear 24/7 support positioning.',
+    tags: ['Landing Page', 'Web Design', 'Marketing', 'Smart Home'],
+    url: 'https://camlynk.koalblum.com/',
+    image: null,
+  },
 ];
 
 const PortfolioData = () => null;
